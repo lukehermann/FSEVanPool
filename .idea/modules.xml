@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FSEVanPool.iml" filepath="$PROJECT_DIR$/.idea/FSEVanPool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VanPool.iml" filepath="$PROJECT_DIR$/VanPool.iml" />
     </modules>
   </component>
 </project>
