@@ -2,12 +2,12 @@ package com.vanpool.vanpool.Entity;
 
 public class Driver {
     private int id;
-    private String name;
+    private String username;
     private String password;
 
     public Driver(int id, String name, String password) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 
@@ -16,7 +16,7 @@ public class Driver {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public String getPassword() {
@@ -28,7 +28,7 @@ public class Driver {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public void setPassword(String password) {
