@@ -1,17 +1,5 @@
 package com.vanpool.vanpool;
 
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//
-//@SpringBootApplication
-//public class VanpoolApplication {
-//
-//    public static void main(String[] args) {
-//        SpringApplication.run(VanpoolApplication.class, args);
-//    }
-//
-//}
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
