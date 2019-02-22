@@ -1,4 +1,4 @@
 package com.vanpool.vanpool.Controller;
 
-public class Controller {
+public class VanController {
 }

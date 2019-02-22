@@ -1,4 +1,4 @@
 package com.vanpool.vanpool.Service;
 
-public class Service {
+public class RiderService {
 }
