@@ -7,7 +7,7 @@ public class Van {
     private int id;
     private String location;
 
-    public Van(int id, String location){
+    public Van(int id, String location) {
 
         this.id = id;
         this.location = location;

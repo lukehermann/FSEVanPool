@@ -9,7 +9,7 @@ public class Rider {
     private String dropOffLocation;
 
 
-    public Rider(int id, String username, String password, String pickUpLocation, String dropOffLocation){
+    public Rider(int id, String username, String password, String pickUpLocation, String dropOffLocation) {
 
         this.id = id;
         this.username = username;
