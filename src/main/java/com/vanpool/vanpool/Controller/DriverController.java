@@ -20,4 +20,13 @@ public class DriverController {
     {
         return driverService.getAllDrivers();
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Driver getDriverByID(int id)
+    {
+        return this.driverService.getDriverByID(id);
+
+    }
+
+
 }

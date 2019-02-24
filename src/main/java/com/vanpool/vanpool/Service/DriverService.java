@@ -15,4 +15,9 @@ public class DriverService {
     public Collection<Driver> getAllDrivers() {
         return driverDAO.getAllDrivers();
     }
+
+    public Driver getDriverByID(int id)
+    {
+        return this.driverDAO.getDriverByID(id);
+    }
 }

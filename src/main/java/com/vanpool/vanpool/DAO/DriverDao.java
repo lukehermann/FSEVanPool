@@ -25,4 +25,16 @@ public class DriverDao {
     public Collection<Driver> getAllDrivers() {
         return this.drivers.values();
     }
+
+    public Driver getDriverByID(int id)
+    {
+        return this.drivers.get(id);
+    }
+
+    public void updateDriverByID(Driver driver)
+    {
+        Driver updaterDriver = drivers.get(driver.getId());
+        updaterDriver.setName(driver.getName());
+
+    }
 }
