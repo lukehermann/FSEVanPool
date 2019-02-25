@@ -1,5 +1,11 @@
 package com.vanpool.vanpool.Entity;
 
+public class Driver extends User{
+    public Driver(int id, String username, String password) {
+        super(id, username, password);
+    }
+}
+/*
 public class Driver {
     private int id;
     private String username;
@@ -34,4 +40,4 @@ public class Driver {
     public void setPassword(String password) {
         this.password = password;
     }
-}
+}*/

@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="bfbb7d89-bb5d-4c0f-b26b-9ec7766d1b55" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -21,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="120">
+              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
               <folding>
                 <element signature="e#307#308#0" expanded="true" />
                 <element signature="e#332#333#0" expanded="true" />
@@ -41,15 +45,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state relative-caret-position="75">
+              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#445#446#0" expanded="true" />
-                <element signature="e#487#488#0" expanded="true" />
+                <element signature="e#129#130#0" expanded="true" />
+                <element signature="e#174#175#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,7 +62,47 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+              <folding>
+                <element signature="e#132#133#0" expanded="true" />
+                <element signature="e#177#178#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+              <folding>
+                <element signature="e#126#127#0" expanded="true" />
+                <element signature="e#171#172#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#445#446#0" expanded="true" />
+                <element signature="e#487#488#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,8 +140,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Controller/DriverController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/DriverDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/WebSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java" />
       </list>
     </option>
   </component>
@@ -242,7 +289,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551117366932" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551125702902" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -330,7 +377,7 @@
       <workItem from="1551046485921" duration="4306000" />
       <workItem from="1551106532747" duration="5071000" />
       <workItem from="1551113893426" duration="1463000" />
-      <workItem from="1551115804576" duration="973000" />
+      <workItem from="1551115804576" duration="1365000" />
     </task>
     <task id="LOCAL-00001" summary="Adding some functionality to the Driver controller still not done">
       <created>1551044483755</created>
@@ -374,14 +421,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551117382537</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Worked on UserDAO erros">
+      <created>1551117739783</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1551117739784</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18273000" />
+    <option name="totallyTimeSpent" value="18665000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="703" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="703" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33925685" />
@@ -468,7 +522,8 @@
     <MESSAGE value="Update login" />
     <MESSAGE value="Update" />
     <MESSAGE value="User in Entity created" />
-    <option name="LAST_COMMIT_MESSAGE" value="User in Entity created" />
+    <MESSAGE value="Worked on UserDAO erros" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on UserDAO erros" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
@@ -500,13 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -651,17 +699,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="284">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding>
             <element signature="e#307#308#0" expanded="true" />
             <element signature="e#332#333#0" expanded="true" />
@@ -679,14 +732,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state relative-caret-position="75">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#129#130#0" expanded="true" />
+            <element signature="e#174#175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding>
+            <element signature="e#132#133#0" expanded="true" />
+            <element signature="e#177#178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <element signature="e#126#127#0" expanded="true" />
+            <element signature="e#171#172#0" expanded="true" />
           </folding>
         </state>
       </provider>

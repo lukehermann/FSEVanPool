@@ -1,5 +1,11 @@
 package com.vanpool.vanpool.Entity;
 
+public class Van extends User{
+    public Van(int id, String username, String password) {
+        super(id, username, password);
+    }
+}
+/*
 public class Van {
 
     // ID, Location
@@ -29,4 +35,4 @@ public class Van {
     public void setLocation(String location) {
         this.location = location;
     }
-}
+}*/

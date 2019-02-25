@@ -1,5 +1,11 @@
 package com.vanpool.vanpool.Entity;
 
+public class Admin extends User{
+    public Admin(int id, String username, String password) {
+        super(id, username, password);
+    }
+}
+/*
 public class Admin {
     private int id;
     private String username;
@@ -34,4 +40,4 @@ public class Admin {
     public String getPassword() {
         return password;
     }
-}
+}*/

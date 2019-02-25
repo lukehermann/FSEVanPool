@@ -2,12 +2,12 @@ package com.vanpool.vanpool.Entity;
 
 public class User {
     private int id;
-    private String name;
+    private String username;
     private String password;
 
-    public User(int id, String name, String password){
+    public User(int id, String username, String password){
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.password = password;
     }
 
@@ -20,11 +20,11 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

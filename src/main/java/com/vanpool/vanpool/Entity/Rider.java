@@ -1,5 +1,11 @@
 package com.vanpool.vanpool.Entity;
 
+public class Rider extends User{
+    public Rider(int id, String username, String password) {
+        super(id, username, password);
+    }
+}
+/*
 public class Rider {
 
     private int id;
@@ -51,4 +57,4 @@ public class Rider {
     public void setDropOffLocation(String dropOffLocation) {
         this.dropOffLocation = dropOffLocation;
     }
-}
+}*/
