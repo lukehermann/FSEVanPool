@@ -27,8 +27,8 @@ public class UserDAO
 
     public void updateUsersByID(User user)
     {
-        User updaterUser = users.get(users.getId());
-        updaterUser.setName(users.getName());
+        User updaterUser = users.get(user.getId());
+        updaterUser.setName(user.getName());
 
     }
 

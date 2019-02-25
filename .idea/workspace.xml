@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bfbb7d89-bb5d-4c0f-b26b-9ec7766d1b55" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,7 +75,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -93,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#445#446#0" expanded="true" />
@@ -140,12 +135,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Controller/DriverController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/DriverDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/WebSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Rider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Admin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Driver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/Van.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java" />
       </list>
     </option>
   </component>
@@ -289,7 +284,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551125702902" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551126240598" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -377,7 +372,7 @@
       <workItem from="1551046485921" duration="4306000" />
       <workItem from="1551106532747" duration="5071000" />
       <workItem from="1551113893426" duration="1463000" />
-      <workItem from="1551115804576" duration="1365000" />
+      <workItem from="1551115804576" duration="1614000" />
     </task>
     <task id="LOCAL-00001" summary="Adding some functionality to the Driver controller still not done">
       <created>1551044483755</created>
@@ -428,11 +423,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551117739784</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Changed Van, Rider, Driver, and Admin classes to extend from user">
+      <created>1551126016986</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1551126016986</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18665000" />
+    <option name="totallyTimeSpent" value="18914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="703" extended-state="0" />
@@ -523,7 +525,8 @@
     <MESSAGE value="Update" />
     <MESSAGE value="User in Entity created" />
     <MESSAGE value="Worked on UserDAO erros" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on UserDAO erros" />
+    <MESSAGE value="Changed Van, Rider, Driver, and Admin classes to extend from user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed Van, Rider, Driver, and Admin classes to extend from user" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
@@ -699,18 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/Entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -768,6 +759,18 @@
           <folding>
             <element signature="e#126#127#0" expanded="true" />
             <element signature="e#171#172#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/vanpool/vanpool/DAO/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
           </folding>
         </state>
       </provider>
