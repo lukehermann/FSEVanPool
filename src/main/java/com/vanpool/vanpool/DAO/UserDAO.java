@@ -1,5 +1,9 @@
 package com.vanpool.vanpool.DAO;
 
+import com.vanpool.vanpool.Entity.User;
+
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserDAO
