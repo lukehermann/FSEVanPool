@@ -17,11 +17,11 @@ public class UserDAO
 
     }
 
-    public Collection<User> getAllDrivers() {
+    public Collection<User> getAllUsers() {
         return this.users.values();
     }
 
-    public void updateDriverByID(User user)
+    public void updateUsersByID(User user)
     {
         User updaterUser = users.get(users.getId());
         updaterUser.setName(users.getName());
