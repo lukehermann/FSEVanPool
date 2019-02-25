@@ -20,4 +20,8 @@ public class DriverService {
     {
         return this.driverDAO.getDriverByID(id);
     }
+    public Driver getDriverProfile(String username, String password)
+    {
+        return driverDAO.getDriverProfile(username, password);
+    }
 }

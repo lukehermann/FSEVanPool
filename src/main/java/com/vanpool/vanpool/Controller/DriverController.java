@@ -15,6 +15,12 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
+    public Driver getDriverProfile(String username, String password)
+    {
+        Driver driverProfile=driverService.getDriverProfile(username, password);
+        return null;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Driver> getAllDrivers()
     {

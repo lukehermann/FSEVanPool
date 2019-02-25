@@ -1,5 +1,7 @@
 package com.vanpool.vanpool;
 
+import com.vanpool.vanpool.Controller.DriverController;
+import com.vanpool.vanpool.Entity.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,6 +40,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .password("password")
                         .roles("USER")
                         .build();
+
+         /*       DriverController loginDriver = new DriverController();
+                Driver driverProfile = loginDriver.getDriverProfile()
+                UserDetails driver =
+                User.withDefaultPasswordEncoder()
+                        .username()
+                        .password("password")
+                        .roles("USER")
+                        .build();
+*/
 
         return new InMemoryUserDetailsManager(user);
     }

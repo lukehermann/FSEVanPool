@@ -37,4 +37,18 @@ public class DriverDao {
         updaterDriver.setName(driver.getName());
 
     }
+
+    public Driver getDriverProfile(String username, String password)
+    {
+        Driver driverProfile=drivers.get(username);
+        if (driverProfile.getPassword()==password)
+        {
+            return driverProfile;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
 }
