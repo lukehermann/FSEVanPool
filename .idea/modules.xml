@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FSEVanPool.iml" filepath="$PROJECT_DIR$/.idea/FSEVanPool.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vanpool.iml" filepath="$PROJECT_DIR$/vanpool.iml" />
     </modules>
   </component>
 </project>
