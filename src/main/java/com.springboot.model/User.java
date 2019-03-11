@@ -37,6 +37,12 @@ public class User {
     @Column(name = "active")
     private int active;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "role_id")
+    private int roleID;
+
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
     private Set<Role> roles;
@@ -49,9 +55,7 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
     public void setEmail(String email) {
         this.email = email;
@@ -96,4 +100,12 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
+
+    public int getRoleID() { return roleID; }
+
+    public void setRoleID(int roleID) { this.roleID = roleID; }
 }
