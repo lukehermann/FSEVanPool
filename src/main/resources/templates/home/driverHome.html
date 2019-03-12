@@ -10,8 +10,30 @@
 </head>
 <body>
 <div class="container">
-    <h2>Hi <span th:utext="${userName}"></span>, this is the home page.</h2>
+    <h2>Hi <span th:utext="${userName}"></span>, This is the driver page.</h2>
     <a th:href="@{/logout}">Sign out</a>
+
+    <p>Select a route to drive:</p>
+
+    <div>
+        <input type="radio" id="route1" name="route" value="route1"
+               checked>
+        <label for="route1">Iowa City to Cedar Rapids</label>
+    </div>
+
+    <div>
+        <input type="radio" id="route2" name="route" value="route2">
+        <label for="route2">Iowa City to Coralville</label>
+    </div>
+
+    <div>
+        <input type="radio" id="route3" name="route" value="route3">
+        <label for="route3">Cedar Rapids to Iowa City</label>
+    </div>
+
+    <div>
+        <button type="select">Select</button>
+    </div>
 </div>
 </body>
 </html>
