@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.springboot.model.User;
@@ -11,7 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.UUID;
 
 
 @Controller
@@ -79,10 +84,18 @@ public class UserController {
     }
 
     @RequestMapping(value= {"/retrievePassword"}, method=RequestMethod.GET)
-    public ModelAndView retrievePassword(){
+    public ModelAndView retrievePassword(@Valid User user, BindingResult bindingResult){
         ModelAndView model = new ModelAndView();
+
         model.setViewName("user/retrievePassword");
         return model;
     }
 
+    @RequestMapping(value= {"reset"}, method=RequestMethod.GET)
+    public ModelAndView reset(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("reset");
+        return model;
+    }
 }
+
