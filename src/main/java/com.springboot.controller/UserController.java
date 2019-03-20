@@ -35,7 +35,6 @@ public class UserController {
         User user = new User();
         model.addObject("user", user);
         model.setViewName("user/signup");
-        System.out.println("hiiiiiiiiiiiiii");
 
         return model;
     }
@@ -67,7 +66,7 @@ public class UserController {
         User user = userService.findUserByEmail(auth.getName());
 
         model.addObject("userName", user.getFirstname() + " " + user.getLastname());
-        model.setViewName("home/home");
+        model.setViewName("home/"+user.getRoles());
         return model;
     }
 
