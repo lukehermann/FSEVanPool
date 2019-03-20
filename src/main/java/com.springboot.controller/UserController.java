@@ -25,7 +25,6 @@ public class UserController {
         ModelAndView model = new ModelAndView();
 
         model.setViewName("user/login");
-        System.out.println("hi");
         return model;
     }
 
@@ -79,10 +78,7 @@ public class UserController {
 
     @RequestMapping(value= {"/retrievePassword"}, method=RequestMethod.GET)
     public ModelAndView retrievePassword(){
-        System.out.println("Hello World");
         ModelAndView model = new ModelAndView();
-        //User user = new User();
-        //model.addObject("user", user);
         model.setViewName("user/retrievePassword");
         return model;
     }
