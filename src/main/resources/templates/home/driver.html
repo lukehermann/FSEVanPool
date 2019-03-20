@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AdminHome</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Hi <span th:utext="${userName}"></span>, This is the driver page.</h2>
+    <a th:href="@{/logout}">Sign out</a>
+
+    <p>Select a route to drive:</p>
+
+    <div>
+        <input type="radio" id="route1" name="route" value="route1"
+               checked>
+        <label for="route1">Iowa City to Cedar Rapids</label>
+    </div>
+
+    <div>
+        <input type="radio" id="route2" name="route" value="route2">
+        <label for="route2">Iowa City to Coralville</label>
+    </div>
+
+    <div>
+        <input type="radio" id="route3" name="route" value="route3">
+        <label for="route3">Cedar Rapids to Iowa City</label>
+    </div>
+
+    <div>
+        <button type="select">Select</button>
+    </div>
+</div>
+</body>
+</html>
