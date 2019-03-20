@@ -83,6 +83,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{password}" class="form-control" id="password"
                                placeholder="Password" required>
+
                     </div>
                 </div>
             </div>
@@ -106,6 +107,10 @@
                 <input type="radio" th:field="*{role}" th:value="Admin">
                 <label th:for="${#ids.prev('role')}">Admin</label>
             </div>
+
+
+
+
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
