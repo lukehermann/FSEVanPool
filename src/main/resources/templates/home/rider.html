@@ -10,12 +10,35 @@
 </head>
 <body>
 <div class="container">
+
     <h2>Hi <span th:utext="${userName}"></span>, this is the Rider page.</h2>
-    <label for="pickup" class="sr-only">Pickup location</label>
-    <input type="pickup" id="pickup" name="pickup" class="form-control" placeholder="Pickup location" required autofocus>
-    <label for="dropOff" class="sr-only">Drop off location</label>
-    <input type="dropOff" id="DropOff" name="DropOff" class="form-control" placeholder="Drop off location" required autofocus>
+
+    <p>Select a route to ride:</p>
+    <form th:action="@{/payment}" method="post" >
+    <div>
+        <input type="radio" id="route1" name="route" value="route1"
+               checked>
+        <label for="route1">Iowa City to Cedar Rapids</label>
+    </div>
+
+    <div>
+        <input type="radio" id="route2" name="route" value="route2">
+        <label for="route2">Iowa City to Coralville</label>
+    </div>
+
+    <div>
+        <input type="radio" id="route3" name="route" value="route3">
+        <label for="route3">Cedar Rapids to Iowa City</label>
+    </div>
+
+    <label for="Drop-OffLocation" class="sr-only">Drop-Off Location</label>
+    <input type="Drop-OffLocation" id="Drop-OffLocation" name="Drop-OffLocation" class="form-control" placeholder="Drop-Off Location" required autofocus>
+
+    <div>
+        <button type="select">Select</button>
+    </div>
+    </form>
     <a th:href="@{/logout}">Sign out</a>
-</div>
+    </div>
 </body>
 </html>
