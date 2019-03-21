@@ -109,4 +109,5 @@ public class User {
     public int getRoleID() { return roleID; }
 
     public void setRoleID(int roleID) { this.roleID = roleID; }
+
 }

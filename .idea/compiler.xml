@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="FSEVanPool" />
         <module name="FSEVanpool" />
+        <module name="FSEVanPool2" />
         <module name="SpringBoot" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FSEVanPool2" options="-parameters" />
       <module name="FSEVanpool" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
     </option>
