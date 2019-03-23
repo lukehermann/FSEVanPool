@@ -1,6 +1,8 @@
 package com.springboot.model;
 
 
+import com.springboot.configuration.ValidPassword;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,6 +35,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @ValidPassword
+    private String confirmPassword;
 
     @Column(name = "active")
     private int active;
@@ -85,6 +90,10 @@ public class User {
     {
         this.password = password;
     }
+
+    public String getConfirmPassword() { return confirmPassword; }
+
+    public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
 
     public int getActive() {
         return active;

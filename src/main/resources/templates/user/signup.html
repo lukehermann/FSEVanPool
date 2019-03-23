@@ -60,7 +60,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-envelope"></i></div>
                         <input type="text" th:field="*{email}" class="form-control" id="email"
                                placeholder="username@gmail.com" required autofocus>
                     </div>
@@ -89,9 +89,32 @@
             </div>
             <div class="col-md-3">
                 <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-                         </span>
+                    <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
+                        <li th:each="message : ${error.split(',')}">
+                            <p class="error-message" th:text="${message}"></p>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
+                               placeholder="Confirm Password" required>
+
+                    </div>
+                </div>
+                <ul class="text-danger" th:each="error: ${#fields.errors('confirmPassword')}">
+                    <li th:each="message : ${error.split(',')}">
+                        <p class="error-message" th:text="${message}"></p>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">
@@ -99,7 +122,6 @@
                 <label for="Role">Role</label>
             </div>
             <div class="col-md-6">
-                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
                 <input type="radio" th:field="*{role}" th:value="Driver" checked="true">
                 <label th:for="${#ids.prev('role')}">Driver</label>
                 <input type="radio" th:field="*{role}" th:value="Rider">
@@ -107,14 +129,21 @@
                 <input type="radio" th:field="*{role}" th:value="Admin">
                 <label th:for="${#ids.prev('role')}">Admin</label>
             </div>
-
-
-
-
+            <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
+                <li th:each="message : ${error.split(',')}">
+                    <p class="error-message" th:text="${message}"></p>
+                </li>
+            </ul>
+        </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                Already registered? <a href="/" th:href="@{/login}">Login</a>
             </div>
         </div>
     </form>
