@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Payment page</title>
@@ -11,6 +11,8 @@
 <body>
 
 </div>
+<div class="container">
+<form th:action="@{/payment}" method="post" >
 <label for="Credit-card-number" class="sr-only">Enter your credit card number here</label>
 <input type="Credit-card-number" id="Credit-card-number" name="Credit-card-number" class="form-control" placeholder="Credit-card-number" required autofocus>
 <label for="Expiration-month" class="sr-only">MM</label>
@@ -23,6 +25,8 @@
 <input type="Zip-Code" id="Zip-Code" name="Zip-Code" class="form-control" placeholder="Zip-Code" required autofocus>
 <label for="Security-code" class="sr-only">Enter your security card on back</label>
 <input type="Security-code" id="Security-code" name="Security-code" class="form-control" placeholder="Security-code" required autofocus>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
 </div>
 </body>
 </html>

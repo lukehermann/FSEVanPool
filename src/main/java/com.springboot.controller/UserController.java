@@ -123,5 +123,18 @@ public class UserController {
         System.out.println("6");
         return model;
     }
+
+    @RequestMapping(value = {"/payment"}, method= RequestMethod.POST)
+    public ModelAndView payment(){
+        ModelAndView model = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+
+        //model.addObject("userName", user.getFirstname() + " " + user.getLastname());
+        String role=user.getRole();
+        role=role.toLowerCase();
+        model.setViewName("home/payment");
+        return model;
+    }
 }
 

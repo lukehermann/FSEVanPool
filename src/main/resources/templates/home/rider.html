@@ -35,7 +35,8 @@
     <input type="Drop-OffLocation" id="Drop-OffLocation" name="Drop-OffLocation" class="form-control" placeholder="Drop-Off Location" required autofocus>
 
     <div>
-        <button type="select">Select</button>
+        <button th:action="@{/payment}" type="select">Select</button>
+
     </div>
     </form>
     <a th:href="@{/logout}">Sign out</a>
