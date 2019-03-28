@@ -1,7 +1,9 @@
 package com.springboot.model;
 
 
+import com.springboot.configuration.PasswordMatches;
 import com.springboot.configuration.ValidPassword;
+import org.springframework.security.core.parameters.P;
 
 import java.util.Set;
 
@@ -47,6 +49,25 @@ public class User {
 
     @Column(name = "role_id")
     private int roleID;
+
+    @Column(name = "Question_1")
+    private String questionOne;
+
+    @Column(name = "Question_2")
+    private String questionTwo;
+
+    @Column(name = "Question_3")
+    private String questionThree;
+
+    @Column(name = "Answer_1")
+    private String answerOne;
+
+    @Column(name = "Answer_2")
+    private String answerTwo;
+
+    @Column(name = "Answer_3")
+    private String answerThree;
+
 
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
@@ -119,4 +140,39 @@ public class User {
 
     public void setRoleID(int roleID) { this.roleID = roleID; }
 
+    public String getQuestionOne() { return questionOne; }
+
+    public void setQuestionOne(String questionOne) { this.questionOne = questionOne; }
+
+    public String getQuestionTwo() { return questionTwo; }
+
+    public void setQuestionTwo(String questionTwo) { this.questionTwo = questionTwo; }
+
+    public String getQuestionThree() { return questionThree; }
+
+    public void setQuestionThree(String questionThree) { this.questionThree = questionThree; }
+
+    public String getAnswerOne() {
+        return answerOne;
+    }
+
+    public void setAnswerOne(String answerOne) {
+        this.answerOne = answerOne;
+    }
+
+    public String getAnswerTwo() {
+        return answerTwo;
+    }
+
+    public void setAnswerTwo(String answerTwo) {
+        this.answerTwo = answerTwo;
+    }
+
+    public String getAnswerThree() {
+        return answerThree;
+    }
+
+    public void setAnswerThree(String answerThree) {
+        this.answerThree = answerThree;
+    }
 }

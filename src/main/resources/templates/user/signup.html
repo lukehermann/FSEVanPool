@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="container">
@@ -83,6 +83,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
                                placeholder="Password" required>
+                        <p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 
                     </div>
                 </div>
@@ -107,6 +108,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
                                placeholder="Confirm Password" required>
+                        <p class="text-danger"th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
 
                     </div>
                 </div>
@@ -119,21 +121,131 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
+                <label>           </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
                 <label for="Role">Role</label>
             </div>
             <div class="col-md-6">
-                <input type="radio" th:field="*{role}" th:value="Driver" checked="true">
-                <label th:for="${#ids.prev('role')}">Driver</label>
-                <input type="radio" th:field="*{role}" th:value="Rider">
-                <label th:for="${#ids.prev('role')}">Rider</label>
-                <input type="radio" th:field="*{role}" th:value="Admin">
-                <label th:for="${#ids.prev('role')}">Admin</label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                    <input style="margin-right: 0" type="radio" th:field="*{role}" th:value="Driver" checked="true">
+                    <label th:for="${#ids.prev('role')}">Driver</label>
+                    <label>     </label>
+                    <input type="radio" th:field="*{role}" th:value="Rider">
+                    <label th:for="${#ids.prev('role')}">Rider</label>
+                    <label>     </label>
+                    <input type="radio" th:field="*{role}" th:value="Admin">
+                    <label th:for="${#ids.prev('role')}">Admin</label>
+                </div>
+                <div><p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></div>
             </div>
             <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
                 <li th:each="message : ${error.split(',')}">
                     <p class="error-message" th:text="${message}"></p>
                 </li>
             </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label>           </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="question">Question One</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>
+                        <input type="text" th:field="*{questionOne}" class="form-control" id="questionOne"
+                               placeholder="Type Question One Here" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="answer">Answer One</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                        <input type="text" th:field="*{answerOne}" class="form-control" id="answer"
+                               placeholder="Type your answer here" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label>           </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="question">Question Two</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>
+                        <input type="text" th:field="*{questionTwo}" class="form-control" id="questionTwo"
+                               placeholder="Type Question Two Here" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="answer">Answer Two</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                        <input type="text" th:field="*{answerTwo}" class="form-control" id="answerTwo"
+                               placeholder="Type your answer here" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label>           </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="question">Question Three</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>
+                        <input type="text" th:field="*{questionThree}" class="form-control" id="questionThree"
+                               placeholder="Type Question Three Here" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="answer">Answer Three</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                        <input type="text" th:field="*{answerThree}" class="form-control" id="answerThree"
+                               placeholder="Type your answer here" required autofocus>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3"></div>
