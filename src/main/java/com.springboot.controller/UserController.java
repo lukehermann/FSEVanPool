@@ -4,7 +4,11 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.springboot.model.PasswordForgotDto;
+import com.springboot.model.PasswordResetDto;
+import com.springboot.model.PasswordResetToken;
 import com.springboot.model.User;
+import com.springboot.repository.PasswordResetTokenRepository;
 import com.springboot.service.MailClient;
 import com.springboot.service.MailContentBuilder;
 import com.springboot.service.UserService;
@@ -13,7 +17,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -69,6 +76,85 @@ public class UserController {
 
         return model;
     }
+
+    @Autowired private PasswordResetTokenRepository tokenRepository;
+
+
+    @ModelAttribute("passwordResetForm")
+    public PasswordResetDto passwordReset() {
+        return new PasswordResetDto();
+    }
+
+    @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.GET)
+    public ModelAndView displayForgotQuestions(@RequestParam(required = false) String token,
+                                           Model model) {
+
+        ModelAndView model1 = new ModelAndView();
+
+        PasswordForgotDto forgotDto = new PasswordForgotDto();
+
+        PasswordResetToken resetToken = tokenRepository.findByToken(token);
+        if (resetToken == null){
+            model.addAttribute("error", "Could not find password reset token.");
+        } else if (resetToken.isExpired()){
+            model.addAttribute("error", "Token has expired, please request a new password reset.");
+        } else {
+            model.addAttribute("token", resetToken.getToken());
+        }
+
+
+        PasswordResetToken tokenUser = tokenRepository.findByToken(token);
+        User user = tokenUser.getUser();
+
+        forgotDto.setEmail(user.getEmail());
+        forgotDto.setToken(token);
+
+        model1.addObject("forgotDto", forgotDto);
+
+        model1.addObject("questionOne", user.getQuestionOne());
+        model1.addObject("questionTwo", user.getQuestionTwo());
+        model1.addObject("questionThree", user.getQuestionThree());
+
+        model1.setViewName("user/forgot-questions");
+
+        return model1;
+    }
+
+    @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.POST)
+    public ModelAndView checkQuestions (@Valid PasswordForgotDto forgotDto, BindingResult bindingResult) {
+        ModelAndView model = new ModelAndView();
+
+        User user = userService.findUserByEmail(forgotDto.getEmail());
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        if( encoder.matches(forgotDto.getQuestionOneAnswer(), user.getAnswerOne())) {
+            bindingResult.rejectValue("email", null, "You have answered incorrectly!");
+        }
+//        else if( encoder.matches(forgotDto.getQuestionTwoAnswer(), user.getAnswerTwo())) {
+//            bindingResult.rejectValue("email", null, "You have answered incorrectly!");
+//        }
+//        else if( encoder.matches(forgotDto.getQuestionThreeAnswer(), user.getAnswerThree())) {
+//            bindingResult.rejectValue("email", null, "You have answered incorrectly!");
+//        }
+
+
+        if(bindingResult.hasErrors()) {
+            model.setViewName("user/forgot-questions");
+        }
+        else {
+            model.addObject("msg", "Answered Questions Correctly!");
+            //model.setViewName("redirect:/reset-password?token=" + forgotDto.getToken());
+            model.setViewName("user/login");
+        }
+
+        model.setViewName("user/login");
+
+        return model;
+    }
+
+
+
 
     @RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
     public ModelAndView home() {
@@ -134,5 +220,7 @@ public class UserController {
         model.setViewName("home/payment");
         return model;
     }
+
+
 }
 

@@ -45,7 +45,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/retrievePassword").permitAll()
+                .antMatchers("/forgot-password").permitAll()
+                .antMatchers("/reset-password**").permitAll()
+                .antMatchers("/forgot-questions**").permitAll()
                 .antMatchers("/systemAdminHome").hasAuthority("ADMIN").anyRequest()
+
 
 
                 .authenticated().and().csrf().disable()
@@ -60,6 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(60*60)
                 .and().exceptionHandling().accessDeniedPage("/access_denied");
+
+
     }
 
     @Bean
