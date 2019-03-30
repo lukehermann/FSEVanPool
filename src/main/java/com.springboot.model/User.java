@@ -1,9 +1,8 @@
 package com.springboot.model;
 
 
-import com.springboot.configuration.PasswordMatches;
+import com.springboot.configuration.FieldMatch;
 import com.springboot.configuration.ValidPassword;
-import org.springframework.security.core.parameters.P;
 
 import java.util.Set;
 
@@ -20,6 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
+@FieldMatch(field = "password", fieldMatch = "confirmPassword", message = "The password fields must match")
 public class User {
 
     @Id
@@ -114,7 +114,9 @@ public class User {
 
     public String getConfirmPassword() { return confirmPassword; }
 
-    public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public int getActive() {
         return active;

@@ -30,7 +30,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        final String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        user.setConfirmPassword(encodedPassword);
+
         user.setAnswerOne(bCryptPasswordEncoder.encode(user.getAnswerOne()));
         user.setAnswerTwo(bCryptPasswordEncoder.encode(user.getAnswerTwo()));
         user.setAnswerThree(bCryptPasswordEncoder.encode(user.getAnswerThree()));
