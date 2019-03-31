@@ -53,14 +53,17 @@ public class PasswordResetController {
 
     @PostMapping
     @Transactional
-    public String handlePasswordReset(@ModelAttribute("passwordResetForm") @Valid PasswordResetDto form,
+    public ModelAndView handlePasswordReset(@ModelAttribute("passwordResetForm") @Valid PasswordResetDto form,
                                       BindingResult result,
                                       RedirectAttributes redirectAttributes) {
+
+        ModelAndView model1 = new ModelAndView();
 
         if (result.hasErrors()){
             redirectAttributes.addFlashAttribute(BindingResult.class.getName() + ".passwordResetForm", result);
             redirectAttributes.addFlashAttribute("passwordResetForm", form);
-            return "redirect:/reset-password?token=" + form.getToken();
+            model1.setViewName("redirect:/reset-password?token=" + form.getToken());
+            return model1;
         }
 
         PasswordResetToken token = tokenRepository.findByToken(form.getToken());
@@ -69,7 +72,8 @@ public class PasswordResetController {
         userService.updatePassword(updatedPassword, user.getId());
         tokenRepository.delete(token);
 
-        return "redirect:/login?resetSuccess";
+        model1.setViewName("redirect:/login?resetSuccess");
+        return model1;
     }
 
 }

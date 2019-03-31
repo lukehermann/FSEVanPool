@@ -94,6 +94,7 @@ public class UserController {
         PasswordForgotDto forgotDto = new PasswordForgotDto();
 
         PasswordResetToken resetToken = tokenRepository.findByToken(token);
+
         if (resetToken == null){
             model.addAttribute("error", "Could not find password reset token.");
         } else if (resetToken.isExpired()){
@@ -107,7 +108,7 @@ public class UserController {
         User user = tokenUser.getUser();
 
         forgotDto.setEmail(user.getEmail());
-        forgotDto.setToken(token);
+        forgotDto.setToken(resetToken.getToken());
 
         model1.addObject("forgotDto", forgotDto);
 
@@ -121,36 +122,48 @@ public class UserController {
     }
 
     @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.POST)
-    public ModelAndView checkQuestions (@Valid PasswordForgotDto forgotDto, BindingResult bindingResult) {
-        ModelAndView model = new ModelAndView();
+    public ModelAndView checkQuestions (@Valid PasswordForgotDto forgotDto, BindingResult bindingResult,  HttpServletRequest request) {
+        ModelAndView model1 = new ModelAndView();
 
         User user = userService.findUserByEmail(forgotDto.getEmail());
+        System.out.println(forgotDto.getToken());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        if( encoder.matches(forgotDto.getQuestionOneAnswer(), user.getAnswerOne())) {
-            bindingResult.rejectValue("email", null, "You have answered incorrectly!");
+        if( !encoder.matches(forgotDto.getQuestionOneAnswer(), user.getAnswerOne())) {
+            bindingResult.rejectValue("questionOneAnswer", "error.forgotDto", "You have answered incorrectly!");
         }
-//        else if( encoder.matches(forgotDto.getQuestionTwoAnswer(), user.getAnswerTwo())) {
-//            bindingResult.rejectValue("email", null, "You have answered incorrectly!");
-//        }
-//        else if( encoder.matches(forgotDto.getQuestionThreeAnswer(), user.getAnswerThree())) {
-//            bindingResult.rejectValue("email", null, "You have answered incorrectly!");
-//        }
+        if( !encoder.matches(forgotDto.getQuestionTwoAnswer(), user.getAnswerTwo())) {
+            bindingResult.rejectValue("questionTwoAnswer", "error.forgotDto", "You have answered incorrectly!");
+        }
+        if( !encoder.matches(forgotDto.getQuestionThreeAnswer(), user.getAnswerThree())) {
+            bindingResult.rejectValue("questionThreeAnswer", "error.forgotDto", "You have answered incorrectly!");
+        }
 
 
         if(bindingResult.hasErrors()) {
-            model.setViewName("user/forgot-questions");
+            model1.setViewName("redirect:/forgot-questions?token=" + forgotDto.getToken());
         }
         else {
-            model.addObject("msg", "Answered Questions Correctly!");
+            model1.addObject("msg", "Answered Questions Correctly!");
             //model.setViewName("redirect:/reset-password?token=" + forgotDto.getToken());
-            model.setViewName("user/login");
+            PasswordResetToken token = new PasswordResetToken();
+            token.setToken(UUID.randomUUID().toString());
+            token.setUser(user);
+            token.setExpiryDate(5);
+            tokenRepository.save(token);
+
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("token", token);
+            model.put("user", user);
+            model.put("signature", "https://memorynotfound.com");
+            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+            model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
+            model1.setViewName("redirect:/reset-password?token=" + token.getToken());
         }
 
-        model.setViewName("user/login");
-
-        return model;
+        return model1;
     }
 
 

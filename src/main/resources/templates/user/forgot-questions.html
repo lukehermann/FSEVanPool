@@ -13,14 +13,25 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="login-form">
-    <form action="#" th:action="@{/forgot-questions}" th:object="${forgotDto}"
-          method="post">
+<div class="form">
+    <form class="form-horizontal" role="form" method="POST" th:action="@{/forgot-questions}" th:object="${forgotDto}">
         <div class="col-md-6">
             <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
             </div>
         </div>
-        <h2 class="text-center">Sign in</h2>
+
+        <h2 class="text-center">Recovery Questions</h2>
+
+        <input type="hidden" class="form-control" th:field="*{email}">
+        <input type="hidden" class="form-control" th:field="*{token}">
+
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                         </span>
+            </div>
+        </div>
+
         <h2>Question 1:  <span th:utext="${questionOne}"></span></h2>
         <div class="form-group">
             <div class="input-group">
@@ -30,6 +41,13 @@
 
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('questionOneAnswer')}" th:errors="*{questionOneAnswer}">
+                         </span>
+            </div>
+        </div>
+
 
         <h2>Question 2:  <span th:utext="${questionTwo}"></span></h2>
 
@@ -39,6 +57,12 @@
                     type="password" class="form-control" th:field="*{questionTwoAnswer}"
                     placeholder="Type Answer Here" />
 
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('questionTwoAnswer')}" th:errors="*{questionTwoAnswer}">
+                         </span>
             </div>
         </div>
 
@@ -52,7 +76,12 @@
 
             </div>
         </div>
-
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('questionThreeAnswer')}" th:errors="*{questionThreeAnswer}">
+                         </span>
+            </div>
+        </div>
 
 
         <div class="form-group">
