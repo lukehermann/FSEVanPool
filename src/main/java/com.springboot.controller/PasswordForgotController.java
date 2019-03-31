@@ -57,6 +57,7 @@ public class PasswordForgotController {
         if (user == null){
             result.rejectValue("email", null, "We could not find an account for that e-mail address.");
             model1.setViewName("user/forgot-password");
+            return model1;
         }
 
         PasswordResetToken token = new PasswordResetToken();
