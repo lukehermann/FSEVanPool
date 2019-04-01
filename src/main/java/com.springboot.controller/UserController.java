@@ -4,9 +4,12 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import com.springboot.model.*;
+import com.springboot.model.PasswordForgotDto;
+import com.springboot.model.PasswordResetDto;
+import com.springboot.model.PasswordResetToken;
+import com.springboot.model.User;
 import com.springboot.repository.PasswordResetTokenRepository;
-import com.springboot.service.EmailService;
+import com.springboot.service.MailClient;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -29,6 +32,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MailClient mailClient;
 
     @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
     public ModelAndView login() {
@@ -65,6 +70,14 @@ public class UserController {
             model.addObject("user", new User());
             model.setViewName("user/login");
         }
+
+        return model;
+    }
+
+    @RequestMapping(value={"/addRoute"}, method=RequestMethod.POST)
+    public ModelAndView createRoute()
+    {
+        ModelAndView model=new ModelAndView();
 
         return model;
     }
@@ -132,7 +145,7 @@ public class UserController {
 
 
         if(bindingResult.hasErrors()) {
-            model1.setViewName("redirect:/forgot-questions?token=" + forgotDto.getToken() + "&error=true");
+            model1.setViewName("redirect:/forgot-questions?token=" + forgotDto.getToken());
         }
         else {
             model1.addObject("msg", "Answered Questions Correctly!");
@@ -179,6 +192,37 @@ public class UserController {
         return model;
     }
 
+    @RequestMapping(value= {"/retrievePassword"}, method=RequestMethod.GET)
+    public ModelAndView retrievePassword(){
+        ModelAndView model = new ModelAndView();
+        User user = new User();
+        model.addObject("user", user);
+        System.out.println("hellow world");
+        model.setViewName("user/retrievePassword");
+        return model;
+    }
+
+    @RequestMapping(value= {"/retrievePassword"}, method=RequestMethod.POST)
+    public ModelAndView reset(@Valid User user, BindingResult bindingResult) throws MessagingException {
+        System.out.println("hh");
+        TemplateEngine engine = new TemplateEngine();
+        System.out.println("1");
+
+        ModelAndView model = new ModelAndView();
+        System.out.println("2");
+
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        System.out.println("3");
+
+        System.out.println("4");
+
+        mailClient.send("xxxxxxxx@gmail.com", "Test", "Hello");
+        System.out.println("5");
+
+        model.setViewName("user/login");
+        System.out.println("6");
+        return model;
+    }
 
     @RequestMapping(value = {"/payment"}, method= RequestMethod.POST)
     public ModelAndView payment(){
@@ -189,7 +233,7 @@ public class UserController {
         //model.addObject("userName", user.getFirstname() + " " + user.getLastname());
         String role=user.getRole();
         role=role.toLowerCase();
-        model.setViewName("home/payment");
+        model.setViewName("functions/payment");
         return model;
     }
 

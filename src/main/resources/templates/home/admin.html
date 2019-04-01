@@ -11,6 +11,9 @@
 <body>
 <div class="container">
     <h2>Hi <span th:utext="${userName}"></span>, this is the home page.</h2>
+    <div>
+        <button th:action="@{/addRoute}" type="select">addRoute</button>
+    </div>
     <a th:href="@{/logout}">Sign out</a>
 </div>
 </body>
