@@ -1,12 +1,14 @@
 package com.springboot.model;
 
 import com.springboot.configuration.FieldMatch;
+import com.springboot.configuration.ValidPassword;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @FieldMatch(field = "password", fieldMatch = "confirmPassword", message = "The password fields must match")
 public class PasswordResetDto {
 
     @NotEmpty
+    @ValidPassword
     private String password;
 
     @NotEmpty

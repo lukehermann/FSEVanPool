@@ -83,18 +83,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
                                placeholder="Password" required>
-                        <p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                    <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
-                        <li th:each="message : ${error.split(',')}">
-                            <p class="error-message" th:text="${message}"></p>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -108,15 +97,15 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
                                placeholder="Confirm Password" required>
-                        <p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{confirmPassword}"></p>
-
                     </div>
                 </div>
-                <ul class="text-danger" th:each="error: ${#fields.errors('confirmPassword')}">
+                <div>
+                    <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
                     <li th:each="message : ${error.split(',')}">
                         <p class="error-message" th:text="${message}"></p>
                     </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -140,13 +129,14 @@
                     <input type="radio" th:field="*{role}" th:value="Admin">
                     <label th:for="${#ids.prev('role')}">Admin</label>
                 </div>
-                <div><p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></div>
+                <div>
+                    <ul class="text-danger" th:each="error: ${#fields.errors('role')}">
+                        <li th:each="message : ${error.split(',')}">
+                            <p class="error-message" th:text="${message}"></p>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
-                <li th:each="message : ${error.split(',')}">
-                    <p class="error-message" th:text="${message}"></p>
-                </li>
-            </ul>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">

@@ -1,35 +1,45 @@
 package com.springboot.configuration;
 
-import org.springframework.beans.BeanWrapperImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class FieldMatchValidator implements ConstraintValidator<FieldMatch , Object> {
+public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 
-    private String field;
-    private String fieldMatch;
-
+    private String firstField;
+    private String secondField;
+    private String message;
 
     @Override
-    public void initialize(FieldMatch fieldsValueMatch) {
-        this.field=fieldsValueMatch.field();
-        this.fieldMatch=fieldsValueMatch.fieldMatch();
+    public void initialize(final FieldMatch constraintAnnotation) {
+        firstField = constraintAnnotation.field();
+        secondField = constraintAnnotation.fieldMatch();
+        message = constraintAnnotation.message();
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
+        boolean valid = true;
+        try
+        {
+            final Object firstObj = BeanUtils.getProperty(value, firstField);
+            final Object secondObj = BeanUtils.getProperty(value, secondField);
 
-
-        Object fieldValue = new BeanWrapperImpl(value)
-                .getPropertyValue(field);
-        Object fieldMatchValue = new BeanWrapperImpl(value)
-                .getPropertyValue(fieldMatch);
-
-        if (fieldValue != null) {
-            return fieldValue.equals(fieldMatchValue);
-        } else {
-            return fieldMatchValue == null;
+            valid =  firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
         }
+        catch (final Exception ignore)
+        {
+            // ignore
+        }
+
+        if (!valid){
+            context.buildConstraintViolationWithTemplate(message)
+                    .addPropertyNode(firstField)
+                    .addConstraintViolation()
+                    .disableDefaultConstraintViolation();
+        }
+
+        return valid;
     }
 }

@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "user")
@@ -36,15 +37,16 @@ public class User {
     private String lastname;
 
     @Column(name = "password")
+    @ValidPassword
     private String password;
 
-    @ValidPassword
     private String confirmPassword;
 
     @Column(name = "active")
     private int active;
 
     @Column(name = "role")
+    @NotEmpty(message = "Please select a role!")
     private String role;
 
     @Column(name = "role_id")

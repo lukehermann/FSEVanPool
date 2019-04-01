@@ -18,19 +18,21 @@
         <div class="col-md-6">
             <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
             </div>
+            <div class="alert alert-danger" role="alert" th:if="${param.error}">
+                You have answered one of the questions incorrectly!
+            </div>
         </div>
 
-        <h2 class="text-center">Recovery Questions</h2>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Security Questions</h2>
+                <hr>
+            </div>
+        </div>
 
         <input type="hidden" class="form-control" th:field="*{email}">
         <input type="hidden" class="form-control" th:field="*{token}">
-
-        <div class="col-md-3">
-            <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-                         </span>
-            </div>
-        </div>
 
         <h2>Question 1:  <span th:utext="${questionOne}"></span></h2>
         <div class="form-group">
@@ -41,16 +43,7 @@
 
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('questionOneAnswer')}" th:errors="*{questionOneAnswer}">
-                         </span>
-            </div>
-        </div>
-
-
         <h2>Question 2:  <span th:utext="${questionTwo}"></span></h2>
-
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> <input
@@ -59,13 +52,6 @@
 
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('questionTwoAnswer')}" th:errors="*{questionTwoAnswer}">
-                         </span>
-            </div>
-        </div>
-
         <h2>Question 3:  <span th:utext="${questionThree}"></span></h2>
 
         <div class="form-group">
@@ -76,14 +62,6 @@
 
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('questionThreeAnswer')}" th:errors="*{questionThreeAnswer}">
-                         </span>
-            </div>
-        </div>
-
-
         <div class="form-group">
             <button type="submit" class="btn btn-primary login-btn btn-block">Submit</button>
         </div>
