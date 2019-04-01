@@ -10,15 +10,12 @@ import com.springboot.model.PasswordResetToken;
 import com.springboot.model.User;
 import com.springboot.repository.PasswordResetTokenRepository;
 import com.springboot.service.MailClient;
-import com.springboot.service.MailContentBuilder;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,6 +70,14 @@ public class UserController {
             model.addObject("user", new User());
             model.setViewName("user/login");
         }
+
+        return model;
+    }
+
+    @RequestMapping(value={"/addRoute"}, method=RequestMethod.POST)
+    public ModelAndView createRoute()
+    {
+        ModelAndView model=new ModelAndView();
 
         return model;
     }
@@ -228,7 +233,7 @@ public class UserController {
         //model.addObject("userName", user.getFirstname() + " " + user.getLastname());
         String role=user.getRole();
         role=role.toLowerCase();
-        model.setViewName("home/payment");
+        model.setViewName("functions/payment");
         return model;
     }
 
