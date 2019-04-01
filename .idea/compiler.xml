@@ -15,6 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FSEVanPool" options="-parameters" />
       <module name="FSEVanPool2" options="-parameters" />
       <module name="FSEVanpool" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
