@@ -83,6 +83,8 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
                                placeholder="Password" required>
+                        <p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
                     </div>
                 </div>
             </div>
@@ -106,6 +108,8 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
                         <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
                                placeholder="Confirm Password" required>
+                        <p class="text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{confirmPassword}"></p>
+
                     </div>
                 </div>
                 <ul class="text-danger" th:each="error: ${#fields.errors('confirmPassword')}">

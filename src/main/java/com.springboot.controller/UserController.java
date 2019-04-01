@@ -123,11 +123,9 @@ public class UserController {
 
     @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.POST)
     public ModelAndView checkQuestions (@Valid PasswordForgotDto forgotDto, BindingResult bindingResult,  HttpServletRequest request) {
+
         ModelAndView model1 = new ModelAndView();
-
         User user = userService.findUserByEmail(forgotDto.getEmail());
-        System.out.println(forgotDto.getToken());
-
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         if( !encoder.matches(forgotDto.getQuestionOneAnswer(), user.getAnswerOne())) {
