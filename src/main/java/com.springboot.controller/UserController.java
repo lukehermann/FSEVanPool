@@ -4,12 +4,10 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import com.springboot.model.PasswordForgotDto;
-import com.springboot.model.PasswordResetDto;
-import com.springboot.model.PasswordResetToken;
-import com.springboot.model.User;
+import com.springboot.model.*;
 import com.springboot.repository.PasswordResetTokenRepository;
 import com.springboot.service.MailClient;
+import com.springboot.service.RouteService;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -31,6 +29,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RouteService routeService;
 
     @Autowired
     private MailClient mailClient;
@@ -53,6 +53,8 @@ public class UserController {
         return model;
     }
 
+
+
     @RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
     public ModelAndView createUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
@@ -74,11 +76,26 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value={"/addRoute"}, method=RequestMethod.POST)
-    public ModelAndView createRoute()
+    @RequestMapping(value={"/addRoute"}, method=RequestMethod.GET)
+    public ModelAndView addRoute()
     {
         ModelAndView model=new ModelAndView();
+        Route route = new Route();
+        model.addObject("route",route);
+        model.setViewName("functions/addRoute");
 
+        return model;
+    }
+
+    @RequestMapping(value = {"/addRoute"}, method=RequestMethod.POST)
+    public ModelAndView createRoute(Route route, BindingResult bindingResult)
+    {
+        ModelAndView model = new ModelAndView();
+
+        routeService.saveRoute(route);
+        model.addObject("msg","Route has been added successfully");
+        model.addObject("route", new Route());
+        model.setViewName("home/admin");
         return model;
     }
 

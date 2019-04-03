@@ -1,4 +1,8 @@
 package com.springboot.service;
 
-public class RouteService {
+import com.springboot.model.Route;
+
+public interface RouteService {
+    public void findRouteByDropOffLocation();
+    public void saveRoute(Route route);
 }
