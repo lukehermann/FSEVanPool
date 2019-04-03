@@ -1,13 +1,14 @@
 package com.springboot.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
 @Entity
 @Table(name="route")
 public class Route {
 
-
-
-
+    @Id
     @Column(name="driver_id")
     private int driver_id;
 
