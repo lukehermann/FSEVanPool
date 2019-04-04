@@ -36,30 +36,6 @@ public class Route {
             this.driverid = id;
         }
 
-    public String getStartLocation() {
-            return startlocation;
-        }
-
-    public void setStartLocation(String startLocation)
-    {
-        this.startlocation = startLocation;
-    }
-    public String getDropOffLocation() {
-        return dropofflocation;
-    }
-
-    public void setDropOffLocation(String dropOffLocation)
-    {
-        this.dropofflocation = dropOffLocation;
-    }
-
-    public int getRate() {
-        return rate;
-    }
-    public void setRate(int rate) {
-        this.rate = rate;
-    }
-
     public int getActiveStatus() {
         return active;
     }
@@ -85,4 +61,27 @@ public class Route {
     }
 
 
+    public String getStartlocation() {
+        return startlocation;
+    }
+
+    public void setStartlocation(String startlocation) {
+        this.startlocation = startlocation;
+    }
+
+    public String getDropofflocation() {
+        return dropofflocation;
+    }
+
+    public void setDropofflocation(String dropofflocation) {
+        this.dropofflocation = dropofflocation;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
 }
