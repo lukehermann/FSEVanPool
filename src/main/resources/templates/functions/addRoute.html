@@ -12,70 +12,72 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-horizontal" role="form" method="POST" th:action="@{/addRoute}" th:objects="${route}">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <h2>Add a New Route</h2>
-                <hr>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="start_location">Start Location</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
-                        <input type="text" th:field="*{start_location}" class="form-control" id="start_location"
-                               placeholder="Start Location" required autofocus>
+    <h2>Hi <span th:utext="${userName}"></span>, this is the addRoute page.</h2>
+        <form class="form-horizontal" role="form" method="POST" th:action="@{/addRoute}" th:objects="${route}">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="drop_off_location">Drop Off Location</label>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h2>Add a New Route</h2>
+                    <hr>
+                </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
-                        <input type="text" th:field="*{drop_off_location}" class="form-control" id="drop_off_location"
-                               placeholder="Drop Off Location" required autofocus>
+           <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="startlocation">Start Location</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
+                            <input type="text" th:field="*{startlocation}" class="form-control" id="startlocation"
+                                   placeholder="Start Location" required autofocus>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="rate">Rate</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
-                        <input type="text" th:field="*{rate}" class="form-control" id="rate"
-                               placeholder="Rate" required autofocus>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="dropofflocation">Drop Off Location</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
+                            <input type="text" th:field="*{dropofflocation}" class="form-control" id="dropofflocation"
+                                   placeholder="Drop Off Location" required autofocus>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success"><i class="fa fa-route-plus"></i> Add</button>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="rate">Rate</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
+                            <input type="number" th:field="*{rate}" class="form-control" id="rate"
+                                   placeholder="Rate" required autofocus>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-route-plus"></i> Add</button>
+                </div>
+            </div>
+        </form>
+
 </div>
 </body>
 </html>

@@ -1,22 +1,20 @@
 package com.springboot.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Entity;
+import javax.persistence.*;
+
 @Entity
 @Table(name="route")
 public class Route {
 
     @Id
-    @Column(name="driver_id")
-    private int driver_id;
+    @Column(name="driverid")
+    private int driverid;
 
-    @Column(name="start_location")
-    private String start_location;
+    @Column(name="startlocation")
+    private String startlocation;
 
-    @Column(name="drop_off_location")
-    private String drop_off_location;
+    @Column(name="dropofflocation")
+    private String dropofflocation;
 
     @Column(name="active")
     private int active;
@@ -24,34 +22,34 @@ public class Route {
     @Column(name="rate")
     private int rate;
 
-    @Column(name="number_of_passengers")
-    private int number_of_passengers;
+    @Column(name="numberofpassengers")
+    private int numberofpassengers;
 
-    @Column(name="passenger_capacity")
-    private int passenger_capacity;
+    @Column(name="passengercapacity")
+    private int passengercapacity;
 
     public int getDriverId() {
-            return driver_id;
+            return driverid;
         }
     public void setDriverId(int id) {
-            this.driver_id = id;
+            this.driverid = id;
         }
 
     public String getStartLocation() {
-            return start_location;
+            return startlocation;
         }
 
     public void setStartLocation(String startLocation)
     {
-        this.start_location = startLocation;
+        this.startlocation = startLocation;
     }
     public String getDropOffLocation() {
-        return drop_off_location;
+        return dropofflocation;
     }
 
     public void setDropOffLocation(String dropOffLocation)
     {
-        this.drop_off_location = dropOffLocation;
+        this.dropofflocation = dropOffLocation;
     }
 
     public int getRate() {
@@ -69,20 +67,20 @@ public class Route {
     }
 
     public int getNumberOfPassengers() {
-        return number_of_passengers;
+        return numberofpassengers;
     }
     public void addPassengers() {
-        this.number_of_passengers++;
+        this.numberofpassengers++;
     }
     public void subtractPassengers() {
-        if (this.number_of_passengers>0){this.number_of_passengers--;}
+        if (this.numberofpassengers>0){this.numberofpassengers--;}
     }
 
     public int getPassengerCapacity() {
-        return passenger_capacity;
+        return passengercapacity;
     }
     public void setPassengerCapacity(int passengerCapacity) {
-        this.passenger_capacity = passengerCapacity;
+        this.passengercapacity = passengerCapacity;
     }
 
 
