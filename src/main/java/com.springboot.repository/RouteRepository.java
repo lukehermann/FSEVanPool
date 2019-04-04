@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository("routeRepository")
 public interface RouteRepository extends JpaRepository<Route, Long>{
 
-    //Route findByRoute(String route);
+    Route findByStartlocation(String startlocation);
 
 }

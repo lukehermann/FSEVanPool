@@ -1,10 +1,9 @@
 package com.springboot.controller;
 
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import com.springboot.model.*;
+import com.springboot.model.PasswordForgotDto;
+import com.springboot.model.PasswordResetDto;
+import com.springboot.model.PasswordResetToken;
+import com.springboot.model.User;
 import com.springboot.repository.PasswordResetTokenRepository;
 import com.springboot.service.MailClient;
 import com.springboot.service.RouteService;
@@ -17,11 +16,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
 
-import java.util.*;
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 @Controller
@@ -72,37 +79,36 @@ public class UserController {
             model.addObject("user", new User());
             model.setViewName("user/login");
         }
-
         return model;
     }
 
-    @RequestMapping(value={"/addRoute"}, method=RequestMethod.GET)
-    public ModelAndView addRoute()
-    {
-        ModelAndView model=new ModelAndView();
-        Route route = new Route();
-        model.addObject("route", route);
-        model.setViewName("functions/addRoute");
-
-        return model;
-    }
-
-    @RequestMapping(value = {"/addRoute"}, method=RequestMethod.POST)
-    public ModelAndView createRoute( @Valid Route route, BindingResult bindingResult) //
-    {
-        ModelAndView model = new ModelAndView();
-
-        if(bindingResult.hasErrors()) {
-            model.setViewName("home/admin]");
-        }
-        else {
-            routeService.saveRoute(route);
-            model.addObject("msg", "Route has been added successfully");
-            model.addObject("route", new Route());
-            model.setViewName("home/admin");
-        }
-        return model;
-    }
+//    @RequestMapping(value={"/addRoute"}, method=RequestMethod.GET)
+//    public ModelAndView addRoute()
+//    {
+//        ModelAndView model=new ModelAndView();
+//        Route route = new Route();
+//        model.addObject("route", route);
+//        model.setViewName("functions/addRoute");
+//
+//        return model;
+//    }
+//
+//    @RequestMapping(value = {"/addRoute"}, method=RequestMethod.POST)
+//    public ModelAndView createRoute(@Valid @ModelAttribute("route") Route route, BindingResult bindingResult) //
+//    {
+//        ModelAndView model = new ModelAndView();
+//
+//        if(bindingResult.hasErrors()) {
+//            model.setViewName("home/admin]");
+//        }
+//        else {
+//            routeService.saveRoute(route);
+//            model.addObject("msg", "Route has been added successfully");
+//            model.addObject("route", new Route());
+//            model.setViewName("home/admin");
+//        }
+//        return model;
+//    }
 
     @Autowired private PasswordResetTokenRepository tokenRepository;
 
@@ -219,7 +225,7 @@ public class UserController {
         ModelAndView model = new ModelAndView();
         User user = new User();
         model.addObject("user", user);
-        System.out.println("hellow world");
+        System.out.println("hello world");
         model.setViewName("user/retrievePassword");
         return model;
     }
@@ -252,9 +258,6 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
-        //model.addObject("userName", user.getFirstname() + " " + user.getLastname());
-        String role=user.getRole();
-        role=role.toLowerCase();
         model.setViewName("functions/payment");
         return model;
     }
