@@ -81,21 +81,26 @@ public class UserController {
     {
         ModelAndView model=new ModelAndView();
         Route route = new Route();
-        model.addObject("route",route);
+        model.addObject("route", route);
         model.setViewName("functions/addRoute");
 
         return model;
     }
 
     @RequestMapping(value = {"/addRoute"}, method=RequestMethod.POST)
-    public ModelAndView createRoute(Route route, BindingResult bindingResult)
+    public ModelAndView createRoute( @Valid Route route, BindingResult bindingResult) //
     {
         ModelAndView model = new ModelAndView();
 
-        routeService.saveRoute(route);
-        model.addObject("msg","Route has been added successfully");
-        model.addObject("route", new Route());
-        model.setViewName("home/admin");
+        if(bindingResult.hasErrors()) {
+            model.setViewName("home/admin]");
+        }
+        else {
+            routeService.saveRoute(route);
+            model.addObject("msg", "Route has been added successfully");
+            model.addObject("route", new Route());
+            model.setViewName("home/admin");
+        }
         return model;
     }
 
