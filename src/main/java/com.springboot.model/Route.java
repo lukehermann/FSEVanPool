@@ -1,9 +1,6 @@
 package com.springboot.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "route")
@@ -12,6 +9,7 @@ public class Route {
     @Id
     @Column(name="driverid")
     private int driverid;
+
 
     @Column(name="startlocation")
     private String startlocation;
