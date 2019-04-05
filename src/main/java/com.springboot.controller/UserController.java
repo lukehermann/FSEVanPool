@@ -1,26 +1,29 @@
 package com.springboot.controller;
 
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import com.springboot.model.*;
+import com.springboot.model.PasswordForgotDto;
+import com.springboot.model.PasswordResetDto;
+import com.springboot.model.PasswordResetToken;
+import com.springboot.model.User;
 import com.springboot.repository.PasswordResetTokenRepository;
-import com.springboot.service.EmailService;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.TemplateEngine;
 
-import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 @Controller
@@ -79,7 +82,7 @@ public class UserController {
 
     @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.GET)
     public ModelAndView displayForgotQuestions(@RequestParam(required = false) String token,
-                                           Model model) {
+                                               Model model) {
 
         ModelAndView model1 = new ModelAndView();
 
@@ -195,4 +198,3 @@ public class UserController {
 
 
 }
-
