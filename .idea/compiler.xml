@@ -6,10 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FSEVanPool" />
         <module name="FSEVanpool" />
+        <module name="FSEVanPool" />
         <module name="FSEVanPool2" />
         <module name="FSEVanpoolMain" />
+        <module name="FSEVanPoolMain" />
         <module name="SpringBoot" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="FSEVanPool2" options="-parameters" />
+      <module name="FSEVanPoolMain" options="-parameters" />
       <module name="FSEVanpool" options="-parameters" />
       <module name="FSEVanpoolMain" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
