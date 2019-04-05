@@ -5,11 +5,8 @@ import com.springboot.model.PasswordResetDto;
 import com.springboot.model.PasswordResetToken;
 import com.springboot.model.User;
 import com.springboot.repository.PasswordResetTokenRepository;
-import com.springboot.service.MailClient;
-import com.springboot.service.RouteService;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.TemplateEngine;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -36,11 +31,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private RouteService routeService;
 
-    @Autowired
-    private MailClient mailClient;
 
     @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
     public ModelAndView login() {
@@ -60,8 +51,6 @@ public class UserController {
         return model;
     }
 
-
-
     @RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
     public ModelAndView createUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
@@ -79,36 +68,9 @@ public class UserController {
             model.addObject("user", new User());
             model.setViewName("user/login");
         }
+
         return model;
     }
-
-//    @RequestMapping(value={"/addRoute"}, method=RequestMethod.GET)
-//    public ModelAndView addRoute()
-//    {
-//        ModelAndView model=new ModelAndView();
-//        Route route = new Route();
-//        model.addObject("route", route);
-//        model.setViewName("functions/addRoute");
-//
-//        return model;
-//    }
-//
-//    @RequestMapping(value = {"/addRoute"}, method=RequestMethod.POST)
-//    public ModelAndView createRoute(@Valid @ModelAttribute("route") Route route, BindingResult bindingResult) //
-//    {
-//        ModelAndView model = new ModelAndView();
-//
-//        if(bindingResult.hasErrors()) {
-//            model.setViewName("home/admin]");
-//        }
-//        else {
-//            routeService.saveRoute(route);
-//            model.addObject("msg", "Route has been added successfully");
-//            model.addObject("route", new Route());
-//            model.setViewName("home/admin");
-//        }
-//        return model;
-//    }
 
     @Autowired private PasswordResetTokenRepository tokenRepository;
 
@@ -120,7 +82,7 @@ public class UserController {
 
     @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.GET)
     public ModelAndView displayForgotQuestions(@RequestParam(required = false) String token,
-                                           Model model) {
+                                               Model model) {
 
         ModelAndView model1 = new ModelAndView();
 
@@ -173,7 +135,7 @@ public class UserController {
 
 
         if(bindingResult.hasErrors()) {
-            model1.setViewName("redirect:/forgot-questions?token=" + forgotDto.getToken());
+            model1.setViewName("redirect:/forgot-questions?token=" + forgotDto.getToken() + "&error=true");
         }
         else {
             model1.addObject("msg", "Answered Questions Correctly!");
@@ -220,37 +182,6 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/retrievePassword"}, method=RequestMethod.GET)
-    public ModelAndView retrievePassword(){
-        ModelAndView model = new ModelAndView();
-        User user = new User();
-        model.addObject("user", user);
-        System.out.println("hello world");
-        model.setViewName("user/retrievePassword");
-        return model;
-    }
-
-    @RequestMapping(value= {"/retrievePassword"}, method=RequestMethod.POST)
-    public ModelAndView reset(@Valid User user, BindingResult bindingResult) throws MessagingException {
-        System.out.println("hh");
-        TemplateEngine engine = new TemplateEngine();
-        System.out.println("1");
-
-        ModelAndView model = new ModelAndView();
-        System.out.println("2");
-
-        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        System.out.println("3");
-
-        System.out.println("4");
-
-        mailClient.send("xxxxxxxx@gmail.com", "Test", "Hello");
-        System.out.println("5");
-
-        model.setViewName("user/login");
-        System.out.println("6");
-        return model;
-    }
 
     @RequestMapping(value = {"/payment"}, method= RequestMethod.POST)
     public ModelAndView payment(){
@@ -258,10 +189,12 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
-        model.setViewName("functions/payment");
+        //model.addObject("userName", user.getFirstname() + " " + user.getLastname());
+        String role=user.getRole();
+        role=role.toLowerCase();
+        model.setViewName("home/payment");
         return model;
     }
 
 
 }
-
