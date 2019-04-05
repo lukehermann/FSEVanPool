@@ -18,7 +18,7 @@ public class Route {
     private String dropofflocation;
 
     @Column(name="active")
-    private int active;
+    private int active=1;
 
     @Column(name="rate")
     private int rate;
@@ -35,13 +35,6 @@ public class Route {
     public void setDriverId(int id) {
             this.driverid = id;
         }
-
-    public int getActiveStatus() {
-        return active;
-    }
-    public void setActiveStatus(int active) {
-        this.active = active;
-    }
 
     public int getNumberOfPassengers() {
         return numberofpassengers;
@@ -83,5 +76,13 @@ public class Route {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }
