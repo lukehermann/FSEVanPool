@@ -18,6 +18,26 @@
                 </div>
             </div>
         </div>
+        <div>
+            <h2>Route List</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Start Location</th>
+                    <th>Drop off Location</th>
+                    <th>Number of Passengers</th>
+                    <th>Capacity of Vehicle</th>
+                    <th>Rate</th>
+
+                </tr>
+                <tr th:each="routes : ${routeList}">
+                    <td th:text="${routes.startlocation}"></td>
+                    <td th:text="${routes.dropofflocation}"></td>
+                    <td th:text="${routes.numberofpassengers}"></td>
+                    <td th:text="${routes.passengercapacity}"></td>
+                    <td th:text="${routes.rate}"></td>
+                </tr>
+            </table>
+        </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -32,7 +52,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-flag"></i></div>
                         <input type="text" th:field="*{startlocation}" class="form-control" id="startlocation"
                                placeholder="Start Location" required autofocus>
                     </div>
@@ -46,7 +66,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-flag-checkered"></i></div>
                         <input type="text" th:field="*{dropofflocation}" class="form-control" id="dropofflocation"
                                placeholder="Drop Off Location" required autofocus>
                     </div>
@@ -60,8 +80,22 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-route"></i></div>
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fas fa-dollar-sign"></i></div>
                         <input type="number" th:field="*{rate}" class="form-control" id="rate"
+                               placeholder="$00.00" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="passengercapacity">Number of Passengers</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-users"></i></div>
+                        <input type="number" th:field="*{passengercapacity}" class="form-control" id="passengercapacity"
                                placeholder="$00.00" required autofocus>
                     </div>
                 </div>

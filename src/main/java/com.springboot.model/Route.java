@@ -7,9 +7,12 @@ import javax.persistence.*;
 public class Route {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long routeid;
+
+
     @Column(name="driverid")
     private int driverid;
-
 
     @Column(name="startlocation")
     private String startlocation;
@@ -36,9 +39,14 @@ public class Route {
             this.driverid = id;
         }
 
-    public int getNumberOfPassengers() {
-        return numberofpassengers;
+    public long getRouteid() {
+        return routeid;
     }
+
+    public void setRouteid(long routeid) {
+        this.routeid = routeid;
+    }
+
     public void addPassengers() {
         this.numberofpassengers++;
     }
@@ -46,13 +54,21 @@ public class Route {
         if (this.numberofpassengers>0){this.numberofpassengers--;}
     }
 
-    public int getPassengerCapacity() {
-        return passengercapacity;
-    }
-    public void setPassengerCapacity(int passengerCapacity) {
-        this.passengercapacity = passengerCapacity;
+    public int getNumberofpassengers() {
+        return numberofpassengers;
     }
 
+    public void setNumberofpassengers(int numberofpassengers) {
+        this.numberofpassengers = numberofpassengers;
+    }
+
+    public int getPassengercapacity() {
+        return passengercapacity;
+    }
+
+    public void setPassengercapacity(int passengercapacity) {
+        this.passengercapacity = passengercapacity;
+    }
 
     public String getStartlocation() {
         return startlocation;

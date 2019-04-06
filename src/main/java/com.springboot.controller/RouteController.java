@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class RouteController {
@@ -23,7 +24,9 @@ public class RouteController {
     {
         ModelAndView model=new ModelAndView();
         Route route = new Route();
+        List<Route> routeList = routeService.listAll();
         model.addObject("route", route);
+        model.addObject("routeList", routeList);
         model.setViewName("functions/addRoute");
 
         return model;
@@ -35,7 +38,7 @@ public class RouteController {
         ModelAndView model = new ModelAndView();
 
         if(bindingResult.hasErrors()) {
-            model.setViewName("home/admin]");
+            model.setViewName("functions/addRoute");
         }
         else {
             routeService.saveRoute(route);
