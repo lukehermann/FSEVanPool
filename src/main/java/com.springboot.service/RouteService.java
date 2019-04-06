@@ -8,4 +8,5 @@ public interface RouteService {
     public void findRouteByDropOffLocation();
     public void saveRoute(Route route);
     public List<Route> listAll();
+    public void deleteRoute(long routeid);
 }

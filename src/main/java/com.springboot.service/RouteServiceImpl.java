@@ -27,4 +27,9 @@ public class RouteServiceImpl implements RouteService {
 
         return routeRepository.findAllRoutes();
     }
+
+    @Override
+    public void deleteRoute(long routeid) {
+        routeRepository.deleteRoute(routeid);
+    }
 }

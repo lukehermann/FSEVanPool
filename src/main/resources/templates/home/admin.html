@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>AdminHome</title>
+    <title>Admin Home</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -11,6 +11,37 @@
 <body>
 <div class="container">
     <h2>Hi <span th:utext="${userName}"></span>, this is the home page.</h2>
+    <div>
+        <h2>Route List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th> </th>
+                <th>Start Location</th>
+                <th>Drop off Location</th>
+                <th>Number of Passengers</th>
+                <th>Capacity of Vehicle</th>
+                <th>Rate</th>
+
+            </tr>
+            <form method="get" action="/deleteRoute">
+            <tr th:each="routes : ${routeList}">
+                <td><input type="checkbox" name="routes" th:value="${routes.routeid}"/></td>
+                <td th:text="${routes.startlocation}"></td>
+                <td th:text="${routes.dropofflocation}"></td>
+                <td th:text="${routes.numberofpassengers}"></td>
+                <td th:text="${routes.passengercapacity}"></td>
+                <td th:text="${routes.rate}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+                <button type="submit" class="btn btn-success"><i class="fa fa-trash"></i> Delete Route</button>
+            </form>
+            <button type="submit" class="btn btn-success" name="action" value="delete"><i class="fa fa-edit"></i> Modify Route</button>
+        </div>
+    </div>
     <div>
         <form method="get" action="/addRoute">
         <button class="button">addRoute</button>

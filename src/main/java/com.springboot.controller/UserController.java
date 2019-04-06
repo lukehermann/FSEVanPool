@@ -1,10 +1,8 @@
 package com.springboot.controller;
 
-import com.springboot.model.PasswordForgotDto;
-import com.springboot.model.PasswordResetDto;
-import com.springboot.model.PasswordResetToken;
-import com.springboot.model.User;
+import com.springboot.model.*;
 import com.springboot.repository.PasswordResetTokenRepository;
+import com.springboot.service.RouteService;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -31,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RouteService routeService;
 
 
     @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
@@ -171,7 +172,21 @@ public class UserController {
         model.addObject("userName", user.getFirstname() + " " + user.getLastname());
         String role=user.getRole();
         role=role.toLowerCase();
+        model.addObject("routeList", routeService.listAll());
         model.setViewName("home/"+role);
+        return model;
+    }
+
+    @RequestMapping(value= {"/deleteRoute"}, method=RequestMethod.GET)
+    public ModelAndView deleteRoute(@ModelAttribute("routes") int routeid, BindingResult bindingResult) {
+        ModelAndView model = new ModelAndView();
+
+        routeService.deleteRoute(routeid);
+
+        model.addObject("routeList", routeService.listAll());
+
+        model.setViewName("home/admin");
+
         return model;
     }
 
