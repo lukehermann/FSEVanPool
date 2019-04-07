@@ -1,10 +1,8 @@
 package com.springboot.controller;
 
-import com.springboot.model.PasswordForgotDto;
-import com.springboot.model.PasswordResetDto;
-import com.springboot.model.PasswordResetToken;
-import com.springboot.model.User;
+import com.springboot.model.*;
 import com.springboot.repository.PasswordResetTokenRepository;
+import com.springboot.service.RouteService;
 import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,9 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 
 @Controller
@@ -31,6 +27,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RouteService routeService;
 
 
     @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
@@ -171,7 +170,28 @@ public class UserController {
         model.addObject("userName", user.getFirstname() + " " + user.getLastname());
         String role=user.getRole();
         role=role.toLowerCase();
+        model.addObject("routeList", routeService.listAll());
         model.setViewName("home/"+role);
+        return model;
+    }
+
+    @RequestMapping(value= {"/deleteRoute"}, method=RequestMethod.GET)
+    public ModelAndView deleteRoute(@RequestParam("routes") List<String> routeids) {
+        ModelAndView model = new ModelAndView();
+
+
+        if(routeids != null){
+            for(String id : routeids){
+                int routeid = Integer.parseInt(id);
+                System.out.println(routeid);
+                routeService.deleteRoute(routeid);
+            }
+        }
+
+        model.addObject("routeList", routeService.listAll());
+
+        model.setViewName("redirect:/home/home");
+
         return model;
     }
 
