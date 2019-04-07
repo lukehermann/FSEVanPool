@@ -25,7 +25,8 @@ public class RouteServiceImpl implements RouteService {
 
     public List<Route> listAll() {
 
-        return routeRepository.findAllRoutes();
+        //return routeRepository.findAllRoutes();
+        return routeRepository.findAll();
     }
 
     @Override

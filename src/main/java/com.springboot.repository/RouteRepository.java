@@ -16,7 +16,7 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     Route findByStartlocation(String startlocation);
 
     @Query(value = "SELECT u FROM Route u WHERE u.active = 1")
-    List<Route> findAllRoutes();
+    List<Route> findAllActiveRoutes();
 
     @Transactional
     @Modifying

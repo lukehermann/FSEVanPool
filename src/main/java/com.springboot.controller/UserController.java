@@ -19,9 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 
 @Controller
@@ -178,14 +176,21 @@ public class UserController {
     }
 
     @RequestMapping(value= {"/deleteRoute"}, method=RequestMethod.GET)
-    public ModelAndView deleteRoute(@ModelAttribute("routes") int routeid, BindingResult bindingResult) {
+    public ModelAndView deleteRoute(@RequestParam("routes") List<String> routeids) {
         ModelAndView model = new ModelAndView();
 
-        routeService.deleteRoute(routeid);
+
+        if(routeids != null){
+            for(String id : routeids){
+                int routeid = Integer.parseInt(id);
+                System.out.println(routeid);
+                routeService.deleteRoute(routeid);
+            }
+        }
 
         model.addObject("routeList", routeService.listAll());
 
-        model.setViewName("home/admin");
+        model.setViewName("redirect:/home/home");
 
         return model;
     }

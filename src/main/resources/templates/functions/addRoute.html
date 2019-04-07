@@ -60,7 +60,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-dollar"></i></div>
                         <input type="number" th:field="*{rate}" class="form-control" id="rate"
                                placeholder="$00.00" required autofocus>
                     </div>
@@ -69,14 +69,14 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="passengercapacity">Number of Passengers</label>
+                <label for="passengercapacity">Passenger Capacity</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-users"></i></div>
                         <input type="number" th:field="*{passengercapacity}" class="form-control" id="passengercapacity"
-                               placeholder="$00.00" required autofocus>
+                               placeholder="Enter the Car Capacity" required autofocus>
                     </div>
                 </div>
             </div>
@@ -85,11 +85,6 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Add Route</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Already registered? <a href="/" th:href="@{/login}">Login</a>
             </div>
         </div>
     </form>

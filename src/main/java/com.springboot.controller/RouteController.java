@@ -42,7 +42,7 @@ public class RouteController {
             routeService.saveRoute(route);
             model.addObject("msg", "Route has been added successfully");
             model.addObject("route", new Route());
-            model.setViewName("home/admin");
+            model.setViewName("redirect:/home/home");
         }
         return model;
     }

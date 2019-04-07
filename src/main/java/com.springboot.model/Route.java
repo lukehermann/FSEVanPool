@@ -10,7 +10,6 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long routeid;
 
-
     @Column(name="driverid")
     private int driverid;
 
