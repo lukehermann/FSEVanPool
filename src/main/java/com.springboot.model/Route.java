@@ -6,10 +6,12 @@ import javax.persistence.*;
 @Table(name = "route")
 public class Route {
 
-    @Id
     @Column(name="driverid")
     private int driverid;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int routeid;
 
     @Column(name="startlocation")
     private String startlocation;
@@ -18,7 +20,7 @@ public class Route {
     private String dropofflocation;
 
     @Column(name="active")
-    private int active=1;
+    private int active;
 
     @Column(name="rate")
     private int rate;
@@ -84,5 +86,13 @@ public class Route {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public int getRouteid() {
+        return routeid;
+    }
+
+    public void setRouteid(int routeid) {
+        this.routeid = routeid;
     }
 }
