@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("routeService")
 public class RouteServiceImpl implements RouteService {
 
     @Autowired
     private RouteRepository routeRepository;
+
+
 
     @Override
     public void findRouteByDropOffLocation() {
@@ -51,6 +54,10 @@ public class RouteServiceImpl implements RouteService {
     @Transactional
     public void upadteCapacity(long routeid, int capacity) {
         routeRepository.updateCapacity(routeid, capacity);
+    }
+    public Route findRouteByRouteid(int routeid)
+    {
+        return routeRepository.findRouteByID(routeid);
     }
 
 
