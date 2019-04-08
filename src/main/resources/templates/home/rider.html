@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>AdminHome</title>
+    <title>Rider Home</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -10,36 +10,41 @@
 </head>
 <body>
 <div class="container">
-
     <h2>Hi <span th:utext="${userName}"></span>, this is the Rider page.</h2>
-
-    <p>Select a route to ride:</p>
-    <form th:action="@{/payment}" method="post" >
     <div>
-        <input type="radio" id="route1" name="route" value="route1"
-               checked>
-        <label for="route1">Iowa City to Cedar Rapids</label>
+        <h2>Route List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th> </th>
+                <th>Start Location</th>
+                <th>Drop off Location</th>
+                <th>Number of Passengers</th>
+                <th>Capacity of Vehicle</th>
+                <th>Rate</th>
+                <th>Active?</th>
+
+            </tr>
+            <form method="get" action="/deleteRoute">
+                <tr th:each="routes, stat : ${routeList}">
+                    <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
+                    <td th:text="${routes.startlocation}"></td>
+                    <td th:text="${routes.dropofflocation}"></td>
+                    <td th:text="${routes.numberofpassengers}"></td>
+                    <td th:text="${routes.passengercapacity}"></td>
+                    <td th:text="${routes.rate}"></td>
+                    <td th:text="${routes.active}"></td>
+
+
+                </tr>
+        </table>
     </div>
-
-    <div>
-        <input type="radio" id="route2" name="route" value="route2">
-        <label for="route2">Iowa City to Coralville</label>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Sign Up Route</button>
+        </div>
     </div>
-
-    <div>
-        <input type="radio" id="route3" name="route" value="route3">
-        <label for="route3">Cedar Rapids to Iowa City</label>
-    </div>
-
-    <label for="Drop-OffLocation" class="sr-only">Drop-Off Location</label>
-    <input type="Drop-OffLocation" id="Drop-OffLocation" name="Drop-OffLocation" class="form-control" placeholder="Drop-Off Location" required autofocus>
-
-    <div>
-        <button th:action="@{/payment}" type="select">Select</button>
-
-    </div>
-    </form>
     <a th:href="@{/logout}">Sign out</a>
-    </div>
+</div>
 </body>
 </html>
