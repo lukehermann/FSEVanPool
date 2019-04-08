@@ -5,12 +5,15 @@ import com.springboot.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service("routeService")
 public class RouteServiceImpl implements RouteService {
 
     @Autowired
     private RouteRepository routeRepository;
+
+
 
     @Override
     public void findRouteByDropOffLocation() {
@@ -35,8 +38,10 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public void signUpRiderRoute(long routeid) {
+    public void signUpRiderRoute(int routeid) {
         routeRepository.signUpRiderRoute(routeid);
     }
+
+
 
 }

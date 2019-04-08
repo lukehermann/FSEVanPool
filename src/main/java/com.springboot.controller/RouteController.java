@@ -48,6 +48,27 @@ public class RouteController {
         return model;
     }
 
+    @RequestMapping(value= {"/signUpRiderRoute"}, method=RequestMethod.GET)
+    public ModelAndView signUpRiderRoute(@RequestParam("routes") List<String> routesids) {
+        ModelAndView model = new ModelAndView();
+        Route tempRoute = new Route();
 
+        if(routesids != null){
+            for(String id : routesids){
+                int routeid = Integer.parseInt(id);
+                //tempRoute = routeService.findRouteByRouteid(routeid);
+                //tempRoute.subtractPassengers();
+
+                //routeService.deleteRoute(routeid);
+                routeService.signUpRiderRoute(routeid);
+            }
+        }
+
+        model.addObject("routeList", routeService.listAll());
+
+        model.setViewName("redirect:/home/home");
+
+        return model;
+    }
 }
 

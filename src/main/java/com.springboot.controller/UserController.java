@@ -215,24 +215,6 @@ public class UserController {
         model.setViewName("home/payment");
         return model;
     }
-    @RequestMapping(value= {"/signUpRiderRoute"}, method=RequestMethod.GET)
-    public ModelAndView signUpRiderRoute(@RequestParam("routes") List<String> routeids) {
-        ModelAndView model = new ModelAndView();
 
-        if(routeids != null){
-            for(String id : routeids){
-                int routeid = Integer.parseInt(id);
-                System.out.println(routeid);
-                routeService.signUpRiderRoute(routeid);
-                //routeService.deleteRoute(routeid);
-            }
-        }
-
-        model.addObject("routeList", routeService.listAll());
-
-        model.setViewName("redirect:/home/home");
-
-        return model;
-    }
 
 }
