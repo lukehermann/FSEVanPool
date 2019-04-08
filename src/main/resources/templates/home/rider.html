@@ -24,7 +24,7 @@
                 <th>Active?</th>
 
             </tr>
-            <form method="get" action="/deleteRoute">
+            <form method="get" action="/signUpRiderRoute">
                 <tr th:each="routes, stat : ${routeList}">
                     <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
                     <td th:text="${routes.startlocation}"></td>

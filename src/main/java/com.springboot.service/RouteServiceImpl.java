@@ -33,4 +33,10 @@ public class RouteServiceImpl implements RouteService {
     public void deleteRoute(long routeid) {
         routeRepository.deleteRoute(routeid);
     }
+
+    @Override
+    public void signUpRiderRoute(long routeid) {
+        routeRepository.signUpRiderRoute(routeid);
+    }
+
 }
