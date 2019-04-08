@@ -6,12 +6,12 @@ import javax.persistence.*;
 @Table(name = "route")
 public class Route {
 
-    @Column(name="driverid")
-    private int driverid;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int routeid;
+    private long routeid;
+
+    @Column(name="driverid")
+    private int driverid;
 
     @Column(name="startlocation")
     private String startlocation;
@@ -20,7 +20,7 @@ public class Route {
     private String dropofflocation;
 
     @Column(name="active")
-    private int active;
+    private int active=1;
 
     @Column(name="rate")
     private int rate;
@@ -32,15 +32,20 @@ public class Route {
     private int passengercapacity;
 
     public int getDriverId() {
-            return driverid;
-        }
-    public void setDriverId(int id) {
-            this.driverid = id;
-        }
-
-    public int getNumberOfPassengers() {
-        return numberofpassengers;
+        return driverid;
     }
+    public void setDriverId(int id) {
+        this.driverid = id;
+    }
+
+    public long getRouteid() {
+        return routeid;
+    }
+
+    public void setRouteid(long routeid) {
+        this.routeid = routeid;
+    }
+
     public void addPassengers() {
         this.numberofpassengers++;
     }
@@ -48,13 +53,21 @@ public class Route {
         if (this.numberofpassengers>0){this.numberofpassengers--;}
     }
 
-    public int getPassengerCapacity() {
-        return passengercapacity;
-    }
-    public void setPassengerCapacity(int passengerCapacity) {
-        this.passengercapacity = passengerCapacity;
+    public int getNumberofpassengers() {
+        return numberofpassengers;
     }
 
+    public void setNumberofpassengers(int numberofpassengers) {
+        this.numberofpassengers = numberofpassengers;
+    }
+
+    public int getPassengercapacity() {
+        return passengercapacity;
+    }
+
+    public void setPassengercapacity(int passengercapacity) {
+        this.passengercapacity = passengercapacity;
+    }
 
     public String getStartlocation() {
         return startlocation;
@@ -86,13 +99,5 @@ public class Route {
 
     public void setActive(int active) {
         this.active = active;
-    }
-
-    public int getRouteid() {
-        return routeid;
-    }
-
-    public void setRouteid(int routeid) {
-        this.routeid = routeid;
     }
 }
