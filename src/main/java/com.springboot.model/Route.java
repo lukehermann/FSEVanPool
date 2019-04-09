@@ -95,4 +95,20 @@ public class Route {
     public void setActive(int active) {
         this.active = active;
     }
+
+    public int getNumberofpassengers() {
+        return numberofpassengers;
+    }
+
+    public void setNumberofpassengers(int numberofpassengers) {
+        this.numberofpassengers = numberofpassengers;
+    }
+
+    public int getPassengercapacity() {
+        return passengercapacity;
+    }
+
+    public void setPassengercapacity(int passengercapacity) {
+        this.passengercapacity = passengercapacity;
+    }
 }

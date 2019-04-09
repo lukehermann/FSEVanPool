@@ -11,4 +11,7 @@ public interface RouteService {
     public void deleteRoute(long routeid);
     public void updateRouteVehicle(long routeid, int vehicleid);
     public void upadteCapacity(long routeid, int capacity);
+    public void signUpRiderRoute(long routeid);
+
+    public Route findRouteByRouteid(int routeid);
 }
