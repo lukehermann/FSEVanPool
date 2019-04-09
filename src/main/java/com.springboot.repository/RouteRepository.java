@@ -18,14 +18,18 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Query(value = "SELECT u FROM Route u WHERE u.active = 1")
     List<Route> findAllActiveRoutes();
 
+    @Query(value = "select u FROM Route u where u.routeid= :routeid")
+    Route findRouteByID(@Param("routeid") long routeid);
+
     @Transactional
     @Modifying
     @Query("delete from Route e where e.routeid=:x")
     public void deleteRoute(@Param("x") long routeid);
 
+    @Transactional
     @Modifying
-    @Query("update Route u set u.passengercapacity = 10 where u.routeid = :x")
-    void signUpRiderRoute(@Param("routeid") int routeid);
+    @Query("update Route u set u.passengercapacity = :passengercapacity where u.routeid = :routeid")
+    void signUpRiderRoute(@Param("passengercapacity") int passengercapacity,@Param("routeid") long routeid);
 
 
 

@@ -31,12 +31,6 @@ public class Route {
     @Column(name="passengercapacity")
     private int passengercapacity;
 
-    public int getDriverId() {
-        return driverid;
-    }
-    public void setDriverId(int id) {
-        this.driverid = id;
-    }
 
     public long getRouteid() {
         return routeid;
@@ -46,27 +40,12 @@ public class Route {
         this.routeid = routeid;
     }
 
-    public void addPassengers() {
-        this.numberofpassengers++;
-    }
-    public void subtractPassengers() {
-        if (this.numberofpassengers>0){this.numberofpassengers--;}
+    public int getDriverid() {
+        return driverid;
     }
 
-    public int getNumberofpassengers() {
-        return numberofpassengers;
-    }
-
-    public void setNumberofpassengers(int numberofpassengers) {
-        this.numberofpassengers = numberofpassengers;
-    }
-
-    public int getPassengercapacity() {
-        return passengercapacity;
-    }
-
-    public void setPassengercapacity(int passengercapacity) {
-        this.passengercapacity = passengercapacity;
+    public void setDriverid(int driverid) {
+        this.driverid = driverid;
     }
 
     public String getStartlocation() {
@@ -85,6 +64,14 @@ public class Route {
         this.dropofflocation = dropofflocation;
     }
 
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
     public int getRate() {
         return rate;
     }
@@ -93,11 +80,19 @@ public class Route {
         this.rate = rate;
     }
 
-    public int getActive() {
-        return active;
+    public int getNumberofpassengers() {
+        return numberofpassengers;
     }
 
-    public void setActive(int active) {
-        this.active = active;
+    public void setNumberofpassengers(int numberofpassengers) {
+        this.numberofpassengers = numberofpassengers;
+    }
+
+    public int getPassengercapacity() {
+        return passengercapacity;
+    }
+
+    public void setPassengercapacity(int passengercapacity) {
+        this.passengercapacity = passengercapacity;
     }
 }

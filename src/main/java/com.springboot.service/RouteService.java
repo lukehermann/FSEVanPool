@@ -9,7 +9,7 @@ public interface RouteService {
     public void saveRoute(Route route);
     public List<Route> listAll();
     public void deleteRoute(long routeid);
-    public void signUpRiderRoute(int routeid);
+    public void signUpRiderRoute(int passangerCapacity, long routeid);
 
-    //public Route findRouteByRouteid(int routeid);
+    public Route findRouteByRouteid(int routeid);
 }
