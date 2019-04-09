@@ -23,7 +23,7 @@ public class Route {
     private int active=1;
 
     @Column(name="rate")
-    private int rate;
+    private float rate;
 
     @Column(name="numberofpassengers")
     private int numberofpassengers;
@@ -85,11 +85,11 @@ public class Route {
         this.dropofflocation = dropofflocation;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 

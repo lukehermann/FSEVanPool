@@ -4,6 +4,7 @@ import com.springboot.model.*;
 import com.springboot.repository.PasswordResetTokenRepository;
 import com.springboot.service.RouteService;
 import com.springboot.service.UserService;
+import com.springboot.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Autowired
     private RouteService routeService;
+
+    @Autowired
+    private VehicleService vehicleService;
 
 
     @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
@@ -171,6 +175,14 @@ public class UserController {
         String role=user.getRole();
         role=role.toLowerCase();
         model.addObject("routeList", routeService.listAll());
+        model.addObject("vehicleList", vehicleService.listAll());
+
+        List<String> vehicleTypes = new ArrayList<>();
+        vehicleTypes.add("SUV");
+        vehicleTypes.add("Van");
+        vehicleTypes.add("XL Van");
+        vehicleTypes.add("Car");
+        model.addObject("vehicleTypes", vehicleTypes);
         model.setViewName("home/"+role);
         return model;
     }
@@ -232,6 +244,46 @@ public class UserController {
 
         model.setViewName("redirect:/home/home");
 
+        return model;
+    }
+
+    @RequestMapping(value= {"/addVehicle"}, method=RequestMethod.GET)
+    public ModelAndView deleteRoute(@RequestParam("vehicleType") String vehicleType) {
+        ModelAndView model = new ModelAndView();
+
+        if(vehicleType.equals("SUV")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(7);
+            vech.setType("SUV");
+            vehicleService.saveVehicle(vech);
+
+        }
+
+        else if(vehicleType.equals("Van")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(11);
+            vech.setType("Van");
+            vehicleService.saveVehicle(vech);
+
+        }
+
+        else if(vehicleType.equals("XL Van")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(14);
+            vech.setType("XL Van");
+            vehicleService.saveVehicle(vech);
+
+        }
+
+        else if(vehicleType.equals("Car")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(4);
+            vech.setType("Car");
+            vehicleService.saveVehicle(vech);
+        }
+
+
+        model.setViewName("redirect:/home/home");
         return model;
     }
 

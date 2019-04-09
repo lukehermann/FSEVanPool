@@ -25,7 +25,7 @@
 
             </tr>
             <form method="get" action="/deleteRoute">
-            <tr th:each="routes, stat : ${routeList}">
+            <tr th:each="routes : ${routeList}">
                 <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
                 <td th:text="${routes.startlocation}"></td>
                 <td th:text="${routes.dropofflocation}"></td>
@@ -48,6 +48,49 @@
             </form>
         </div>
     </div>
+    <form method="get" action="/addVehicle">
+        <div>
+            <h2>Vehicle List</h2>
+            <table class="table table-striped">
+                <tr>
+<!--                    <th> </th>-->
+                    <th>Type</th>
+                    <th>Capacity</th>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+
+
+                </tr>
+                <tr th:each="vehicle : ${vehicleList}">
+<!--                        <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>-->
+                        <td th:text="${vehicle.type}"></td>
+                        <td th:text="${vehicle.capacity}"></td>
+                        <td th:text="${vehicle.sunday}"></td>
+                        <td th:text="${vehicle.monday}"></td>
+                        <td th:text="${vehicle.tuesday}"></td>
+                        <td th:text="${vehicle.wednesday}"></td>
+                        <td th:text="${vehicle.thursday}"></td>
+                        <td th:text="${vehicle.friday}"></td>
+                        <td th:text="${vehicle.saturday}"></td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="form-group row">
+            <select class="form-control" id="vehicleType" name="vehicleType">
+                <option th:each="type : ${vehicleTypes}"
+                        th:value="${type}"
+                        th:text="${type}"
+                ></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add Vehicle</button>
+    </form>
     <a th:href="@{/logout}">Sign out</a>
 </div>
 </body>

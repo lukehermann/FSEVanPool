@@ -23,7 +23,7 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Query("delete from Route e where e.routeid=:x")
     public void deleteRoute(@Param("x") long routeid);
 
-    @Query("delete from Route e where e.routeid=:x")
+    @Query("update Route u set u.numberofpassengers = u.numberofpassengers + 1 where u.routeid = :routeid")
     void signUpRiderRoute(long routeid);
 
 }
