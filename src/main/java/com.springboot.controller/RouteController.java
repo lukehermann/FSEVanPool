@@ -56,11 +56,12 @@ public class RouteController {
         if(routesids != null){
             for(String id : routesids){
                 int routeid = Integer.parseInt(id);
-                //tempRoute = routeService.findRouteByRouteid(routeid);
-                //tempRoute.subtractPassengers();
-
+                tempRoute = routeService.findRouteByRouteid(routeid);
+                int passengerCapacity;
+                passengerCapacity = tempRoute.getPassengercapacity();
+                passengerCapacity--;
                 //routeService.deleteRoute(routeid);
-                routeService.signUpRiderRoute(routeid);
+                routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
             }
         }
 

@@ -4,8 +4,8 @@ import com.springboot.model.Route;
 import com.springboot.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service("routeService")
 public class RouteServiceImpl implements RouteService {
@@ -38,10 +38,13 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public void signUpRiderRoute(int routeid) {
-        routeRepository.signUpRiderRoute(routeid);
+    public void signUpRiderRoute(int passengerCapacity, long routeid) {
+        routeRepository.signUpRiderRoute(passengerCapacity,routeid);
     }
-
+    public Route findRouteByRouteid(int routeid)
+    {
+        return routeRepository.findRouteByID(routeid);
+    }
 
 
 }
