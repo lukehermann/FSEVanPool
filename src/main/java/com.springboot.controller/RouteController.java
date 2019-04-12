@@ -59,7 +59,14 @@ public class RouteController {
                 tempRoute = routeService.findRouteByRouteid(routeid);
                 int passengerCapacity;
                 passengerCapacity = tempRoute.getPassengercapacity();
-                passengerCapacity--;
+                if (passengerCapacity==0)
+                {
+                    
+                }
+                else
+                {
+                    passengerCapacity--;
+                }
                 //routeService.deleteRoute(routeid);
                 routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
             }
