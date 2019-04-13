@@ -69,22 +69,43 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="passengercapacity">Passenger Capacity</label>
+                <label for="rate">Days</label>
             </div>
+            <form method="get" action="/updateVehicleList">
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-users"></i></div>
-                        <input type="number" th:field="*{passengercapacity}" class="form-control" id="passengercapacity"
-                               placeholder="Enter the Car Capacity" required autofocus>
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
+                            <ul class="form-control" th:each="checkboxValue: ${dayList}">
+                                    <input class=form-check-input type="checkbox" th:name="days" th:value="${checkboxValue}"/>
+                                    <label th:text="${checkboxValue}"></label>
+                            </ul>
                     </div>
+
                 </div>
+                <button type="submit" class="btn btn-success"><i class="fa fa-minus"></i> Update Vehicles</button>
             </div>
+            </form>
         </div>
+
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="passengercapacity">Passenger Capacity</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-users"></i></div>-->
+<!--                        <input type="number" th:field="*{passengercapacity}" class="form-control" id="passengercapacity"-->
+<!--                               placeholder="Enter the Car Capacity" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Add Route</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Find Vehicles</button>
             </div>
         </div>
     </form>

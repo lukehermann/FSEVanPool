@@ -7,6 +7,6 @@ public interface VehicleService {
 
     public void saveVehicle(Vehicle vehicle);
     public List<Vehicle> listAll();
+    public List<Vehicle> findVehicle(List<String> dayList);
 
-
-}
+    }
