@@ -40,8 +40,8 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public void signUpRiderRoute(long routeid) {
-        routeRepository.signUpRiderRoute(routeid);
+    public void signUpRiderRoute(int passengerCapacity, long routeid) {
+        routeRepository.signUpRiderRoute(passengerCapacity,routeid);
     }
 
     @Override

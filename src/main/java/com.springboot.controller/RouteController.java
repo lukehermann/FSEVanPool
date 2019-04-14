@@ -125,7 +125,7 @@ public class RouteController {
                     passengerCapacity--;
                 }
                 //routeService.deleteRoute(routeid);
-                routeService.signUpRiderRoute((long) routeid);
+                routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
             }
         }
 
