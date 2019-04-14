@@ -31,11 +31,30 @@ public class Route {
     @Column(name="passengercapacity")
     private int passengercapacity;
 
+    @Column(name = "vehicleid")
+    private int vehicleid;
+
     public int getDriverId() {
         return driverid;
     }
     public void setDriverId(int id) {
         this.driverid = id;
+    }
+
+    public int getDriverid() {
+        return driverid;
+    }
+
+    public void setDriverid(int driverid) {
+        this.driverid = driverid;
+    }
+
+    public int getVehicleid() {
+        return vehicleid;
+    }
+
+    public void setVehicleid(int vehicleid) {
+        this.vehicleid = vehicleid;
     }
 
     public long getRouteid() {

@@ -4,6 +4,8 @@ import com.springboot.model.Route;
 import com.springboot.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service("routeService")
@@ -38,5 +40,18 @@ public class RouteServiceImpl implements RouteService {
     public void signUpRiderRoute(long routeid) {
         routeRepository.signUpRiderRoute(routeid);
     }
+
+    @Override
+    @Transactional
+    public void updateRouteVehicle(long routeid, int vehicleid) {
+        routeRepository.updateRouteVehicle(routeid, vehicleid);
+    }
+
+    @Override
+    @Transactional
+    public void upadteCapacity(long routeid, int capacity) {
+        routeRepository.updateCapacity(routeid, capacity);
+    }
+
 
 }

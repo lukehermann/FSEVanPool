@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin Home</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -10,12 +9,16 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-horizontal" role="form" method="POST" th:action="@{/findRoute}">
+    <form class="form-horizontal" role="form" method="POST" th:action="@{/findVehicle}">
         <div>
             <h2>Vehicle List</h2>
             <table class="table table-striped">
                 <tr>
-                    <!--                    <th> </th>-->
+
+                    <div th:each="day : ${dayList}" th:type="hidden">
+                        <div><input name="dayList" th:value="${day}" type="hidden"></div>
+                    </div>
+
                     <th>Type</th>
                     <th>Capacity</th>
                     <th>Sunday</th>
@@ -29,7 +32,7 @@
 
                 </tr>
                 <tr th:each="vehicle : ${vehicleList}">
-                    <td><input type="checkbox" th:name="routes" th:value="${vehicle.vehicleId}"/></td>
+                    <td><input type="radio" th:name="vehicle" th:value="${vehicle.vehicleId}"/></td>
                     <td th:text="${vehicle.type}"></td>
                     <td th:text="${vehicle.capacity}"></td>
                     <td th:text="${vehicle.sunday}"></td>
@@ -43,6 +46,8 @@
                 </tr>
             </table>
         </div>
+        <input type="hidden" class="form-control" id="routeid" th:field="*{route.routeid}">
+        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Update Vehicles</button>
     </form>
 </div>
 </body>

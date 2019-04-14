@@ -153,7 +153,7 @@ public class UserController {
             Map<String, Object> model = new HashMap<>();
             model.put("token", token);
             model.put("user", user);
-            model.put("signature", "https://memorynotfound.com");
+            model.put("signature", "VanPool Iowa");
             String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
             model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
             model1.setViewName("redirect:/reset-password?token=" + token.getToken());
@@ -195,7 +195,6 @@ public class UserController {
         if(routeids != null){
             for(String id : routeids){
                 int routeid = Integer.parseInt(id);
-                System.out.println(routeid);
                 routeService.deleteRoute(routeid);
             }
         }

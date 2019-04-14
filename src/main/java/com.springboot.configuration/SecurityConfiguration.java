@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/forgot-password").permitAll()
                 .antMatchers("/reset-password**").permitAll()
                 .antMatchers("/forgot-questions**").permitAll()
+                .antMatchers("/findVehicle").permitAll()
                 .antMatchers("/systemAdminHome").hasAuthority("ADMIN").anyRequest()
 
 

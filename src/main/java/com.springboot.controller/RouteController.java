@@ -7,10 +7,7 @@ import com.springboot.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -60,30 +57,48 @@ public class RouteController {
             model.setViewName("functions/addRoute");
         }
         else {
-            model.setViewName("redirect:/home/home");
+            //model.setViewName("redirect:/home/home");
             routeService.saveRoute(route);
-            model.addObject("msg", "Route has been added successfully");
-            model.addObject("route", new Route());
-            model.setViewName("redirect:/home/home");
+            //model.addObject("msg", "Route has been added successfully");
+            //model.addObject("route", new Route());
+            //model.setViewName("redirect:/home/home");
+            model.addObject("route", route);
+            model.addObject("dayList", dayList);
+            List<Vehicle> vehicleList = vehicleService.findVehicle(dayList);
+            model.addObject("vehicleList", vehicleList);
+            model.setViewName("functions/findVehicle");
         }
         return model;
     }
 
-    @RequestMapping(value = {"/findRoute"}, method=RequestMethod.GET)
-    public ModelAndView findRoute(@ModelAttribute("route") Route route,@RequestParam("days") List<String> dayList, BindingResult bindingResult) //
+    @RequestMapping(value = {"/findVehicle"}, method=RequestMethod.POST)
+    public ModelAndView findRoute(long routeid, @ModelAttribute("vehicle") int vehicleid, @RequestParam List<String> dayList, BindingResult bindingResult)
     {
 
         ModelAndView model = new ModelAndView();
 
-        List<Vehicle> vehicleList = vehicleService.findVehicle(dayList);
-
-        model.addObject("vehicleList", vehicleList);
-
         if(bindingResult.hasErrors()) {
-            model.setViewName("functions/addRoute");
+            model.setViewName("functions/findVehicle");
         }
         else {
-            model.setViewName("functions/findVehicles");
+            model.setViewName("redirect:/home/home");
+            model.addObject("msg", "Route has been added successfully");
+
+            // Adds the vehicleid to the route id
+            routeService.updateRouteVehicle(routeid, vehicleid);
+
+            // Updates vehicle to reflect true on days
+            vehicleService.updateDays(dayList, vehicleid);
+            Vehicle vehicle = vehicleService.getVehicle(vehicleid);
+
+            // Sets the passenger capacity to vehicle capacity
+            routeService.upadteCapacity(routeid, vehicle.getCapacity());
+
+            model.addObject("msg", "Route has been added successfully");
+
+
+            model.setViewName("redirect:/home/home");
+
         }
 
         return model;
