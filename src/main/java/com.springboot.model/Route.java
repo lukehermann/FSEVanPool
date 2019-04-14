@@ -41,14 +41,6 @@ public class Route {
         this.driverid = id;
     }
 
-    public int getDriverid() {
-        return driverid;
-    }
-
-    public void setDriverid(int driverid) {
-        this.driverid = driverid;
-    }
-
     public int getVehicleid() {
         return vehicleid;
     }
@@ -70,22 +62,6 @@ public class Route {
     }
     public void subtractPassengers() {
         if (this.numberofpassengers>0){this.numberofpassengers--;}
-    }
-
-    public int getNumberofpassengers() {
-        return numberofpassengers;
-    }
-
-    public void setNumberofpassengers(int numberofpassengers) {
-        this.numberofpassengers = numberofpassengers;
-    }
-
-    public int getPassengercapacity() {
-        return passengercapacity;
-    }
-
-    public void setPassengercapacity(int passengercapacity) {
-        this.passengercapacity = passengercapacity;
     }
 
     public String getStartlocation() {

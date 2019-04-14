@@ -9,7 +9,6 @@ public interface RouteService {
     public void saveRoute(Route route);
     public List<Route> listAll();
     public void deleteRoute(long routeid);
-    public void signUpRiderRoute(long routeid);
     public void updateRouteVehicle(long routeid, int vehicleid);
     public void upadteCapacity(long routeid, int capacity);
 }
