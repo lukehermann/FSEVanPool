@@ -16,5 +16,11 @@ public interface RouteService {
 
     void addDriverToRoute(int driverid, long routeid);
 
+    List<Route> listActive();
+
+    List<Route> listNoDriverID();
+
     Route findRouteByRouteid(int routeid);
+
+    void setRouteToActive(long routeid);
 }

@@ -20,7 +20,7 @@ public class Route {
     private String dropofflocation;
 
     @Column(name="active")
-    private int active=1;
+    private int active=0;
 
     @Column(name="rate")
     private float rate;

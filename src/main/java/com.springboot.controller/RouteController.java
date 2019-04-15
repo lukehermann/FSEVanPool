@@ -151,21 +151,19 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
-        if(routesids != null)
-        {
-            for(String id : routesids)
-            {
+        if(routesids != null) {
+            for (String id : routesids) {
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
 
-                if (tempRoute.getDriverid()==0)
-                {
+                if (tempRoute.getDriverid() == 0) {
                     routeService.addDriverToRoute(user.getId(), routeid);
+                    routeService.setRouteToActive(routeid);
                 }
             }
         }
-
-        model.addObject("routeList", routeService.listAll());
+        List<Route> routeList=routeService.listNoDriverID();
+        model.addObject("routeList", routeList);
 
         model.setViewName("redirect:/home/home");
 
@@ -200,8 +198,8 @@ public class RouteController {
                 }
             }
         }
-
-        model.addObject("routeList", routeService.listAll());
+        List<Route> routeList=routeService.listActive();
+        model.addObject("routeList", routeList);
 
         model.setViewName("redirect:/home/home");
 

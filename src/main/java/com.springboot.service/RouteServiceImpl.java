@@ -65,4 +65,20 @@ public class RouteServiceImpl implements RouteService {
     {
         routeRepository.updateRouteDriver(routeid, driverid);
     }
+
+    @Override
+    public List<Route> listActive() {
+        return routeRepository.findAllActiveRoutes();
+    }
+
+    @Override
+    public List<Route> listNoDriverID() {
+        return routeRepository.findAllWithoutDriverID();
+    }
+
+    @Override
+    public void setRouteToActive(long routeid)
+    {
+        routeRepository.setRouteToActive(routeid);
+    }
 }

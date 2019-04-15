@@ -16,6 +16,7 @@
         <table class="table table-striped">
             <tr>
                 <th> </th>
+                <th>driver ID</th>
                 <th>Start Location</th>
                 <th>Drop off Location</th>
                 <th>Capacity of Vehicle</th>
@@ -25,6 +26,7 @@
             <form method="get" action="/signUpDriverRoute">
                 <tr th:each="routes, stat : ${routeList}">
                     <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
+                    <td th:text="${routes.driverid}"></td>
                     <td th:text="${routes.startlocation}"></td>
                     <td th:text="${routes.dropofflocation}"></td>
                     <td th:text="${routes.passengercapacity}"></td>
@@ -43,11 +45,14 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+
+            <form method="get" action="/signUpDriverRoute">
             <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Sign Up Route</button>
+            </form>
         </div>
     </div>
 
-    <a th:href="@{/logout}">Sign out          </a>
+    <a th:href="@{/logout}">Sign out</a>
 
 </div>
 </body>

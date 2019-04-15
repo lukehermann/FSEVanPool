@@ -177,8 +177,21 @@ public class UserController {
         model.addObject("userName", user.getFirstname() + " " + user.getLastname());
         String role=user.getRole();
         role=role.toLowerCase();
-        model.addObject("routeList", routeService.listAll());
-        model.addObject("vehicleList", vehicleService.listAll());
+        if (role.equals("driver"))
+        {
+            List<Route> routeList=routeService.listNoDriverID();
+            model.addObject("routeList", routeList);
+        }
+        else if(role.equals("rider"))
+        {
+            List<Route> routeList=routeService.listActive();
+            model.addObject("routeList", routeList);
+        }
+        else
+        {
+            model.addObject("routeList", routeService.listAll());
+            model.addObject("vehicleList", vehicleService.listAll());
+        }
 
         List<String> vehicleTypes = new ArrayList<>();
         vehicleTypes.add("SUV");
