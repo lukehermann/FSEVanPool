@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface VehicleService {
 
-    public void saveVehicle(Vehicle vehicle);
-    public List<Vehicle> listAll();
-    public List<Vehicle> findVehicle(List<String> dayList);
-    public void updateDays(List<String> listOfDays, int vehicleid);
-    public Vehicle getVehicle(int vehicleid);
+    void saveVehicle(Vehicle vehicle);
+    List<Vehicle> listAll();
+    List<Vehicle> findVehicle(List<String> dayList);
+    void updateDays(List<String> listOfDays, int vehicleid);
+    Vehicle getVehicle(int vehicleid);
 
 
 }

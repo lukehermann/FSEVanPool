@@ -16,29 +16,29 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     @Modifying
     @Query("update Vehicle u set u.sunday = true where u.vehicleId = :vehicleid")
-    public void updateSunday(int vehicleid);
+    void updateSunday(int vehicleid);
 
     @Modifying
     @Query("update Vehicle u set u.monday = true where u.vehicleId = :vehicleid")
-    public void updateMonday(int vehicleid);
+    void updateMonday(int vehicleid);
 
     @Modifying
     @Query("update Vehicle u set u.tuesday = true where u.vehicleId = :vehicleid")
-    public void updateTuesday(int vehicleid);
+    void updateTuesday(int vehicleid);
 
     @Modifying
     @Query("update Vehicle u set u.wednesday = true where u.vehicleId = :vehicleid")
-    public void updateWednesday(int vehicleid);
+    void updateWednesday(int vehicleid);
 
     @Modifying
     @Query("update Vehicle u set u.thursday = true where u.vehicleId = :vehicleid")
-    public void updateThursday(int vehicleid);
+    void updateThursday(int vehicleid);
 
     @Modifying
     @Query("update Vehicle u set u.friday = true where u.vehicleId = :vehicleid")
-    public void updateFriday(int vehicleid);
+    void updateFriday(int vehicleid);
 
     @Modifying
     @Query("update Vehicle u set u.saturday = true where u.vehicleId = :vehicleid")
-    public void updateSaturday(int vehicleid);
+    void updateSaturday(int vehicleid);
 }

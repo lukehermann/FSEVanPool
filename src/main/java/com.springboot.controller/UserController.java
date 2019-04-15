@@ -36,7 +36,7 @@ public class UserController {
     private VehicleService vehicleService;
 
 
-    @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/", "/login"}, method=RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView model = new ModelAndView();
 
@@ -44,7 +44,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/signup"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/signup"}, method=RequestMethod.GET)
     public ModelAndView signup() {
         ModelAndView model = new ModelAndView();
         User user = new User();
@@ -54,7 +54,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
+    @RequestMapping(value={"/signup"}, method=RequestMethod.POST)
     public ModelAndView createUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
@@ -83,7 +83,7 @@ public class UserController {
         return new PasswordResetDto();
     }
 
-    @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/forgot-questions"}, method=RequestMethod.GET)
     public ModelAndView displayForgotQuestions(@RequestParam(required = false) String token,
                                                Model model) {
 
@@ -119,7 +119,7 @@ public class UserController {
         return model1;
     }
 
-    @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.POST)
+    @RequestMapping(value={"/forgot-questions"}, method=RequestMethod.POST)
     public ModelAndView checkQuestions (@Valid PasswordForgotDto forgotDto, BindingResult bindingResult,  HttpServletRequest request) {
 
         ModelAndView model1 = new ModelAndView();
@@ -165,7 +165,7 @@ public class UserController {
 
 
 
-    @RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/home/home"}, method=RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -187,7 +187,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/deleteRoute"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/deleteRoute"}, method=RequestMethod.GET)
     public ModelAndView deleteRoute(@RequestParam("routes") List<String> routeids) {
         ModelAndView model = new ModelAndView();
 
@@ -206,7 +206,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/access_denied"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/access_denied"}, method=RequestMethod.GET)
     public ModelAndView accessDenied() {
         ModelAndView model = new ModelAndView();
         model.setViewName("errors/access_denied");
@@ -214,7 +214,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = {"/payment"}, method= RequestMethod.POST)
+    @RequestMapping(value ={"/payment"}, method= RequestMethod.POST)
     public ModelAndView payment(){
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -228,7 +228,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value= {"/addVehicle"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/addVehicle"}, method=RequestMethod.GET)
     public ModelAndView deleteRoute(@RequestParam("vehicleType") String vehicleType) {
         ModelAndView model = new ModelAndView();
 

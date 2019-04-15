@@ -5,13 +5,13 @@ import com.springboot.model.Route;
 import java.util.List;
 
 public interface RouteService {
-    public void findRouteByDropOffLocation();
-    public void saveRoute(Route route);
-    public List<Route> listAll();
-    public void deleteRoute(long routeid);
-    public void updateRouteVehicle(long routeid, int vehicleid);
-    public void upadteCapacity(long routeid, int capacity);
-    public void signUpRiderRoute(int passangerCapacity, long routeid);
+    void findRouteByDropOffLocation();
+    void saveRoute(Route route);
+    List<Route> listAll();
+    void deleteRoute(long routeid);
+    void updateRouteVehicle(long routeid, int vehicleid);
+    void upadteCapacity(long routeid, int capacity);
+    void signUpRiderRoute(int passangerCapacity, long routeid);
 
-    public Route findRouteByRouteid(int routeid);
+    Route findRouteByRouteid(int routeid);
 }
