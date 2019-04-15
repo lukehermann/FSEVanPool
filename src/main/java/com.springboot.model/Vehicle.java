@@ -41,13 +41,6 @@ public class Vehicle {
     private boolean saturday=false;
 
 
-    public int getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(int vehicleId) {
-        this.vehicleId = vehicleId;
-    }
 
     public String getType() {
         return type;
@@ -127,5 +120,13 @@ public class Vehicle {
 
     public void setSaturday(boolean saturday) {
         this.saturday = saturday;
+    }
+
+    public int getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(int vehicleId) {
+        this.vehicleId = vehicleId;
     }
 }
