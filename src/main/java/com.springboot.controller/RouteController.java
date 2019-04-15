@@ -143,28 +143,20 @@ public class RouteController {
             for(String id : routesids){
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
+
                 int passengerCapacity;
                 passengerCapacity = tempRoute.getPassengercapacity();
+
                 int numberofpassengers = tempRoute.getNumberofpassengers();
 
-                if(numberofpassengers  == passengerCapacity){
-                    continue;
-                }
-                else{
-                    numberofpassengers ++;
-                }
+                int active = tempRoute.getActive();
 
-                /*if (passengerCapacity==0)
-                {
-                    
+                if(active == 1){
+                    if(numberofpassengers  != passengerCapacity){
+                        numberofpassengers ++;
+                        routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
+                    }
                 }
-                else
-                {
-                    passengerCapacity--;
-                }*/
-                //routeService.deleteRoute(routeid);
-                //routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
-                routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
             }
         }
 
