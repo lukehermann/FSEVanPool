@@ -63,7 +63,7 @@
             <h2>Vehicle List</h2>
             <table class="table table-striped">
                 <tr>
-<!--                    <th> </th>-->
+                    <th> </th>
                     <th>Type</th>
                     <th>Capacity</th>
                     <th>Sunday</th>
@@ -77,7 +77,7 @@
 
                 </tr>
                 <tr th:each="vehicle : ${vehicleList}">
-<!--                        <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>-->
+                        <td><input type="checkbox" th:name="vehicles" th:value="${vehicle.vehicleId}"/></td>
                         <td th:text="${vehicle.type}"></td>
                         <td th:text="${vehicle.capacity}"></td>
                         <td th:text="${vehicle.sunday}"></td>
@@ -100,7 +100,13 @@
                 ></option>
             </select>
         </div>
-        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add Vehicle</button>
+
+
+        <div type="hidden" th:name="stringList" th:value="${emptyList}" ></div>
+
+        <button type="submit" name="action" value="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Vehicle</button>
+        <button type="submit" name="action" value="delete" class="btn btn-success"><i class="fa fa-minus"></i> Delete Vehicle</button>
+
     </form>
     <a th:href="@{/logout}">Sign out</a>
 </div>

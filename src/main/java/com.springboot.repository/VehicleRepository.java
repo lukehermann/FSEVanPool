@@ -4,8 +4,10 @@ import com.springboot.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
 
 
 @Repository("vehicleRepository")
@@ -41,4 +43,9 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     @Modifying
     @Query("update Vehicle u set u.saturday = true where u.vehicleId = :vehicleid")
     void updateSaturday(int vehicleid);
+
+    @Transactional
+    @Modifying
+    @Query("delete from Vehicle e where e.vehicleId=:x")
+    void deleteVehicle(@Param("x") int routeid);
 }
