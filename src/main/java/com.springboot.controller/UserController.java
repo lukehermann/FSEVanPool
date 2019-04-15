@@ -62,6 +62,9 @@ public class UserController {
         if(userExists != null) {
             bindingResult.rejectValue("email", "error.user", "This email already exists!");
         }
+        if(!(user.getEmail().contains("@") && user.getEmail().contains("."))){
+            bindingResult.rejectValue("email", "error.user", "Not a valid email address!");
+        }
         if(bindingResult.hasErrors()) {
             model.setViewName("user/signup");
         }
