@@ -22,6 +22,8 @@ public class RouteController {
     @Autowired
     private VehicleService vehicleService;
 
+    private String outputBill = "";
+
     @RequestMapping(value={"/addRoute"}, method= RequestMethod.GET)
     public ModelAndView addRoute()
     {
@@ -151,11 +153,14 @@ public class RouteController {
 
                 int active = tempRoute.getActive();
 
+                int rate = (int) tempRoute.getRate();
+
                 if(active == 1){
                     if(numberofpassengers  != passengerCapacity){
                         numberofpassengers ++;
                         routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
                     }
+                    outputBill = "working";
                 }
             }
         }
@@ -166,4 +171,18 @@ public class RouteController {
 
         return model;
     }
+
+    @RequestMapping(value={"/basicBilling"}, method= RequestMethod.GET)
+    public ModelAndView basicBilling()
+    {
+        ModelAndView model = new ModelAndView();
+        Route tempRoute = new Route();
+
+
+        model.setViewName("/functions/basicBilling");
+
+
+        return model;
+    }
+
 }
