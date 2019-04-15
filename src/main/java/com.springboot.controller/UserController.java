@@ -4,6 +4,7 @@ import com.springboot.model.*;
 import com.springboot.repository.PasswordResetTokenRepository;
 import com.springboot.service.RouteService;
 import com.springboot.service.UserService;
+import com.springboot.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,8 +32,11 @@ public class UserController {
     @Autowired
     private RouteService routeService;
 
+    @Autowired
+    private VehicleService vehicleService;
 
-    @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
+
+    @RequestMapping(value={"/", "/login"}, method=RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView model = new ModelAndView();
 
@@ -40,7 +44,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/signup"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/signup"}, method=RequestMethod.GET)
     public ModelAndView signup() {
         ModelAndView model = new ModelAndView();
         User user = new User();
@@ -50,13 +54,16 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
+    @RequestMapping(value={"/signup"}, method=RequestMethod.POST)
     public ModelAndView createUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
 
         if(userExists != null) {
             bindingResult.rejectValue("email", "error.user", "This email already exists!");
+        }
+        if(!(user.getEmail().contains("@") && user.getEmail().contains("."))){
+            bindingResult.rejectValue("email", "error.user", "Not a valid email address!");
         }
         if(bindingResult.hasErrors()) {
             model.setViewName("user/signup");
@@ -79,7 +86,7 @@ public class UserController {
         return new PasswordResetDto();
     }
 
-    @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/forgot-questions"}, method=RequestMethod.GET)
     public ModelAndView displayForgotQuestions(@RequestParam(required = false) String token,
                                                Model model) {
 
@@ -115,7 +122,7 @@ public class UserController {
         return model1;
     }
 
-    @RequestMapping(value= {"/forgot-questions"}, method=RequestMethod.POST)
+    @RequestMapping(value={"/forgot-questions"}, method=RequestMethod.POST)
     public ModelAndView checkQuestions (@Valid PasswordForgotDto forgotDto, BindingResult bindingResult,  HttpServletRequest request) {
 
         ModelAndView model1 = new ModelAndView();
@@ -149,7 +156,7 @@ public class UserController {
             Map<String, Object> model = new HashMap<>();
             model.put("token", token);
             model.put("user", user);
-            model.put("signature", "https://memorynotfound.com");
+            model.put("signature", "VanPool Iowa");
             String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
             model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
             model1.setViewName("redirect:/reset-password?token=" + token.getToken());
@@ -161,7 +168,7 @@ public class UserController {
 
 
 
-    @RequestMapping(value= {"/home/home"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/home/home"}, method=RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -171,11 +178,19 @@ public class UserController {
         String role=user.getRole();
         role=role.toLowerCase();
         model.addObject("routeList", routeService.listAll());
+        model.addObject("vehicleList", vehicleService.listAll());
+
+        List<String> vehicleTypes = new ArrayList<>();
+        vehicleTypes.add("SUV");
+        vehicleTypes.add("Van");
+        vehicleTypes.add("XL Van");
+        vehicleTypes.add("Car");
+        model.addObject("vehicleTypes", vehicleTypes);
         model.setViewName("home/"+role);
         return model;
     }
 
-    @RequestMapping(value= {"/deleteRoute"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/deleteRoute"}, method=RequestMethod.GET)
     public ModelAndView deleteRoute(@RequestParam("routes") List<String> routeids) {
         ModelAndView model = new ModelAndView();
 
@@ -183,7 +198,6 @@ public class UserController {
         if(routeids != null){
             for(String id : routeids){
                 int routeid = Integer.parseInt(id);
-                System.out.println(routeid);
                 routeService.deleteRoute(routeid);
             }
         }
@@ -195,7 +209,7 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value= {"/access_denied"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/access_denied"}, method=RequestMethod.GET)
     public ModelAndView accessDenied() {
         ModelAndView model = new ModelAndView();
         model.setViewName("errors/access_denied");
@@ -203,7 +217,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = {"/payment"}, method= RequestMethod.POST)
+    @RequestMapping(value ={"/payment"}, method= RequestMethod.POST)
     public ModelAndView payment(){
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -216,5 +230,45 @@ public class UserController {
         return model;
     }
 
+
+    @RequestMapping(value={"/addVehicle"}, method=RequestMethod.GET)
+    public ModelAndView deleteRoute(@RequestParam("vehicleType") String vehicleType) {
+        ModelAndView model = new ModelAndView();
+
+        if(vehicleType.equals("SUV")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(7);
+            vech.setType("SUV");
+            vehicleService.saveVehicle(vech);
+
+        }
+
+        else if(vehicleType.equals("Van")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(11);
+            vech.setType("Van");
+            vehicleService.saveVehicle(vech);
+
+        }
+
+        else if(vehicleType.equals("XL Van")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(14);
+            vech.setType("XL Van");
+            vehicleService.saveVehicle(vech);
+
+        }
+
+        else if(vehicleType.equals("Car")){
+            Vehicle vech = new Vehicle();
+            vech.setCapacity(4);
+            vech.setType("Car");
+            vehicleService.saveVehicle(vech);
+        }
+
+
+        model.setViewName("redirect:/home/home");
+        return model;
+    }
 
 }

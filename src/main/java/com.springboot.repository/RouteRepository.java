@@ -24,13 +24,20 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Transactional
     @Modifying
     @Query("delete from Route e where e.routeid=:x")
-    public void deleteRoute(@Param("x") long routeid);
+    void deleteRoute(@Param("x") long routeid);
+
+    @Transactional
+    @Modifying
+    @Query("update Route u set u.vehicleid = :vehicleid where u.routeid = :routeid")
+    void updateRouteVehicle(long routeid, int vehicleid);
+
+    @Modifying
+    @Query("update Route u set u.passengercapacity = :capacity where u.routeid = :routeid")
+    void updateCapacity(long routeid, int capacity);
 
     @Transactional
     @Modifying
     @Query("update Route u set u.passengercapacity = :passengercapacity where u.routeid = :routeid")
     void signUpRiderRoute(@Param("passengercapacity") int passengercapacity,@Param("routeid") long routeid);
-
-
 
 }

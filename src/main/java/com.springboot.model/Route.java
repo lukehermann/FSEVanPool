@@ -23,7 +23,7 @@ public class Route {
     private int active=1;
 
     @Column(name="rate")
-    private int rate;
+    private float rate;
 
     @Column(name="numberofpassengers")
     private int numberofpassengers;
@@ -31,6 +31,23 @@ public class Route {
     @Column(name="passengercapacity")
     private int passengercapacity;
 
+    @Column(name = "vehicleid")
+    private int vehicleid;
+
+    public int getDriverId() {
+        return driverid;
+    }
+    public void setDriverId(int id) {
+        this.driverid = id;
+    }
+
+    public int getVehicleid() {
+        return vehicleid;
+    }
+
+    public void setVehicleid(int vehicleid) {
+        this.vehicleid = vehicleid;
+    }
 
     public long getRouteid() {
         return routeid;
@@ -40,12 +57,11 @@ public class Route {
         this.routeid = routeid;
     }
 
-    public int getDriverid() {
-        return driverid;
+    public void addPassengers() {
+        this.numberofpassengers++;
     }
-
-    public void setDriverid(int driverid) {
-        this.driverid = driverid;
+    public void subtractPassengers() {
+        if (this.numberofpassengers>0){this.numberofpassengers--;}
     }
 
     public String getStartlocation() {
@@ -64,20 +80,20 @@ public class Route {
         this.dropofflocation = dropofflocation;
     }
 
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
     public int getActive() {
         return active;
     }
 
     public void setActive(int active) {
         this.active = active;
-    }
-
-    public int getRate() {
-        return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
     }
 
     public int getNumberofpassengers() {

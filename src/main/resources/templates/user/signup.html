@@ -1,254 +1,355 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Sign up</title>-->
+<!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+<!--    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <form class="form-horizontal" role="form" method="POST" th:action="@{/signup}" th:object="${user}">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3"></div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3"></div>-->
+<!--            <div class="col-md-6">-->
+<!--                <h2>Register New User</h2>-->
+<!--                <hr>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="firstname">First Name</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>-->
+<!--                        <input type="text" th:field="*{firstname}" class="form-control" id="firstname"-->
+<!--                               placeholder="First Name" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="lastname">Last Name</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>-->
+<!--                        <input type="text" th:field="*{lastname}" class="form-control" id="lastname"-->
+<!--                               placeholder="Last name" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="email">Email</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-envelope"></i></div>-->
+<!--                        <input type="text" th:field="*{email}" class="form-control" id="email"-->
+<!--                               placeholder="username@gmail.com" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3">-->
+<!--                <div class="form-control-feedback">-->
+<!--                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">-->
+<!--                         </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="password">Password</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group has-danger">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>-->
+<!--                        <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"-->
+<!--                               placeholder="Password" required>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="confirmPassword">Confirm Password</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group has-danger">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>-->
+<!--                        <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"-->
+<!--                               placeholder="Confirm Password" required>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <ul class="text-danger" th:each="error: ${#fields.errors('password')}">-->
+<!--                    <li th:each="message : ${error.split(',')}">-->
+<!--                        <p class="error-message" th:text="${message}"></p>-->
+<!--                    </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label>           </label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="Role">Role</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-id-card" aria-hidden="true"></i></div>-->
+<!--                    <input style="margin-right: 0" type="radio" th:field="*{role}" th:value="Driver" checked="true">-->
+<!--                    <label th:for="${#ids.prev('role')}">Driver</label>-->
+<!--                    <label>     </label>-->
+<!--                    <input type="radio" th:field="*{role}" th:value="Rider">-->
+<!--                    <label th:for="${#ids.prev('role')}">Rider</label>-->
+<!--                    <label>     </label>-->
+<!--                    <input type="radio" th:field="*{role}" th:value="Admin">-->
+<!--                    <label th:for="${#ids.prev('role')}">Admin</label>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <ul class="text-danger" th:each="error: ${#fields.errors('role')}">-->
+<!--                        <li th:each="message : ${error.split(',')}">-->
+<!--                            <p class="error-message" th:text="${message}"></p>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label>           </label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="questionOne">Question One</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>-->
+<!--                        <input type="text" th:field="*{questionOne}" class="form-control" id="questionOne"-->
+<!--                               placeholder="Type Question One Here" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="answer">Answer One</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>-->
+<!--                        <input type="text" th:field="*{answerOne}" class="form-control" id="answer"-->
+<!--                               placeholder="Type your answer here" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label>           </label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="questionTwo">Question Two</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>-->
+<!--                        <input type="text" th:field="*{questionTwo}" class="form-control" id="questionTwo"-->
+<!--                               placeholder="Type Question Two Here" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="answer">Answer Two</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>-->
+<!--                        <input type="text" th:field="*{answerTwo}" class="form-control" id="answerTwo"-->
+<!--                               placeholder="Type your answer here" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label>           </label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="questionThree">Question Three</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>-->
+<!--                        <input type="text" th:field="*{questionThree}" class="form-control" id="questionThree"-->
+<!--                               placeholder="Type Question Three Here" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 field-label-responsive">-->
+<!--                <label for="answer">Answer Three</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-group">-->
+<!--                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">-->
+<!--                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>-->
+<!--                        <input type="text" th:field="*{answerThree}" class="form-control" id="answerThree"-->
+<!--                               placeholder="Type your answer here" required autofocus>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3"></div>-->
+<!--            <div class="col-md-6">-->
+<!--                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--                Already registered? <a href="/" th:href="@{/login}">Login</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Sign up</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{css/style.css}" href="../../static/css/style.css"
+          rel="stylesheet" type="text/css" media="screen"/></head>
+
 <body>
-<div class="container">
-    <form class="form-horizontal" role="form" method="POST" th:action="@{/signup}" th:object="${user}">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+<div class="login-page">
+    <div class="form">
+        <div class="login">
+            <div class="login-header">
+                <h3>
                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
                 </div>
+                        Register New User
+                </h3>
+                <p>Please fill in the form below.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <h2>Register New User</h2>
-                <hr>
+        <form class="login-form" role="form" method="POST" th:action="@{/signup}" th:object="${user}">
+
+            <input type="text" th:field="*{firstname}" class="form-control" id="firstname"
+                   placeholder="First Name" required autofocus>
+
+            <input type="text" th:field="*{lastname}" class="form-control" id="lastname"
+                   placeholder="Last name" required autofocus>
+
+            <input type="text" th:field="*{email}" class="form-control" id="email"
+                   placeholder="username@gmail.com" required autofocus>
+
+            <div class="form-control-feedback">
+                 <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                 </span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="firstname">First Name</label>
+
+            <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
+                   placeholder="Password" required>
+
+            <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
+                   placeholder="Confirm Password" required>
+
+            <div>
+                <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
+                <li th:each="message : ${error.split(',')}">
+                    <p class="error-message" th:text="${message}"></p>
+                </li>
+                </ul>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                        <input type="text" th:field="*{firstname}" class="form-control" id="firstname"
-                               placeholder="First Name" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="lastname">Last Name</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                        <input type="text" th:field="*{lastname}" class="form-control" id="lastname"
-                               placeholder="Last name" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="email">Email</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-envelope"></i></div>
-                        <input type="text" th:field="*{email}" class="form-control" id="email"
-                               placeholder="username@gmail.com" required autofocus>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-                         </span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="password">Password</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group has-danger">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                        <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
-                               placeholder="Password" required>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="confirmPassword">Confirm Password</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group has-danger">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                        <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
-                               placeholder="Confirm Password" required>
-                    </div>
-                </div>
-                <div>
-                    <ul class="text-danger" th:each="error: ${#fields.errors('password')}">
+            <input style="margin-right: 0" type="radio" th:field="*{role}" th:value="Driver" checked="true">
+            <label th:for="${#ids.prev('role')}">Driver</label>
+            <input type="radio" th:field="*{role}" th:value="Rider">
+            <label th:for="${#ids.prev('role')}">Rider</label>
+            <input type="radio" th:field="*{role}" th:value="Admin">
+            <label th:for="${#ids.prev('role')}">Admin</label>
+            <div>
+                <ul class="text-danger" th:each="error: ${#fields.errors('role')}">
                     <li th:each="message : ${error.split(',')}">
                         <p class="error-message" th:text="${message}"></p>
                     </li>
-                    </ul>
-                </div>
+                </ul>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label>           </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="Role">Role</label>
-            </div>
-            <div class="col-md-6">
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-id-card" aria-hidden="true"></i></div>
-                    <input style="margin-right: 0" type="radio" th:field="*{role}" th:value="Driver" checked="true">
-                    <label th:for="${#ids.prev('role')}">Driver</label>
-                    <label>     </label>
-                    <input type="radio" th:field="*{role}" th:value="Rider">
-                    <label th:for="${#ids.prev('role')}">Rider</label>
-                    <label>     </label>
-                    <input type="radio" th:field="*{role}" th:value="Admin">
-                    <label th:for="${#ids.prev('role')}">Admin</label>
-                </div>
-                <div>
-                    <ul class="text-danger" th:each="error: ${#fields.errors('role')}">
-                        <li th:each="message : ${error.split(',')}">
-                            <p class="error-message" th:text="${message}"></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label>           </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="questionOne">Question One</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>
-                        <input type="text" th:field="*{questionOne}" class="form-control" id="questionOne"
-                               placeholder="Type Question One Here" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="answer">Answer One</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                        <input type="text" th:field="*{answerOne}" class="form-control" id="answer"
-                               placeholder="Type your answer here" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label>           </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="questionTwo">Question Two</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>
-                        <input type="text" th:field="*{questionTwo}" class="form-control" id="questionTwo"
-                               placeholder="Type Question Two Here" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="answer">Answer Two</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                        <input type="text" th:field="*{answerTwo}" class="form-control" id="answerTwo"
-                               placeholder="Type your answer here" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label>           </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="questionThree">Question Three</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-question" aria-hidden="true"></i></div>
-                        <input type="text" th:field="*{questionThree}" class="form-control" id="questionThree"
-                               placeholder="Type Question Three Here" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="answer">Answer Three</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                        <input type="text" th:field="*{answerThree}" class="form-control" id="answerThree"
-                               placeholder="Type your answer here" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Already registered? <a href="/" th:href="@{/login}">Login</a>
-            </div>
-        </div>
-    </form>
+
+            <input type="text" th:field="*{questionOne}" class="form-control" id="questionOne"
+                   placeholder="Type Question One Here" required autofocus>
+
+            <input type="text" th:field="*{answerOne}" class="form-control" id="answer"
+                   placeholder="Type your answer here" required autofocus>
+
+            <input type="text" th:field="*{questionTwo}" class="form-control" id="questionTwo"
+                   placeholder="Type Question Two Here" required autofocus>
+
+            <input type="text" th:field="*{answerTwo}" class="form-control" id="answerTwo"
+                   placeholder="Type your answer here" required autofocus>
+
+            <input type="text" th:field="*{questionThree}" class="form-control" id="questionThree"
+                   placeholder="Type Question Three Here" required autofocus>
+
+            <input type="text" th:field="*{answerThree}" class="form-control" id="answerThree"
+                   placeholder="Type your answer here" required autofocus>
+
+
+            <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+            <p class="message">Already Registered? <a th:href="@{/login}">Login</a></p>
+            <p class="message">Forgot Password? <a th:href="@{/forgot-password}">Change Password</a></p>
+
+        </form>
+    </div>
 </div>
+
+
+
 </body>
 </html>
