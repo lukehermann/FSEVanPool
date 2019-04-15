@@ -22,6 +22,7 @@
                 <th>Capacity of Vehicle</th>
                 <th>Rate</th>
                 <th>Active?</th>
+                <th>Days</th>
 
             </tr>
             <form method="get" action="/signUpRiderRoute">
@@ -33,6 +34,13 @@
                     <td th:text="${routes.passengercapacity}"></td>
                     <td th:text="${routes.rate}"></td>
                     <td th:text="${routes.active}"></td>
+                    <td th:if="${routes.sunday}">Sunday</td>
+                    <td th:if="${routes.monday}">Monday</td>
+                    <td th:if="${routes.tuesday}">Tuesday</td>
+                    <td th:if="${routes.wednesday}">Wednesday</td>
+                    <td th:if="${routes.thursday}">Thursday</td>
+                    <td th:if="${routes.friday}">Friday</td>
+                    <td th:if="${routes.saturday}">Saturday</td>
 
 
                 </tr>
