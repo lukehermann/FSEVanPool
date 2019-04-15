@@ -10,6 +10,7 @@ public interface VehicleService {
     List<Vehicle> findVehicle(List<String> dayList);
     void updateDays(List<String> listOfDays, int vehicleid);
     Vehicle getVehicle(int vehicleid);
+    void deleteVehicle(int vehicleid);
 
 
 }

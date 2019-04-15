@@ -199,6 +199,9 @@ public class UserController {
         vehicleTypes.add("XL Van");
         vehicleTypes.add("Car");
         model.addObject("vehicleTypes", vehicleTypes);
+
+        List<String> emptyList = new ArrayList<>();
+        model.addObject("emptyList", emptyList);
         model.setViewName("home/"+role);
         return model;
     }
@@ -245,8 +248,23 @@ public class UserController {
 
 
     @RequestMapping(value={"/addVehicle"}, method=RequestMethod.GET)
-    public ModelAndView deleteRoute(@RequestParam("vehicleType") String vehicleType) {
+    public ModelAndView deleteRoute(@RequestParam("vehicleType") String vehicleType, @RequestParam("action") String action, @RequestParam(value = "vehicles", defaultValue = "emptyList") List<String> vehicleids) {
         ModelAndView model = new ModelAndView();
+
+        if(action.equals("delete")){
+            if(vehicleids != null){
+                for(String id : vehicleids){
+                    if(!id.equals("emptyList")) {
+                        int vehicleid = Integer.parseInt(id);
+                        vehicleService.deleteVehicle(vehicleid);
+                    }
+                }
+            }
+
+            model.setViewName("redirect:/home/home");
+            return model;
+
+        }
 
         if(vehicleType.equals("SUV")){
             Vehicle vech = new Vehicle();
