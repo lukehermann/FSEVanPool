@@ -58,6 +58,35 @@ public class RouteController {
         }
         else {
             //model.setViewName("redirect:/home/home");
+            for (String day: dayList) {
+
+                switch (day) {
+                    case "Sunday":
+                        route.setSunday(true);
+                        break;
+                    case "Monday":
+                        route.setMonday(true);
+                        break;
+                    case "Tuesday":
+                        route.setTuesday(true);
+                        break;
+                    case "Wednesday":
+                        route.setWednesday(true);
+                        break;
+                    case "Thursday":
+                        route.setThursday(true);
+                        break;
+                    case "Friday":
+                        route.setFriday(true);
+                        break;
+                    case "Saturday":
+                        route.setSaturday(true);
+                        break;
+                    default:
+                        // code block
+                }
+
+            }
             routeService.saveRoute(route);
             //model.addObject("msg", "Route has been added successfully");
             //model.addObject("route", new Route());
