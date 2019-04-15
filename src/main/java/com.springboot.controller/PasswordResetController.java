@@ -72,7 +72,7 @@ public class PasswordResetController {
         userService.updatePassword(updatedPassword, user.getId());
         tokenRepository.delete(token);
 
-        model1.setViewName("redirect:/login?resetSuccess");
+        model1.setViewName("redirect:/home/home");
         return model1;
     }
 

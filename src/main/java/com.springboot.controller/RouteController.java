@@ -22,6 +22,8 @@ public class RouteController {
     @Autowired
     private VehicleService vehicleService;
 
+    private String outputBill = "";
+
     @RequestMapping(value={"/addRoute"}, method= RequestMethod.GET)
     public ModelAndView addRoute()
     {
@@ -58,6 +60,35 @@ public class RouteController {
         }
         else {
             //model.setViewName("redirect:/home/home");
+            for (String day: dayList) {
+
+                switch (day) {
+                    case "Sunday":
+                        route.setSunday(true);
+                        break;
+                    case "Monday":
+                        route.setMonday(true);
+                        break;
+                    case "Tuesday":
+                        route.setTuesday(true);
+                        break;
+                    case "Wednesday":
+                        route.setWednesday(true);
+                        break;
+                    case "Thursday":
+                        route.setThursday(true);
+                        break;
+                    case "Friday":
+                        route.setFriday(true);
+                        break;
+                    case "Saturday":
+                        route.setSaturday(true);
+                        break;
+                    default:
+                        // code block
+                }
+
+            }
             routeService.saveRoute(route);
             //model.addObject("msg", "Route has been added successfully");
             //model.addObject("route", new Route());
@@ -114,18 +145,23 @@ public class RouteController {
             for(String id : routesids){
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
+
                 int passengerCapacity;
                 passengerCapacity = tempRoute.getPassengercapacity();
-                if (passengerCapacity==0)
-                {
 
+                int numberofpassengers = tempRoute.getNumberofpassengers();
+
+                int active = tempRoute.getActive();
+
+                int rate = (int) tempRoute.getRate();
+
+                if(active == 1){
+                    if(numberofpassengers  != passengerCapacity){
+                        numberofpassengers ++;
+                        routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
+                    }
+                    outputBill = "working";
                 }
-                else
-                {
-                    passengerCapacity--;
-                }
-                //routeService.deleteRoute(routeid);
-                routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
             }
         }
 
@@ -135,4 +171,18 @@ public class RouteController {
 
         return model;
     }
+
+    @RequestMapping(value={"/basicBilling"}, method= RequestMethod.GET)
+    public ModelAndView basicBilling()
+    {
+        ModelAndView model = new ModelAndView();
+        Route tempRoute = new Route();
+
+
+        model.setViewName("/functions/basicBilling");
+
+
+        return model;
+    }
+
 }
