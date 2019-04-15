@@ -60,5 +60,9 @@ public class RouteServiceImpl implements RouteService {
         return routeRepository.findRouteByID(routeid);
     }
 
-
+    @Override
+    public void addDriverToRoute(int driverid, long routeid)
+    {
+        routeRepository.updateRouteDriver(routeid, driverid);
+    }
 }

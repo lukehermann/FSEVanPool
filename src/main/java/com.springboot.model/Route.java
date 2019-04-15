@@ -55,12 +55,6 @@ public class Route {
     @Column(name = "saturday")
     private boolean saturday=false;
 
-    public int getDriverId() {
-        return driverid;
-    }
-    public void setDriverId(int id) {
-        this.driverid = id;
-    }
 
     public int getVehicleid() {
         return vehicleid;
@@ -187,5 +181,13 @@ public class Route {
 
     public void setSaturday(boolean saturday) {
         this.saturday = saturday;
+    }
+
+    public int getDriverid() {
+        return driverid;
+    }
+
+    public void setDriverid(int driverid) {
+        this.driverid = driverid;
     }
 }

@@ -14,6 +14,7 @@ public interface RouteService {
     //void signUpRiderRoute(int passangerCapacity, long routeid);
     void signUpRiderRoute(int numberofpassengers , long routeid);
 
+    void addDriverToRoute(int driverid, long routeid);
 
     Route findRouteByRouteid(int routeid);
 }

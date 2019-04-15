@@ -1,10 +1,14 @@
 package com.springboot.controller;
 
 import com.springboot.model.Route;
+import com.springboot.model.User;
 import com.springboot.model.Vehicle;
 import com.springboot.service.RouteService;
+import com.springboot.service.UserService;
 import com.springboot.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,9 @@ public class RouteController {
 
     @Autowired
     private RouteService routeService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private VehicleService vehicleService;
@@ -134,6 +141,35 @@ public class RouteController {
 
         return model;
 
+    }
+
+    @RequestMapping(value= {"/signUpDriverRoute"}, method=RequestMethod.GET)
+    public ModelAndView signUpDriverRoute(@RequestParam("routes") List<String> routesids) {
+        ModelAndView model = new ModelAndView();
+        Route tempRoute = new Route();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+
+        if(routesids != null)
+        {
+            for(String id : routesids)
+            {
+                int routeid = Integer.parseInt(id);
+                tempRoute = routeService.findRouteByRouteid(routeid);
+
+                if (tempRoute.getDriverid()==0)
+                {
+                    routeService.addDriverToRoute(user.getId(), routeid);
+                }
+            }
+        }
+
+        model.addObject("routeList", routeService.listAll());
+
+        model.setViewName("redirect:/home/home");
+
+        return model;
     }
 
     @RequestMapping(value= {"/signUpRiderRoute"}, method=RequestMethod.GET)
