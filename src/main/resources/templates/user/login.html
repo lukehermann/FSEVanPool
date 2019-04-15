@@ -1,7 +1,48 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <title>Sign in</title>-->
+<!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+<!--    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <div class="alert alert-danger" role="alert" th:if="${param.error}">-->
+<!--        The email or password is incorrect!-->
+<!--    </div>-->
+<!--    <form th:action="@{/login}" method="post" >-->
+<!--        <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>-->
+<!--        <label for="inputEmail" class="sr-only">Email</label>-->
+<!--        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>-->
+<!--        <label for="inputPassword" class="sr-only">Password</label>-->
+<!--        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>-->
+<!--        <div class="checkbox mb-3">-->
+<!--            <label>-->
+<!--                <input type="checkbox" name="remember-me" /> Remember me-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+<!--        <div class="margin-top20 text-center"> Don't have an account? <a th:href="@{/signup}">Create an account</a></div>-->
+<!--        <div class="margin-top20 text-center"> Forgot your password? <a th:href="@{/forgot-password}">Forgot Password</a></div>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
     <link th:href="@{css/style.css}" href="../../static/css/style.css"
           rel="stylesheet" type="text/css" media="screen"/></head>
@@ -13,7 +54,11 @@
     <div class="form">
         <div class="login">
             <div class="login-header">
-                <h3>
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Incorrect email or password!
+                    </div>
+                </div>
                     <i
                             class="fa fa-lock"
                             aria-hidden="true"></i>LOGIN
