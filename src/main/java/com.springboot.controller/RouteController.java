@@ -116,16 +116,26 @@ public class RouteController {
                 tempRoute = routeService.findRouteByRouteid(routeid);
                 int passengerCapacity;
                 passengerCapacity = tempRoute.getPassengercapacity();
-                if (passengerCapacity==0)
+                int numberofpassengers = tempRoute.getNumberofpassengers();
+
+                if(numberofpassengers  == passengerCapacity){
+                    continue;
+                }
+                else{
+                    numberofpassengers ++;
+                }
+
+                /*if (passengerCapacity==0)
                 {
                     
                 }
                 else
                 {
                     passengerCapacity--;
-                }
+                }*/
                 //routeService.deleteRoute(routeid);
-                routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
+                //routeService.signUpRiderRoute(passengerCapacity, (long) routeid);
+                routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
             }
         }
 
