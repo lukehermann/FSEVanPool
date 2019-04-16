@@ -209,11 +209,15 @@ public class UserController {
     public ModelAndView deleteRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids) {
         ModelAndView model = new ModelAndView();
 
-
         if(routeids != null){
             for(String id : routeids){
                 if(!id.contains("emptyRouteList")) {
+                    // Convert string to integer
                     int routeid = Integer.parseInt(id);
+                    // Gets the vehicle ID from the route
+                    int vehicleid = routeService.getVehicleID(routeid);
+                    List<String> dayList = routeService.getDays(routeid);
+                    vehicleService.updateDays(dayList, vehicleid, false);
                     routeService.deleteRoute(routeid);
                 }
             }

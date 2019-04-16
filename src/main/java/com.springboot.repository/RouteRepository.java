@@ -1,6 +1,7 @@
 package com.springboot.repository;
 
 import com.springboot.model.Route;
+import com.springboot.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -59,4 +60,9 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Modifying
     @Query("update Route u set u.active=1 where u.routeid = :routeid")
     void setRouteToActive(@Param("routeid") long routeid);
+
+    @Query(value = "SELECT u.vehicleid FROM Route u WHERE u.routeid = :routeid")
+    int getVehicleId(long routeid);
+
+
 }

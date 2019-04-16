@@ -77,37 +77,37 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     @Transactional
-    public void updateDays(List<String> listOfDays, int vehicleid){
+    public void updateDays(List<String> listOfDays, int vehicleid, boolean change){
 
         for (String day : listOfDays) {
             switch (day) {
                 case "Sunday":
 
-                    vehicleRepository.updateSunday(vehicleid);
+                    vehicleRepository.updateSunday(vehicleid, change);
                     break;
                 case "Monday":
 
-                    vehicleRepository.updateMonday(vehicleid);
+                    vehicleRepository.updateMonday(vehicleid, change);
                     break;
                 case "Tuesday":
 
-                    vehicleRepository.updateTuesday(vehicleid);
+                    vehicleRepository.updateTuesday(vehicleid, change);
                     break;
                 case "Wednesday":
 
-                    vehicleRepository.updateWednesday(vehicleid);
+                    vehicleRepository.updateWednesday(vehicleid, change);
                     break;
                 case "Thursday":
 
-                    vehicleRepository.updateThursday(vehicleid);
+                    vehicleRepository.updateThursday(vehicleid, change);
                     break;
                 case "Friday":
 
-                    vehicleRepository.updateFriday(vehicleid);
+                    vehicleRepository.updateFriday(vehicleid, change);
                     break;
                 case "Saturday":
 
-                    vehicleRepository.updateSaturday(vehicleid);
+                    vehicleRepository.updateSaturday(vehicleid, change);
                     break;
                 default:
                     // code block

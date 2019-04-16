@@ -17,32 +17,32 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     Vehicle findByVehicleId(int vehicleid);
 
     @Modifying
-    @Query("update Vehicle u set u.sunday = true where u.vehicleId = :vehicleid")
-    void updateSunday(int vehicleid);
+    @Query("update Vehicle u set u.sunday = :change where u.vehicleId = :vehicleid")
+    void updateSunday(int vehicleid, boolean change);
 
     @Modifying
-    @Query("update Vehicle u set u.monday = true where u.vehicleId = :vehicleid")
-    void updateMonday(int vehicleid);
+    @Query("update Vehicle u set u.monday = :change where u.vehicleId = :vehicleid")
+    void updateMonday(int vehicleid, boolean change);
 
     @Modifying
-    @Query("update Vehicle u set u.tuesday = true where u.vehicleId = :vehicleid")
-    void updateTuesday(int vehicleid);
+    @Query("update Vehicle u set u.tuesday = :change where u.vehicleId = :vehicleid")
+    void updateTuesday(int vehicleid, boolean change);
 
     @Modifying
-    @Query("update Vehicle u set u.wednesday = true where u.vehicleId = :vehicleid")
-    void updateWednesday(int vehicleid);
+    @Query("update Vehicle u set u.wednesday = :change where u.vehicleId = :vehicleid")
+    void updateWednesday(int vehicleid, boolean change);
 
     @Modifying
-    @Query("update Vehicle u set u.thursday = true where u.vehicleId = :vehicleid")
-    void updateThursday(int vehicleid);
+    @Query("update Vehicle u set u.thursday = :change where u.vehicleId = :vehicleid")
+    void updateThursday(int vehicleid, boolean change);
 
     @Modifying
-    @Query("update Vehicle u set u.friday = true where u.vehicleId = :vehicleid")
-    void updateFriday(int vehicleid);
+    @Query("update Vehicle u set u.friday = :change where u.vehicleId = :vehicleid")
+    void updateFriday(int vehicleid, boolean change);
 
     @Modifying
-    @Query("update Vehicle u set u.saturday = true where u.vehicleId = :vehicleid")
-    void updateSaturday(int vehicleid);
+    @Query("update Vehicle u set u.saturday = :change where u.vehicleId = :vehicleid")
+    void updateSaturday(int vehicleid, boolean change);
 
     @Transactional
     @Modifying

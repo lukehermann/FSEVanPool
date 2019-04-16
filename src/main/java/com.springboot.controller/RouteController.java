@@ -126,7 +126,7 @@ public class RouteController {
             routeService.updateRouteVehicle(routeid, vehicleid);
 
             // Updates vehicle to reflect true on days
-            vehicleService.updateDays(dayList, vehicleid);
+            vehicleService.updateDays(dayList, vehicleid, true);
             Vehicle vehicle = vehicleService.getVehicle(vehicleid);
 
             // Sets the passenger capacity to vehicle capacity

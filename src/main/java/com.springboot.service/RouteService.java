@@ -1,6 +1,7 @@
 package com.springboot.service;
 
 import com.springboot.model.Route;
+import com.springboot.model.Vehicle;
 
 import java.util.List;
 
@@ -23,4 +24,8 @@ public interface RouteService {
     Route findRouteByRouteid(int routeid);
 
     void setRouteToActive(long routeid);
+
+    int getVehicleID(long routeid);
+
+    List<String> getDays(long routeid);
 }

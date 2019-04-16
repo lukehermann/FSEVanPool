@@ -1,11 +1,13 @@
 package com.springboot.service;
 
 import com.springboot.model.Route;
+import com.springboot.model.Vehicle;
 import com.springboot.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,5 +82,41 @@ public class RouteServiceImpl implements RouteService {
     public void setRouteToActive(long routeid)
     {
         routeRepository.setRouteToActive(routeid);
+    }
+
+    @Override
+    public int getVehicleID(long routeid) {
+        return routeRepository.getVehicleId(routeid);
+    }
+
+    @Override
+    public List<String> getDays(long routeid) {
+        List<String> dayList = new ArrayList<>();
+
+        Route route = routeRepository.findRouteByID(routeid);
+
+        if(route.isSunday()){
+            dayList.add("Sunday");
+        }
+        if(route.isMonday()){
+            dayList.add("Monday");
+        }
+        if(route.isTuesday()){
+            dayList.add("Tuesday");
+        }
+        if(route.isWednesday()){
+            dayList.add("Wednesday");
+        }
+        if(route.isThursday()){
+            dayList.add("Thursday");
+        }
+        if(route.isFriday()){
+            dayList.add("Friday");
+        }
+        if(route.isSaturday()){
+            dayList.add("Saturday");
+        }
+
+        return dayList;
     }
 }
