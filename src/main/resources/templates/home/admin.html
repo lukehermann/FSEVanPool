@@ -22,7 +22,7 @@
                 <th>Capacity of Vehicle</th>
                 <th>Rate</th>
                 <th>Active?</th>
-                <th>Days</th>
+                <th colspan="7" style="text-align: center; vertical-align: middle;">Days</th>
 
             </tr>
             <form method="get" action="/deleteRoute">
@@ -41,6 +41,7 @@
                 <td th:if="${routes.thursday}">Thursday</td>
                 <td th:if="${routes.friday}">Friday</td>
                 <td th:if="${routes.saturday}">Saturday</td>
+                <td colspan="7"></td>
 
 
 
