@@ -22,7 +22,7 @@
                 <th>Capacity of Vehicle</th>
                 <th>Rate</th>
                 <th>Active?</th>
-                <th>Days</th>
+                <th colspan="7" style="text-align: center; vertical-align: middle;">Days</th>
 
             </tr>
             <form method="get" action="/signUpRiderRoute">
@@ -32,7 +32,7 @@
                     <td th:text="${routes.dropofflocation}"></td>
                     <td th:text="${routes.numberofpassengers}"></td>
                     <td th:text="${routes.passengercapacity}"></td>
-                    <td th:text="${routes.rate}"></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(routes.rate, 0, 'COMMA', 2, 'POINT')}">10.00></td>
                     <td th:text="${routes.active}"></td>
                     <td th:if="${routes.sunday}">Sunday</td>
                     <td th:if="${routes.monday}">Monday</td>
@@ -41,6 +41,8 @@
                     <td th:if="${routes.thursday}">Thursday</td>
                     <td th:if="${routes.friday}">Friday</td>
                     <td th:if="${routes.saturday}">Saturday</td>
+                    <td colspan="7"></td>
+
 
 
                 </tr>

@@ -61,7 +61,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-dollar"></i></div>
-                        <input type="number" th:field="*{rate}" class="form-control" id="rate"
+                        <input type="number" step="0.01" min="0" th:field="*{rate}" class="form-control" id="rate"
                                placeholder="$00.00" required autofocus>
                     </div>
                 </div>

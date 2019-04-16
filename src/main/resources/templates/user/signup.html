@@ -308,12 +308,11 @@
                 </li>
                 </ul>
             </div>
-            <input style="margin-right: 0" type="radio" th:field="*{role}" th:value="Driver" checked="true">
-            <label th:for="${#ids.prev('role')}">Driver</label>
-            <input type="radio" th:field="*{role}" th:value="Rider">
-            <label th:for="${#ids.prev('role')}">Rider</label>
-            <input type="radio" th:field="*{role}" th:value="Admin">
-            <label th:for="${#ids.prev('role')}">Admin</label>
+
+            <label>Driver   <input type="radio" th:field="*{role}" th:value="Driver"></label>
+            <label>Rider    <input type="radio" th:field="*{role}" th:value="Rider"></label>
+            <label>Admin    <input type="radio" th:field="*{role}" th:value="Admin"></label>
+
             <div>
                 <ul class="text-danger" th:each="error: ${#fields.errors('role')}">
                     <li th:each="message : ${error.split(',')}">
