@@ -49,10 +49,11 @@
             </tr>
         </table>
     </div>
+    <div type="hidden" name="emptyL" th:value="${emptyRouteList}" ></div>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-                <button type="submit" class="btn btn-success"><i class="fa fa-minus"></i> Delete Route</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-minus"></i> Delete Route</button>
             </form>
             <form method="get" action="/addRoute">
                 <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add Route</button>

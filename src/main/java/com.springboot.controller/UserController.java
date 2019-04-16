@@ -199,22 +199,23 @@ public class UserController {
         vehicleTypes.add("XL Van");
         vehicleTypes.add("Car");
         model.addObject("vehicleTypes", vehicleTypes);
-
-        List<String> emptyList = new ArrayList<>();
-        model.addObject("emptyList", emptyList);
+        model.addObject("emptyList", new ArrayList<>());
+        model.addObject("emptyRouteList", new ArrayList<>());
         model.setViewName("home/"+role);
         return model;
     }
 
     @RequestMapping(value={"/deleteRoute"}, method=RequestMethod.GET)
-    public ModelAndView deleteRoute(@RequestParam("routes") List<String> routeids) {
+    public ModelAndView deleteRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids) {
         ModelAndView model = new ModelAndView();
 
 
         if(routeids != null){
             for(String id : routeids){
-                int routeid = Integer.parseInt(id);
-                routeService.deleteRoute(routeid);
+                if(!id.contains("emptyRouteList")) {
+                    int routeid = Integer.parseInt(id);
+                    routeService.deleteRoute(routeid);
+                }
             }
         }
 
