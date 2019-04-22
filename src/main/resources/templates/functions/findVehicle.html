@@ -46,6 +46,13 @@
                 </tr>
             </table>
         </div>
+<!--        <div>-->
+<!--            <ul class="text-danger" th:each="error: ${#fields.errors('vehicle.vehicleId')}">-->
+<!--                <li th:each="message : ${error.split(',')}">-->
+<!--                    <p class="error-message" th:text="${message}"></p>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
         <input type="hidden" class="form-control" id="routeid" th:field="*{route.routeid}">
         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Update Vehicles</button>
     </form>

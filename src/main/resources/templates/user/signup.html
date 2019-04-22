@@ -281,13 +281,13 @@
         </div>
         <form class="login-form" role="form" method="POST" th:action="@{/signup}" th:object="${user}">
 
-            <input type="text" th:field="*{firstname}" class="form-control" id="firstname"
+            <input type="text" name="firstname" th:field="*{firstname}" class="form-control" id="firstname"
                    placeholder="First Name" required autofocus>
 
-            <input type="text" th:field="*{lastname}" class="form-control" id="lastname"
+            <input type="text" name="lastname" th:field="*{lastname}" class="form-control" id="lastname"
                    placeholder="Last name" required autofocus>
 
-            <input type="text" th:field="*{email}" class="form-control" id="email"
+            <input type="text" name="email" th:field="*{email}" class="form-control" id="email"
                    placeholder="username@gmail.com" required autofocus>
 
             <div class="form-control-feedback">
@@ -295,10 +295,10 @@
                  </span>
             </div>
 
-            <input type="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
+            <input type="password" name="password" th:field="*{password}" class="form-control" id="password" pattern=".{8,}"
                    placeholder="Password" required>
 
-            <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
+            <input type="password" name="confirmPassword" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" pattern=".{8,}"
                    placeholder="Confirm Password" required>
 
             <div>
@@ -309,9 +309,9 @@
                 </ul>
             </div>
 
-            <label>Driver   <input type="radio" th:field="*{role}" th:value="Driver"></label>
-            <label>Rider    <input type="radio" th:field="*{role}" th:value="Rider"></label>
-            <label>Admin    <input type="radio" th:field="*{role}" th:value="Admin"></label>
+            <label>Driver   <input type="radio" id="Driver" th:field="*{role}" th:value="Driver"></label>
+            <label>Rider    <input type="radio" id="Rider" th:field="*{role}" th:value="Rider"></label>
+            <label>Admin    <input type="radio" id="Admin" th:field="*{role}" th:value="Admin"></label>
 
             <div>
                 <ul class="text-danger" th:each="error: ${#fields.errors('role')}">
@@ -321,26 +321,26 @@
                 </ul>
             </div>
 
-            <input type="text" th:field="*{questionOne}" class="form-control" id="questionOne"
+            <input type="text" name="questionOne" th:field="*{questionOne}" class="form-control" id="questionOne"
                    placeholder="Type Question One Here" required autofocus>
 
-            <input type="text" th:field="*{answerOne}" class="form-control" id="answer"
+            <input type="text" name="answerOne" th:field="*{answerOne}" class="form-control" id="answer"
                    placeholder="Type your answer here" required autofocus>
 
-            <input type="text" th:field="*{questionTwo}" class="form-control" id="questionTwo"
+            <input type="text" name="questionTwo" th:field="*{questionTwo}" class="form-control" id="questionTwo"
                    placeholder="Type Question Two Here" required autofocus>
 
-            <input type="text" th:field="*{answerTwo}" class="form-control" id="answerTwo"
+            <input type="text" name="answerTwo" th:field="*{answerTwo}" class="form-control" id="answerTwo"
                    placeholder="Type your answer here" required autofocus>
 
-            <input type="text" th:field="*{questionThree}" class="form-control" id="questionThree"
+            <input type="text" name="questionThree" th:field="*{questionThree}" class="form-control" id="questionThree"
                    placeholder="Type Question Three Here" required autofocus>
 
-            <input type="text" th:field="*{answerThree}" class="form-control" id="answerThree"
+            <input type="text" name="answerThree" th:field="*{answerThree}" class="form-control" id="answerThree"
                    placeholder="Type your answer here" required autofocus>
 
 
-            <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+            <button type="submit" name="Register" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
             <p class="message">Already Registered? <a th:href="@{/login}">Login</a></p>
             <p class="message">Forgot Password? <a th:href="@{/forgot-password}">Change Password</a></p>
 
