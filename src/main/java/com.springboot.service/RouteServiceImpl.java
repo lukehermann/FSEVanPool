@@ -119,4 +119,20 @@ public class RouteServiceImpl implements RouteService {
 
         return dayList;
     }
+
+
+    @Override
+    public void deleteRoutebyVehicleID(int vehicleid) {
+
+        List<Route> routes = routeRepository.getRoutebyVehicleID(vehicleid);
+
+        if(!routes.isEmpty()){
+
+            for(Route route : routes) {
+
+                routeRepository.deleteRoute(route.getRouteid());
+            }
+        }
+
+    }
 }

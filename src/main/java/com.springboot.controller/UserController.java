@@ -261,6 +261,7 @@ public class UserController {
                 for(String id : vehicleids){
                     if(!id.equals("emptyList")) {
                         int vehicleid = Integer.parseInt(id);
+                        routeService.deleteRoutebyVehicleID(vehicleid);
                         vehicleService.deleteVehicle(vehicleid);
                     }
                 }

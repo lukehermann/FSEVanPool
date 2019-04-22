@@ -28,4 +28,6 @@ public interface RouteService {
     int getVehicleID(long routeid);
 
     List<String> getDays(long routeid);
+
+    void deleteRoutebyVehicleID(int vehicleid);
 }
