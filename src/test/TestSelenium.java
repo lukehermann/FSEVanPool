@@ -76,10 +76,6 @@ public class TestSelenium {
 //        driver.findElement(By.xpath("//button[@name='Register']")).click();
 
 
-        // Clicks the change password link
-//        WebElement linkByPartialText = driver.findElement(By.partialLinkText("Change"));
-//        linkByPartialText.click();
-
         // Enters login information
         WebElement element=driver.findElement(By.xpath("//input[@name='email']"));
         element.sendKeys("johndoe@gmail.com");
@@ -248,14 +244,59 @@ public class TestSelenium {
         linkByPartialText.click();
 
 
-        System.out.println(riderRoutes.size());
-
         // 1000ms delay
         try {
             // wait 500 millis and after that run command
             Thread.sleep(1000);
         } catch (InterruptedException ex) {}
 
+        // Clicks the change password link
+        linkByPartialText = driver.findElement(By.partialLinkText("Change"));
+        linkByPartialText.click();
+
+        // Enter rider email for password recovery
+        element=driver.findElement(By.xpath("//input[@id='email']"));
+        element.sendKeys("rider@gmail.com");
+
+        // Recover by questions
+        driver.findElement(By.xpath("//button[@value='questions']")).click();
+
+        // 1000ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+
+
+        // Answer recovery questions
+        element=driver.findElement(By.xpath("//input[@id='answerOne']"));
+        element.sendKeys("yes");
+        element=driver.findElement(By.xpath("//input[@id='answerTwo']"));
+        element.sendKeys("no");
+        element=driver.findElement(By.xpath("//input[@id='answerThree']"));
+        element.sendKeys("yes");
+
+
+        // Click recover button
+        driver.findElement(By.xpath("//button[@id='recover']")).click();
+
+        // Enters a new password
+        element=driver.findElement(By.xpath("//input[@id='password']"));
+        element.sendKeys("Password2!");
+        element=driver.findElement(By.xpath("//input[@id='confirmPassword']"));
+        element.sendKeys("Password2!");
+        driver.findElement(By.xpath("//button[@id='reset']")).click();
+
+        // Login with new password information for the rider account
+        element=driver.findElement(By.xpath("//input[@name='email']"));
+        element.sendKeys("rider@gmail.com");
+        element=driver.findElement(By.xpath("//input[@name='password']"));
+        element.sendKeys("Password2!");
+        driver.findElement(By.xpath("//button[@name='btnLogin']")).click();
+
+        // 1000ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
 
         // Quits the selenium webdriver

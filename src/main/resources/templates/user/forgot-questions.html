@@ -113,16 +113,16 @@
             <input type="hidden" class="form-control" th:field="*{token}">
 
             <h4>Question 1:  <span th:utext="${questionOne}"></span></h4>
-            <input type="text" class="form-control" th:field="*{questionOneAnswer}" placeholder="Type Answer Here" />
+            <input type="text" id="answerOne" class="form-control" th:field="*{questionOneAnswer}" placeholder="Type Answer Here" />
 
             <h4>Question 2:  <span th:utext="${questionTwo}"></span></h4>
-            <input type="text" class="form-control" th:field="*{questionTwoAnswer}" placeholder="Type Answer Here" />
+            <input type="text" id="answerTwo" class="form-control" th:field="*{questionTwoAnswer}" placeholder="Type Answer Here" />
 
             <h4>Question 3:  <span th:utext="${questionThree}"></span></h4>
-            <input type="text" class="form-control" th:field="*{questionThreeAnswer}" placeholder="Type Answer Here" />
+            <input type="text" id="answerThree" class="form-control" th:field="*{questionThreeAnswer}" placeholder="Type Answer Here" />
 
 
-            <button type="submit" class="btn btn-primary login-btn btn-block">Submit</button>
+            <button type="submit" id="recover" class="btn btn-primary login-btn btn-block">Submit</button>
             <p class="message">Not registered? <a th:href="@{/signup}">Create an account</a></p>
             <p class="message">Forgot Password? <a th:href="@{/forgot-password}">Change Password</a></p>
 
