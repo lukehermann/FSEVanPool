@@ -25,7 +25,7 @@
             </tr>
             <form method="get" action="/signUpDriverRoute">
                 <tr th:each="routes, stat : ${routeList}">
-                    <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
+                    <td><input type="checkbox" id="routes" th:name="routes" th:value="${routes.routeid}"/></td>
                     <td th:text="${routes.driverid}"></td>
                     <td th:text="${routes.startlocation}"></td>
                     <td th:text="${routes.dropofflocation}"></td>
@@ -49,7 +49,7 @@
         <div class="col-md-6">
 
             <form method="get" action="/signUpDriverRoute">
-            <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Sign Up Route</button>
+            <button type="submit" id="signup" class="btn btn-success"><i class="fa fa-add"></i> Sign Up Route</button>
             </form>
         </div>
     </div>

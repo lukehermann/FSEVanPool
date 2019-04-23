@@ -202,21 +202,59 @@ public class TestSelenium {
         element.sendKeys("driver@gmail.com");
         element=driver.findElement(By.xpath("//input[@name='password']"));
         element.sendKeys("Password1!");
+        driver.findElement(By.xpath("//button[@name='btnLogin']")).click();
 
 
+        // Select a random route
+        List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@id='routes']"));
+        checkboxes.get(rnd.nextInt(checkboxes.size())).click();
+
+        // 1000ms delay
+        try {
+            // wait 500 millis and after that run command
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+
+        // Add a random route
+        driver.findElement(By.xpath("//button[@id='signup']")).click();
+
+        // Logout of Driver
+        linkByPartialText = driver.findElement(By.partialLinkText("Sign"));
+        linkByPartialText.click();
 
 
+        //Sign in using rider account
+        element=driver.findElement(By.xpath("//input[@name='email']"));
+        element.sendKeys("rider@gmail.com");
+        element=driver.findElement(By.xpath("//input[@name='password']"));
+        element.sendKeys("Password1!");
+        driver.findElement(By.xpath("//button[@name='btnLogin']")).click();
+
+        // Select a random route
+        List<WebElement> riderRoutes = driver.findElements(By.xpath("//input[@id='routes']"));
+        riderRoutes.get(rnd.nextInt(riderRoutes.size())).click();
+
+        // 1000ms delay
+        try {
+            // wait 500 millis and after that run command
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+
+        // Add a random route
+        driver.findElement(By.xpath("//button[@id='signup']")).click();
+
+        // Logout of Rider
+        linkByPartialText = driver.findElement(By.partialLinkText("Sign"));
+        linkByPartialText.click();
 
 
+        System.out.println(riderRoutes.size());
 
-
-//        //Sign in using rider account
-//        element=driver.findElement(By.xpath("//input[@name='email']"));
-//        element.sendKeys("rider@gmail.com");
-//        element=driver.findElement(By.xpath("//input[@name='password']"));
-//        element.sendKeys("Password1!");
-
-
+        // 1000ms delay
+        try {
+            // wait 500 millis and after that run command
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
 
 
