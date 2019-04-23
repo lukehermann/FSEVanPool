@@ -52,6 +52,9 @@ public class User {
     @Column(name = "role_id")
     private int roleID;
 
+    @Column(name = "routes")
+    private String routes;
+
     @Column(name = "Question_1")
     private String questionOne;
 
@@ -178,5 +181,13 @@ public class User {
 
     public void setAnswerThree(String answerThree) {
         this.answerThree = answerThree;
+    }
+
+    public String getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(String routes) {
+        this.routes = routes;
     }
 }

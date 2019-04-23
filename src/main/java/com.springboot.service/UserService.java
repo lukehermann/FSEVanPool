@@ -10,4 +10,7 @@ public interface UserService {
 
     void updatePassword(String password, int userId);
 
+    void updateRoutes(String routes, int id);
+
+    String getRoutes(int id);
 }

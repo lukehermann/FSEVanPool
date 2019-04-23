@@ -52,4 +52,16 @@ public class UserServiceImpl implements UserService {
         userRepository.updatePassword(password, userId);
     }
 
+    @Override
+    public void updateRoutes(String routes, int id)
+    {
+        userRepository.updateRoutes(routes, id);
+    }
+
+    @Override
+    public String getRoutes(int id)
+    {
+        return userRepository.getRoutes(id);
+    }
+
 }
