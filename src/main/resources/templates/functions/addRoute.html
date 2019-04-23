@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-flag"></i></div>
-                        <input type="text" th:field="*{startlocation}" class="form-control" id="startlocation"
+                        <input type="text" name="startlocation" th:field="*{startlocation}" class="form-control" id="startlocation"
                                placeholder="Start Location" required autofocus>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-flag-checkered"></i></div>
-                        <input type="text" th:field="*{dropofflocation}" class="form-control" id="dropofflocation"
+                        <input type="text" name="dropofflocation" th:field="*{dropofflocation}" class="form-control" id="dropofflocation"
                                placeholder="Drop Off Location" required autofocus>
                     </div>
                 </div>
@@ -77,13 +77,13 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
                             <ul class="form-control" th:each="checkboxValue: ${dayList}">
-                                    <input class=form-check-input type="checkbox" th:name="days" th:value="${checkboxValue}"/>
+                                    <input class=form-check-input id="days" type="checkbox" th:name="days" th:value="${checkboxValue}"/>
                                     <label th:text="${checkboxValue}"></label>
                             </ul>
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-success"><i class="fa fa-search-plus"></i> Find Vehicles</button>
+                <button type="submit" name="add" class="btn btn-success"><i class="fa fa-search-plus"></i> Find Vehicles</button>
             </div>
             </form>
         </div>
