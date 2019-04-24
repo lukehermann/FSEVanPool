@@ -179,8 +179,31 @@ public class UserController {
         role=role.toLowerCase();
         if (role.equals("driver"))
         {
+            Route tempRoute;
             List<Route> routeList=routeService.listNoDriverID();
+            List<Route> myRoutes = new ArrayList<>();
             model.addObject("routeList", routeList);
+            String routes=userService.getRoutes(user.getId());
+            int i=0;
+            int j=0;
+            if (routes!=null) {
+                while (j != routes.length()) {
+                    if (routes.charAt(j) == ' ') {
+                        System.out.println("*" + routes.substring(i, j) + "*");
+                        tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i, j)));
+                        myRoutes.add(tempRoute);
+                        j++;
+                        i = j;
+
+                    } else {
+                        j++;
+                    }
+                }
+                System.out.println("*" + routes.substring(i) + "*");
+                tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
+                myRoutes.add(tempRoute);
+            }
+            model.addObject("myRoutes", myRoutes);
         }
         else if(role.equals("rider"))
         {
@@ -189,18 +212,18 @@ public class UserController {
         }
         else
         {
-            model.addObject("routeList", routeService.listAll());
             model.addObject("vehicleList", vehicleService.listAll());
+            List<String> vehicleTypes = new ArrayList<>();
+            vehicleTypes.add("SUV");
+            vehicleTypes.add("Van");
+            vehicleTypes.add("XL Van");
+            vehicleTypes.add("Car");
+            model.addObject("vehicleTypes", vehicleTypes);
+            model.addObject("emptyList", new ArrayList<>());
+            model.addObject("emptyRouteList", new ArrayList<>());
+            model.addObject("routeList", routeService.listAll());
         }
 
-        List<String> vehicleTypes = new ArrayList<>();
-        vehicleTypes.add("SUV");
-        vehicleTypes.add("Van");
-        vehicleTypes.add("XL Van");
-        vehicleTypes.add("Car");
-        model.addObject("vehicleTypes", vehicleTypes);
-        model.addObject("emptyList", new ArrayList<>());
-        model.addObject("emptyRouteList", new ArrayList<>());
         model.setViewName("home/"+role);
         return model;
     }

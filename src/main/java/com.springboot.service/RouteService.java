@@ -30,4 +30,6 @@ public interface RouteService {
     List<String> getDays(long routeid);
 
     void deleteRoutebyVehicleID(int vehicleid);
+
+    void endDriverShift(long routeid);
 }

@@ -68,5 +68,10 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Query(value = "SELECT u FROM Route u WHERE u.vehicleid = :vehicleid")
     List<Route> getRoutebyVehicleID(int vehicleid);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Route u set u.driverid = 0 where u.routeid = :routeid")
+    void endDriverShift(@Param("routeid") long routeid);
+
 
 }

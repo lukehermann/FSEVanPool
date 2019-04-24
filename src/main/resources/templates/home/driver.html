@@ -54,6 +54,47 @@
         </div>
     </div>
 
+
+    <div>
+        <h2>My Routes List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th> </th>
+                <th>driver ID</th>
+                <th>Start Location</th>
+                <th>Drop off Location</th>
+                <th>Capacity of Vehicle</th>
+                <th colspan="7" style="text-align: center; vertical-align: middle;">Days</th>
+
+            </tr>
+            <form method="get" action="/endRoute">
+                <tr th:each="routes, stat : ${myRoutes}">
+                    <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
+                    <td th:text="${routes.driverid}"></td>
+                    <td th:text="${routes.startlocation}"></td>
+                    <td th:text="${routes.dropofflocation}"></td>
+                    <td th:text="${routes.passengercapacity}"></td>
+                    <td th:if="${routes.sunday}">Sunday</td>
+                    <td th:if="${routes.monday}">Monday</td>
+                    <td th:if="${routes.tuesday}">Tuesday</td>
+                    <td th:if="${routes.wednesday}">Wednesday</td>
+                    <td th:if="${routes.thursday}">Thursday</td>
+                    <td th:if="${routes.friday}">Friday</td>
+                    <td th:if="${routes.saturday}">Saturday</td>
+                    <td colspan="7"></td>
+                </tr>
+        </table>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+
+                <form method="get" action="/endRoute">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Leave Route</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
     <a th:href="@{/logout}">Sign out</a>
 
 </div>

@@ -135,4 +135,10 @@ public class RouteServiceImpl implements RouteService {
         }
 
     }
+
+    @Override
+    public void endDriverShift(long routeid)
+    {
+        routeRepository.endDriverShift(routeid);
+    }
 }

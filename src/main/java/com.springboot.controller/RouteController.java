@@ -150,23 +150,102 @@ public class RouteController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-
+        String userRoutes;
         if(routesids != null) {
             for (String id : routesids) {
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
-
+                int userid = user.getId();
                 if (tempRoute.getDriverid() == 0) {
-                    routeService.addDriverToRoute(user.getId(), routeid);
+                    routeService.addDriverToRoute(userid, routeid);
                     routeService.setRouteToActive(routeid);
                 }
+                userRoutes=userService.getRoutes(userid);
+                if (userRoutes != null)
+                {
+                    userRoutes=userRoutes.concat(" ");
+                    userRoutes=userRoutes.concat(Integer.toString(routeid));
+                }
+                else
+                {
+                    userRoutes=Integer.toString(routeid);
+                }
+                userService.updateRoutes(userRoutes, userid);
             }
+            List<Route> myRoutes=new ArrayList<>();
         }
         List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
 
         model.setViewName("redirect:/home/home");
+        return model;
+    }
 
+    @RequestMapping(value = {"/endRoute"}, method = RequestMethod.GET)
+    public ModelAndView endRoute(@RequestParam("routes") List<String> routesids)
+    {
+        ModelAndView model =new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+
+        String routes = userService.getRoutes(user.getId());
+        if (routesids !=null)
+        {
+            for (String id : routesids) {
+                String routeid = Integer.toString(Integer.parseInt(id));
+                if (routeid!=null)
+                {
+                    routeService.endDriverShift(Integer.parseInt(id));
+                }
+                int i=0;
+                int j=0;
+                String temp;
+                while (j < routes.length()) {
+                    System.out.println("routes length = "+routes.length());
+                    System.out.println("routes contents = "+ routes);
+                    System.out.println("j ="+j);
+                    if (routes.length() == 1)
+                    {
+                        if (routes.equals(routeid))
+                        {
+                            routes=null;
+                        }
+                        j++;
+                    }
+                    else if (routes.substring(j, j+1).equals(" "))
+                    {
+                        System.out.println("*" + routes.substring(i, j) + "*");
+                        if (routes.substring(i, j).equals(routeid))
+                        {
+                            temp =routes.substring(j+1);
+                            routes=routes.substring(0, i);
+                            routes= routes.concat(temp);
+                        j=0;
+                        i = j;
+
+                        }
+                        else
+                        {
+                            j++;
+                            i=j;
+                        }
+                    }
+                    else {
+                        j++;
+                    }
+                    if (i==routes.length()-1)
+                    {
+                        if (routeid.equals(routes.substring(i)))
+                        {
+                            routes=routes.substring(0, i-1);
+                        }
+                    }
+
+                }
+            }
+            userService.updateRoutes(routes, user.getId());
+            model.setViewName("redirect:/home/home");
+        }
         return model;
     }
 
