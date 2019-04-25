@@ -52,12 +52,6 @@
             <button type="submit" id="signup" class="btn btn-success"><i class="fa fa-add"></i> Sign Up Route</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-offset-3"></div>
-        <div class="col-md-6">
-            <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Get Bill</button>
-        </div>
-    </div>
 
 
     <div>
@@ -99,6 +93,14 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-3"></div>
+        <div class="col-md-6">
+            <form method="get" action="/basicBilling">
+            <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Get Bill</button>
+        </div>
     </div>
 
     <a th:href="@{/logout}">Sign out</a>

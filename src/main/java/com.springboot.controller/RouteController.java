@@ -258,19 +258,19 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String userRoutes;
+        int userRouteIDs[] = new int[100];
 
         if(routesids != null) {
             for (String id : routesids) {
-                String test = userService.getRoutes(user.getId());
-                int test3[] = new int[100];
-                if (test != null) {
-                    String[] test2 = test.split(" ");
-                    //test3 = new int[test2.length];
+                String riderRoutes = userService.getRoutes(user.getId());
+
+                if (riderRoutes  != null) {
+                    String[] riderRoutesSplit = riderRoutes .split(" ");
 
                     System.out.print("ROUTES BEFORE: ");
-                    for(int i = 0; i < test2.length; i++){
-                        test3[i] = Integer.parseInt(test2[i]);
-                        System.out.print(test3[i] + " ");
+                    for(int i = 0; i < riderRoutesSplit.length; i++){
+                        userRouteIDs[i] = Integer.parseInt(riderRoutesSplit[i]);
+                        System.out.print(userRouteIDs[i] + " ");
                     }
                 }
 
@@ -279,14 +279,14 @@ public class RouteController {
                 int userid = user.getId();
                 int routeid2 = Integer.parseInt(id);
 
-                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, test3)) {
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRouteIDs)) {
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
                     model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
-                if(!findRoute(routeid2, test3)){
+                if(!findRoute(routeid2, userRouteIDs)){
 
                     if (userRoutes != null) {
                         userRoutes=userRoutes.concat(" ");
@@ -300,8 +300,13 @@ public class RouteController {
                 userService.updateRoutes(userRoutes, userid);
             }
         }
+        List<Route> routeList = new ArrayList<Route>();
+        for(int i = 0; i < userRouteIDs.length; i++){
+            tempRoute = routeService.findRouteByRouteid(userRouteIDs[i]);
+            routeList.add(tempRoute);
+        }
 
-        List<Route> routeList=routeService.listNoDriverID();
+        //List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
         model.setViewName("redirect:/home/home");
         return model;
@@ -378,7 +383,7 @@ public class RouteController {
     }
 
     @RequestMapping(value={"/basicBilling"}, method= RequestMethod.GET)
-    public ModelAndView basicBilling(@RequestParam("routes") List<String> routesids)
+    public ModelAndView basicBilling()
     {
         ModelAndView model = new ModelAndView();
         Route tempRoute = new Route();
