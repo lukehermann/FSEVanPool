@@ -14,8 +14,6 @@ import java.util.List;
 @Repository("routeRepository")
 public interface RouteRepository extends JpaRepository<Route, Integer>{
 
-    Route findByStartlocation(String startlocation);
-
     @Query(value = "SELECT u FROM Route u WHERE u.active = 1")
     List<Route> findAllActiveRoutes();
 
@@ -40,12 +38,6 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Modifying
     @Query("update Route u set u.passengercapacity = :capacity where u.routeid = :routeid")
     void updateCapacity(long routeid, int capacity);
-
-    /*
-    @Transactional
-    @Modifying
-    @Query("update Route u set u.passengercapacity = :passengercapacity where u.routeid = :routeid")
-    void signUpRiderRoute(@Param("passengercapacity") int passengercapacity,@Param("routeid") long routeid);*/
 
     @Transactional
     @Modifying
@@ -72,6 +64,7 @@ public interface RouteRepository extends JpaRepository<Route, Integer>{
     @Modifying
     @Query(value = "update Route u set u.driverid = 0 where u.routeid = :routeid")
     void endDriverShift(@Param("routeid") long routeid);
+
 
 
 }

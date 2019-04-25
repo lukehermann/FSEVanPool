@@ -261,26 +261,42 @@ public class RouteController {
 
         if(routesids != null) {
             for (String id : routesids) {
+                String test = userService.getRoutes(user.getId());
+                int test3[] = new int[100];
+                if (test != null) {
+                    String[] test2 = test.split(" ");
+                    //test3 = new int[test2.length];
+
+                    System.out.print("ROUTES BEFORE: ");
+                    for(int i = 0; i < test2.length; i++){
+                        test3[i] = Integer.parseInt(test2[i]);
+                        System.out.print(test3[i] + " ");
+                    }
+                }
+
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
                 int userid = user.getId();
                 int routeid2 = Integer.parseInt(id);
 
-                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity())) {
-                    routeService.addDriverToRoute(userid, routeid);
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, test3)) {
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
                     model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
-                if (userRoutes != null) {
-                    userRoutes=userRoutes.concat(" ");
-                    userRoutes=userRoutes.concat(Integer.toString(routeid));
+                if(!findRoute(routeid2, test3)){
+
+                    if (userRoutes != null) {
+                        userRoutes=userRoutes.concat(" ");
+                        userRoutes=userRoutes.concat(Integer.toString(routeid));
+                    }
+                    else {
+                        userRoutes=Integer.toString(routeid);
+                    }
                 }
-                else {
-                    userRoutes=Integer.toString(routeid);
-                }
+
                 userService.updateRoutes(userRoutes, userid);
             }
         }
@@ -288,6 +304,75 @@ public class RouteController {
         List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
         model.setViewName("redirect:/home/home");
+        return model;
+    }
+
+    public boolean findRoute(int route, int[] array){
+        for (int i1 : array) {
+            if (i1 == route) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @RequestMapping(value = {"/removeRiderRoute"}, method = RequestMethod.GET)
+    public ModelAndView removeRiderRoute(@RequestParam("routes") List<String> routesids) {
+        ModelAndView model =new ModelAndView();
+        Route tempRoute = new Route();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        String routes = userService.getRoutes(user.getId());
+
+
+        if (routesids !=null) {
+            for (String id : routesids) {
+                String routeid = Integer.toString(Integer.parseInt(id));
+                //routeService.endDriverShift(Integer.parseInt(id));
+
+                int routeid2 = Integer.parseInt(id);
+                tempRoute = routeService.findRouteByRouteid(routeid2);
+                tempRoute.subtractPassengers();
+                routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
+
+                int i=0;
+                int j=0;
+                String temp;
+
+                while (j < routes.length()) {
+                    if (routes.length() == 1) {
+                        if (routes.equals(routeid)) {
+                            routes=null;
+                        }
+                        j++;
+                    }
+                    else if (routes.substring(j, j+1).equals(" ")) {
+                        if (routes.substring(i, j).equals(routeid)) {
+                            temp =routes.substring(j+1);
+                            routes=routes.substring(0, i);
+                            routes= routes.concat(temp);
+                            j=0;
+                            i = j;
+                        }
+                        else {
+                            j++;
+                            i=j;
+                        }
+                    }
+                    else {
+                        j++;
+                    }
+                    if (i==routes.length()-1) {
+                        if (routeid.equals(routes.substring(i))) {
+                            routes=routes.substring(0, i-1);
+                        }
+                    }
+                }
+            }
+
+            userService.updateRoutes(routes, user.getId());
+            model.setViewName("redirect:/home/home");
+        }
 
         return model;
     }
