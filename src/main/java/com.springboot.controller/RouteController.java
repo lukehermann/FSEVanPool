@@ -174,6 +174,7 @@ public class RouteController {
             }
             List<Route> myRoutes=new ArrayList<>();
         }
+        System.out.println("HERE sign up");
         List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
 
@@ -200,17 +201,19 @@ public class RouteController {
                 int i=0;
                 int j=0;
                 String temp;
+                System.out.println(routes.length());
                 while (j < routes.length()) {
                     System.out.println("routes length = "+routes.length());
                     System.out.println("routes contents = "+ routes);
                     System.out.println("j ="+j);
-                    if (routes.length() == 1)
+                    if (routes.length() == 1 || routes.length()== 2)
                     {
                         if (routes.equals(routeid))
                         {
                             routes=null;
+
                         }
-                        j++;
+                        break;
                     }
                     else if (routes.substring(j, j+1).equals(" "))
                     {
@@ -233,13 +236,12 @@ public class RouteController {
                     else {
                         j++;
                     }
-                    if (i==routes.length()-1)
-                    {
-                        if (routeid.equals(routes.substring(i)))
-                        {
-                            routes=routes.substring(0, i-1);
+                     if (i==routes.length()-1) {
+                            if (routeid.equals(routes.substring(i))) {
+                                routes = routes.substring(0, i - 1);
+                            }
                         }
-                    }
+
 
                 }
             }
