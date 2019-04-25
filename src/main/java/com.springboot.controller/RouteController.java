@@ -159,6 +159,7 @@ public class RouteController {
                 if (tempRoute.getDriverid() == 0) {
                     routeService.addDriverToRoute(userid, routeid);
                     routeService.setRouteToActive(routeid);
+                    model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
                 if (userRoutes != null)
@@ -174,7 +175,6 @@ public class RouteController {
             }
             List<Route> myRoutes=new ArrayList<>();
         }
-        System.out.println("HERE sign up");
         List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
 
@@ -201,7 +201,6 @@ public class RouteController {
                 int i=0;
                 int j=0;
                 String temp;
-                System.out.println(routes.length());
                 while (j < routes.length()) {
                     System.out.println("routes length = "+routes.length());
                     System.out.println("routes contents = "+ routes);
@@ -242,7 +241,6 @@ public class RouteController {
                             }
                         }
 
-
                 }
             }
             userService.updateRoutes(routes, user.getId());
@@ -255,34 +253,132 @@ public class RouteController {
     public ModelAndView signUpRiderRoute(@RequestParam("routes") List<String> routesids) {
         ModelAndView model = new ModelAndView();
         Route tempRoute = new Route();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        String userRoutes;
+        int userRouteIDs[] = new int[100];
 
-        if(routesids != null){
-            for(String id : routesids){
+        if(routesids != null) {
+            for (String id : routesids) {
+                String riderRoutes = userService.getRoutes(user.getId());
+
+                if (riderRoutes  != null) {
+                    String[] riderRoutesSplit = riderRoutes .split(" ");
+
+                    for(int i = 0; i < riderRoutesSplit.length; i++){
+                        userRouteIDs[i] = Integer.parseInt(riderRoutesSplit[i]);
+                        System.out.print(userRouteIDs[i] + " ");
+                    }
+                }
+
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
+                int userid = user.getId();
+                int routeid2 = Integer.parseInt(id);
 
-                int passengerCapacity;
-                passengerCapacity = tempRoute.getPassengercapacity();
-
-                int numberofpassengers = tempRoute.getNumberofpassengers();
-
-                int active = tempRoute.getActive();
-
-                int rate = (int) tempRoute.getRate();
-
-                if(active == 1){
-                    if(numberofpassengers  != passengerCapacity){
-                        numberofpassengers ++;
-                        routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
-                    }
-                    outputBill = "working";
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRouteIDs)) {
+                    int numberofpassengers = tempRoute.getNumberofpassengers();
+                    numberofpassengers ++;
+                    routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
+                    model.addObject("msg", "Successfully signed up for route!");
                 }
+                userRoutes=userService.getRoutes(userid);
+                if(!findRoute(routeid2, userRouteIDs)){
+
+                    if (userRoutes != null) {
+                        userRoutes=userRoutes.concat(" ");
+                        userRoutes=userRoutes.concat(Integer.toString(routeid));
+                    }
+                    else {
+                        userRoutes=Integer.toString(routeid);
+                    }
+                }
+
+                userService.updateRoutes(userRoutes, userid);
             }
         }
-        List<Route> routeList=routeService.listActive();
-        model.addObject("routeList", routeList);
+        List<Route> routeList = new ArrayList<Route>();
+        for(int i = 0; i < userRouteIDs.length; i++){
+            tempRoute = routeService.findRouteByRouteid(userRouteIDs[i]);
+            routeList.add(tempRoute);
+        }
 
+        //List<Route> routeList=routeService.listNoDriverID();
+        model.addObject("routeList", routeList);
         model.setViewName("redirect:/home/home");
+        return model;
+    }
+
+    public boolean findRoute(int route, int[] array){
+        for (int i1 : array) {
+            if (i1 == route) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @RequestMapping(value = {"/removeRiderRoute"}, method = RequestMethod.GET)
+    public ModelAndView removeRiderRoute(@RequestParam("routes") List<String> routesids) {
+        ModelAndView model =new ModelAndView();
+        Route tempRoute = new Route();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        String routes = userService.getRoutes(user.getId());
+
+
+        if (routesids !=null) {
+            for (String id : routesids) {
+                String routeid = Integer.toString(Integer.parseInt(id));
+                //routeService.endDriverShift(Integer.parseInt(id));
+
+                int routeid2 = Integer.parseInt(id);
+                tempRoute = routeService.findRouteByRouteid(routeid2);
+                tempRoute.subtractPassengers();
+                routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
+
+                int i=0;
+                int j=0;
+                String temp;
+
+                System.out.println("ROUTES = " + routes);
+                while (j < routes.length()) {
+
+                    if (routes.length() == 2 || routes.length() == 1) {
+                        if (routes.equals(routeid)) {
+                            routes=null;
+
+                        }
+                        break;
+                    }
+                    else if (routes.substring(j, j+1).equals(" ")) {
+                        if (routes.substring(i, j).equals(routeid)) {
+                            temp =routes.substring(j+1);
+                            routes=routes.substring(0, i);
+                            routes= routes.concat(temp);
+                            j=0;
+                            i = j;
+                        }
+                        else {
+                            j++;
+                            i=j;
+                        }
+                    }
+                    else {
+                        j++;
+                    }
+                    if (i==routes.length()-1) {
+                        if (routeid.equals(routes.substring(i))) {
+                            routes=routes.substring(0, i-1);
+                        }
+                    }
+                }
+                System.out.println("ROUTES = " + routes);
+            }
+
+            userService.updateRoutes(routes, user.getId());
+            model.setViewName("redirect:/home/home");
+        }
 
         return model;
     }
@@ -299,5 +395,4 @@ public class RouteController {
 
         return model;
     }
-
 }

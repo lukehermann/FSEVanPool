@@ -186,6 +186,8 @@ public class UserController {
         model.addObject("userName", user.getFirstname() + " " + user.getLastname());
         String role=user.getRole();
         role=role.toLowerCase();
+
+        //Driver
         if (role.equals("driver"))
         {
             Route tempRoute;
@@ -214,11 +216,37 @@ public class UserController {
             }
             model.addObject("myRoutes", myRoutes);
         }
+        //Rider
         else if(role.equals("rider"))
         {
-            List<Route> routeList=routeService.listActive();
+            List<Route> routeList=routeService.listActive(); //all routes that are active
+            List<Route> myRoutes = new ArrayList<>();
             model.addObject("routeList", routeList);
+            Route tempRoute;
+
+            String routes=userService.getRoutes(user.getId()); //user routes user has signed up for
+
+            int i=0;
+            int j=0;
+            if (routes!=null) {
+                while (j != routes.length()) {
+                    if (routes.charAt(j) == ' ') {
+                        tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i, j)));
+                        myRoutes.add(tempRoute);
+                        j++;
+                        i = j;
+
+                    } else {
+                        j++;
+                    }
+                }
+                System.out.println("*" + routes.substring(i) + "HIIIIIII*");
+                tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
+                myRoutes.add(tempRoute);
+            }
+            model.addObject("myRoutes", myRoutes);
         }
+        //Admin
         else
         {
             model.addObject("vehicleList", vehicleService.listAll());

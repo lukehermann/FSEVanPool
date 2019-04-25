@@ -16,7 +16,7 @@
         <table class="table table-striped">
             <tr>
                 <th> </th>
-                <th>driver ID</th>
+                <th>Driver ID</th>
                 <th>Start Location</th>
                 <th>Drop off Location</th>
                 <th>Capacity of Vehicle</th>
@@ -60,10 +60,10 @@
         <table class="table table-striped">
             <tr>
                 <th> </th>
-                <th>driver ID</th>
+                <th>Driver ID</th>
                 <th>Start Location</th>
                 <th>Drop off Location</th>
-                <th>Capacity of Vehicle</th>
+                <th>Rate</th>
                 <th colspan="7" style="text-align: center; vertical-align: middle;">Days</th>
 
             </tr>
@@ -73,7 +73,7 @@
                     <td th:text="${routes.driverid}"></td>
                     <td th:text="${routes.startlocation}"></td>
                     <td th:text="${routes.dropofflocation}"></td>
-                    <td th:text="${routes.passengercapacity}"></td>
+                    <td th:text="${routes.rate}"></td>
                     <td th:if="${routes.sunday}">Sunday</td>
                     <td th:if="${routes.monday}">Monday</td>
                     <td th:if="${routes.tuesday}">Tuesday</td>

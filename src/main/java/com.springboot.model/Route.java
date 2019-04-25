@@ -75,8 +75,15 @@ public class Route {
     public void addPassengers() {
         this.numberofpassengers++;
     }
+
     public void subtractPassengers() {
         if (this.numberofpassengers>0){this.numberofpassengers--;}
+    }
+
+    public void addPassenger(){
+        if(this.numberofpassengers != this.passengercapacity){
+            this.numberofpassengers++;
+        }
     }
 
     public String getStartlocation() {
