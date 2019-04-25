@@ -49,13 +49,15 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+            <form method="get" action="/signUpRiderRoute">
             <button type="submit" id="signup" class="btn btn-success"><i class="fa fa-add"></i> Sign Up Route</button>
+            </form>
         </div>
     </div>
 
 
     <div>
-        <h2>My Routes List</h2>
+        <h2>Basic Billing</h2>
         <table class="table table-striped">
             <tr>
                 <th> </th>
@@ -63,6 +65,7 @@
                 <th>Drop off Location</th>
                 <th>Number of Passengers</th>
                 <th>Capacity of Vehicle</th>
+                <th>Rate</th>
                 <th colspan="7" style="text-align: center; vertical-align: middle;">Days</th>
 
             </tr>
@@ -73,6 +76,7 @@
                     <td th:text="${routes.dropofflocation}"></td>
                     <td th:text="${routes.numberofpassengers}"></td>
                     <td th:text="${routes.passengercapacity}"></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(routes.rate, 0, 'COMMA', 2, 'POINT')}">10.00></td>
                     <td th:if="${routes.sunday}">Sunday</td>
                     <td th:if="${routes.monday}">Monday</td>
                     <td th:if="${routes.tuesday}">Tuesday</td>
@@ -88,7 +92,7 @@
             <div class="col-md-6">
 
                 <form method="get" action="/removeRiderRoute">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Leave Route</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Remove Route</button>
                 </form>
             </div>
         </div>

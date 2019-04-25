@@ -267,7 +267,6 @@ public class RouteController {
                 if (riderRoutes  != null) {
                     String[] riderRoutesSplit = riderRoutes .split(" ");
 
-                    System.out.print("ROUTES BEFORE: ");
                     for(int i = 0; i < riderRoutesSplit.length; i++){
                         userRouteIDs[i] = Integer.parseInt(riderRoutesSplit[i]);
                         System.out.print(userRouteIDs[i] + " ");
@@ -344,10 +343,13 @@ public class RouteController {
                 int j=0;
                 String temp;
 
+                System.out.println("ROUTES = " + routes);
                 while (j < routes.length()) {
-                    if (routes.length() == 1) {
+
+                    if (routes.length() == 2) {
                         if (routes.equals(routeid)) {
                             routes=null;
+                            break;
                         }
                         j++;
                     }
@@ -373,6 +375,7 @@ public class RouteController {
                         }
                     }
                 }
+                System.out.println("ROUTES = " + routes);
             }
 
             userService.updateRoutes(routes, user.getId());
