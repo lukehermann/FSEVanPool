@@ -159,6 +159,7 @@ public class RouteController {
                 if (tempRoute.getDriverid() == 0) {
                     routeService.addDriverToRoute(userid, routeid);
                     routeService.setRouteToActive(routeid);
+                    model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
                 if (userRoutes != null)
@@ -174,6 +175,7 @@ public class RouteController {
             }
             List<Route> myRoutes=new ArrayList<>();
         }
+
         List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
 
@@ -253,40 +255,45 @@ public class RouteController {
     public ModelAndView signUpRiderRoute(@RequestParam("routes") List<String> routesids) {
         ModelAndView model = new ModelAndView();
         Route tempRoute = new Route();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        String userRoutes;
 
-        if(routesids != null){
-            for(String id : routesids){
+        if(routesids != null) {
+            for (String id : routesids) {
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
+                int userid = user.getId();
+                int routeid2 = Integer.parseInt(id);
 
-                int passengerCapacity;
-                passengerCapacity = tempRoute.getPassengercapacity();
-
-                int numberofpassengers = tempRoute.getNumberofpassengers();
-
-                int active = tempRoute.getActive();
-
-                int rate = (int) tempRoute.getRate();
-
-                if(active == 1){
-                    if(numberofpassengers  != passengerCapacity){
-                        numberofpassengers ++;
-                        routeService.signUpRiderRoute(numberofpassengers , (long) routeid);
-                    }
-                    outputBill = "working";
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity())) {
+                    routeService.addDriverToRoute(userid, routeid);
+                    int numberofpassengers = tempRoute.getNumberofpassengers();
+                    numberofpassengers ++;
+                    routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
+                    model.addObject("msg", "Successfully signed up for route!");
                 }
+                userRoutes=userService.getRoutes(userid);
+                if (userRoutes != null) {
+                    userRoutes=userRoutes.concat(" ");
+                    userRoutes=userRoutes.concat(Integer.toString(routeid));
+                }
+                else {
+                    userRoutes=Integer.toString(routeid);
+                }
+                userService.updateRoutes(userRoutes, userid);
             }
         }
-        List<Route> routeList=routeService.listActive();
-        model.addObject("routeList", routeList);
 
+        List<Route> routeList=routeService.listNoDriverID();
+        model.addObject("routeList", routeList);
         model.setViewName("redirect:/home/home");
 
         return model;
     }
 
     @RequestMapping(value={"/basicBilling"}, method= RequestMethod.GET)
-    public ModelAndView basicBilling()
+    public ModelAndView basicBilling(@RequestParam("routes") List<String> routesids)
     {
         ModelAndView model = new ModelAndView();
         Route tempRoute = new Route();
@@ -297,5 +304,4 @@ public class RouteController {
 
         return model;
     }
-
 }
