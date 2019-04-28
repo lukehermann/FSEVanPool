@@ -34,6 +34,9 @@ public class Route {
     @Column(name = "vehicleid")
     private int vehicleid;
 
+    @Column (name= "savings")
+    private float savings;
+
     @Column(name = "sunday")
     private boolean sunday=false;
 
@@ -196,5 +199,13 @@ public class Route {
 
     public void setDriverid(int driverid) {
         this.driverid = driverid;
+    }
+
+    public float getSavings() {
+        return savings;
+    }
+
+    public void setSavings(float savings) {
+        this.savings = savings;
     }
 }

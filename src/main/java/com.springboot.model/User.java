@@ -55,6 +55,9 @@ public class User {
     @Column(name = "routes")
     private String routes;
 
+    @Column (name = "history")
+    private String history;
+
     @Column(name = "Question_1")
     private String questionOne;
 
@@ -189,5 +192,13 @@ public class User {
 
     public void setRoutes(String routes) {
         this.routes = routes;
+    }
+
+    public String getHistory() {
+        return history;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
     }
 }
