@@ -32,27 +32,49 @@ public class RouteController {
     private String outputBill = "";
 
     @RequestMapping(value={"/addRoute"}, method= RequestMethod.GET)
-    public ModelAndView addRoute()
+    public ModelAndView addRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids, @RequestParam("routeButton") String buttonClicked)
     {
         ModelAndView model=new ModelAndView();
-        Route route = new Route();
-        List<Route> routeList = routeService.listAll();
-        model.addObject("route", route);
-        model.addObject("routeList", routeList);
-        List<String> dayList = new ArrayList<>();
-        dayList.add("Sunday");
-        dayList.add("Monday");
-        dayList.add("Tuesday");
-        dayList.add("Wednesday");
-        dayList.add("Thursday");
-        dayList.add("Friday");
-        dayList.add("Saturday");
 
-        List<Vehicle> vehicleList = new ArrayList<>();
-        //model.addObject("vehicleList", vehicleList);
+        if(buttonClicked.equals("add")) {
+            Route route = new Route();
+            List<Route> routeList = routeService.listAll();
+            model.addObject("route", route);
+            model.addObject("routeList", routeList);
+            List<String> dayList = new ArrayList<>();
+            dayList.add("Sunday");
+            dayList.add("Monday");
+            dayList.add("Tuesday");
+            dayList.add("Wednesday");
+            dayList.add("Thursday");
+            dayList.add("Friday");
+            dayList.add("Saturday");
 
-        model.addObject("dayList", dayList);
-        model.setViewName("functions/addRoute");
+            List<Vehicle> vehicleList = new ArrayList<>();
+            //model.addObject("vehicleList", vehicleList);
+
+            model.addObject("dayList", dayList);
+            model.setViewName("functions/addRoute");
+        }
+        else {
+            if(routeids != null){
+                for(String id : routeids){
+                    if(!id.contains("emptyRouteList")) {
+                        // Convert string to integer
+                        int routeid = Integer.parseInt(id);
+                        // Gets the vehicle ID from the route
+                        int vehicleid = routeService.getVehicleID(routeid);
+                        List<String> dayList = routeService.getDays(routeid);
+                        vehicleService.updateDays(dayList, vehicleid, false);
+                        routeService.deleteRoute(routeid);
+                    }
+                }
+            }
+
+            model.addObject("routeList", routeService.listAll());
+
+            model.setViewName("redirect:/home/home");
+        }
 
         return model;
     }
