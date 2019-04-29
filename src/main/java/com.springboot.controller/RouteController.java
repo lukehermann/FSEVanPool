@@ -278,7 +278,9 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String userRoutes;
-        int userRouteIDs[] = new int[100];
+
+        //int userRouteIDs[] = new int[100];
+        List <Integer> userRoutesIDs = new ArrayList<>();
 
         if(routesids != null) {
             for (String id : routesids) {
@@ -289,8 +291,9 @@ public class RouteController {
                     String[] riderRoutesSplit = riderRoutes .split(" ");
 
                     for(int i = 0; i < riderRoutesSplit.length; i++){
-                        userRouteIDs[i] = Integer.parseInt(riderRoutesSplit[i]);
-                        System.out.print(userRouteIDs[i] + " ");
+                        userRoutesIDs.add(i, Integer.parseInt(riderRoutesSplit[i]));
+                        //userRouteIDs[i] =
+                        //System.out.print(userRouteIDs[i] + " ");
                     }
                 }
 
@@ -299,7 +302,7 @@ public class RouteController {
                 int userid = user.getId();
                 int routeid2 = Integer.parseInt(id);
 
-                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRouteIDs)) {
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRoutesIDs)) {
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
@@ -314,7 +317,7 @@ public class RouteController {
                     model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
-                if(!findRoute(routeid2, userRouteIDs)){
+                if(!findRoute(routeid2, userRoutesIDs)){
 
                     if (userRoutes != null) {
                         userRoutes=userRoutes.concat(" ");
@@ -329,8 +332,8 @@ public class RouteController {
             }
         }
         List<Route> routeList = new ArrayList<Route>();
-        for(int i = 0; i < userRouteIDs.length; i++){
-            tempRoute = routeService.findRouteByRouteid(userRouteIDs[i]);
+        for(int i = 0; i < userRoutesIDs.size(); i++){
+            tempRoute = routeService.findRouteByRouteid(userRoutesIDs.get(i));
             routeList.add(tempRoute);
         }
 
@@ -340,7 +343,7 @@ public class RouteController {
         return model;
     }
 
-    public boolean findRoute(int route, int[] array){
+    public boolean findRoute(int route, List<Integer> array){
         for (int i1 : array) {
             if (i1 == route) {
                 return true;
@@ -356,6 +359,9 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String routes = userService.getRoutes(user.getId());
+
+        //int userRouteIDs[] = new int[100];
+        List <Integer> userRoutesIDs = new ArrayList<>();
 
 
         if (routesids !=null) {
