@@ -202,9 +202,6 @@ public class RouteController {
                 int j=0;
                 String temp;
                 while (j < routes.length()) {
-                    System.out.println("routes length = "+routes.length());
-                    System.out.println("routes contents = "+ routes);
-                    System.out.println("j ="+j);
                     if (routes.length() == 1 || routes.length()== 2)
                     {
                         if (routes.equals(routeid))
@@ -216,7 +213,6 @@ public class RouteController {
                     }
                     else if (routes.substring(j, j+1).equals(" "))
                     {
-                        System.out.println("*" + routes.substring(i, j) + "*");
                         if (routes.substring(i, j).equals(routeid))
                         {
                             temp =routes.substring(j+1);
@@ -267,7 +263,7 @@ public class RouteController {
 
                     for(int i = 0; i < riderRoutesSplit.length; i++){
                         userRouteIDs[i] = Integer.parseInt(riderRoutesSplit[i]);
-                        System.out.print(userRouteIDs[i] + " ");
+
                     }
                 }
 
@@ -341,7 +337,6 @@ public class RouteController {
                 int j=0;
                 String temp;
 
-                System.out.println("ROUTES = " + routes);
                 while (j < routes.length()) {
 
                     if (routes.length() == 2 || routes.length() == 1) {
@@ -373,7 +368,6 @@ public class RouteController {
                         }
                     }
                 }
-                System.out.println("ROUTES = " + routes);
             }
 
             userService.updateRoutes(routes, user.getId());

@@ -200,7 +200,6 @@ public class UserController {
             if (routes!=null) {
                 while (j != routes.length()) {
                     if (routes.charAt(j) == ' ') {
-                        System.out.println("*" + routes.substring(i, j) + "*");
                         tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i, j)));
                         myRoutes.add(tempRoute);
                         j++;
@@ -210,7 +209,6 @@ public class UserController {
                         j++;
                     }
                 }
-                System.out.println("*" + routes.substring(i) + "*");
                 tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
                 myRoutes.add(tempRoute);
             }
@@ -240,7 +238,6 @@ public class UserController {
                         j++;
                     }
                 }
-                System.out.println("*" + routes.substring(i) + "HIIIIIII*");
                 tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
                 myRoutes.add(tempRoute);
             }
