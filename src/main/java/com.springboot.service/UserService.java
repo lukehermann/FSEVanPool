@@ -13,4 +13,8 @@ public interface UserService {
     void updateRoutes(String routes, int id);
 
     String getRoutes(int id);
+
+    String getHistory(int id);
+
+    void updateHistory(String history, int userId);
 }

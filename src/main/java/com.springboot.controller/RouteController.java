@@ -261,6 +261,7 @@ public class RouteController {
         if(routesids != null) {
             for (String id : routesids) {
                 String riderRoutes = userService.getRoutes(user.getId());
+                String userHistory = userService.getHistory(user.getId());
 
                 if (riderRoutes  != null) {
                     String[] riderRoutesSplit = riderRoutes .split(" ");
@@ -280,6 +281,14 @@ public class RouteController {
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
+
+                    String temp = " +" + routeid2;
+                    userHistory += temp;
+                    if(userHistory.contains("null")){
+                        userHistory = userHistory.substring(4);
+                    }
+                    userService.updateHistory(userHistory, userid);
+
                     model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
