@@ -240,7 +240,6 @@ public class UserController {
                         j++;
                     }
                 }
-                System.out.println("*" + routes.substring(i) + "HIIIIIII*");
                 tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
                 myRoutes.add(tempRoute);
             }
