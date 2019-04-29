@@ -64,4 +64,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.getRoutes(id);
     }
 
+    @Override
+    public String getHistory(int id){
+        return userRepository.getHistory(id);
+    }
+
+    @Override
+    public void updateHistory(String history, int userId){
+        userRepository.updateHistory(history, userId);
+    }
+
 }

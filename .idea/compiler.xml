@@ -6,14 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SpringBoot" />
-        <module name="project" />
-        <module name="FSEVanPool2" />
         <module name="FSEVanpool" />
-        <module name="FSEVanpoolMain" />
         <module name="FSEVanPool" />
-        <module name="fundOfSoftProj" />
+        <module name="FSEVanPool2" />
+        <module name="FSEVanpoolMain" />
         <module name="FSEVanPoolMain" />
+        <module name="fundOfSoftProj" />
+        <module name="project" />
+        <module name="SpringBoot" />
       </profile>
     </annotationProcessing>
   </component>

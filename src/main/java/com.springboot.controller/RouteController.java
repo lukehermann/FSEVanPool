@@ -32,27 +32,49 @@ public class RouteController {
     private String outputBill = "";
 
     @RequestMapping(value={"/addRoute"}, method= RequestMethod.GET)
-    public ModelAndView addRoute()
+    public ModelAndView addRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids, @RequestParam("routeButton") String buttonClicked)
     {
         ModelAndView model=new ModelAndView();
-        Route route = new Route();
-        List<Route> routeList = routeService.listAll();
-        model.addObject("route", route);
-        model.addObject("routeList", routeList);
-        List<String> dayList = new ArrayList<>();
-        dayList.add("Sunday");
-        dayList.add("Monday");
-        dayList.add("Tuesday");
-        dayList.add("Wednesday");
-        dayList.add("Thursday");
-        dayList.add("Friday");
-        dayList.add("Saturday");
 
-        List<Vehicle> vehicleList = new ArrayList<>();
-        //model.addObject("vehicleList", vehicleList);
+        if(buttonClicked.equals("add")) {
+            Route route = new Route();
+            List<Route> routeList = routeService.listAll();
+            model.addObject("route", route);
+            model.addObject("routeList", routeList);
+            List<String> dayList = new ArrayList<>();
+            dayList.add("Sunday");
+            dayList.add("Monday");
+            dayList.add("Tuesday");
+            dayList.add("Wednesday");
+            dayList.add("Thursday");
+            dayList.add("Friday");
+            dayList.add("Saturday");
 
-        model.addObject("dayList", dayList);
-        model.setViewName("functions/addRoute");
+            List<Vehicle> vehicleList = new ArrayList<>();
+            //model.addObject("vehicleList", vehicleList);
+
+            model.addObject("dayList", dayList);
+            model.setViewName("functions/addRoute");
+        }
+        else {
+            if(routeids != null){
+                for(String id : routeids){
+                    if(!id.contains("emptyRouteList")) {
+                        // Convert string to integer
+                        int routeid = Integer.parseInt(id);
+                        // Gets the vehicle ID from the route
+                        int vehicleid = routeService.getVehicleID(routeid);
+                        List<String> dayList = routeService.getDays(routeid);
+                        vehicleService.updateDays(dayList, vehicleid, false);
+                        routeService.deleteRoute(routeid);
+                    }
+                }
+            }
+
+            model.addObject("routeList", routeService.listAll());
+
+            model.setViewName("redirect:/home/home");
+        }
 
         return model;
     }
@@ -257,6 +279,7 @@ public class RouteController {
         if(routesids != null) {
             for (String id : routesids) {
                 String riderRoutes = userService.getRoutes(user.getId());
+                String userHistory = userService.getHistory(user.getId());
 
                 if (riderRoutes  != null) {
                     String[] riderRoutesSplit = riderRoutes .split(" ");
@@ -276,6 +299,14 @@ public class RouteController {
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
+
+                    String temp = " +" + routeid2;
+                    userHistory += temp;
+                    if(userHistory.contains("null")){
+                        userHistory = userHistory.substring(4);
+                    }
+                    userService.updateHistory(userHistory, userid);
+
                     model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
@@ -326,12 +357,19 @@ public class RouteController {
         if (routesids !=null) {
             for (String id : routesids) {
                 String routeid = Integer.toString(Integer.parseInt(id));
-                //routeService.endDriverShift(Integer.parseInt(id));
+                String userHistory = userService.getHistory(user.getId());
 
                 int routeid2 = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid2);
                 tempRoute.subtractPassengers();
                 routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
+
+                String temp2 = " -" + routeid2;
+                userHistory += temp2;
+                if(userHistory.contains("null")){
+                    userHistory = userHistory.substring(4);
+                }
+                userService.updateHistory(userHistory, user.getId());
 
                 int i=0;
                 int j=0;
