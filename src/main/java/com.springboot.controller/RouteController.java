@@ -339,12 +339,19 @@ public class RouteController {
         if (routesids !=null) {
             for (String id : routesids) {
                 String routeid = Integer.toString(Integer.parseInt(id));
-                //routeService.endDriverShift(Integer.parseInt(id));
+                String userHistory = userService.getHistory(user.getId());
 
                 int routeid2 = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid2);
                 tempRoute.subtractPassengers();
                 routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
+
+                String temp2 = " -" + routeid2;
+                userHistory += temp2;
+                if(userHistory.contains("null")){
+                    userHistory = userHistory.substring(4);
+                }
+                userService.updateHistory(userHistory, user.getId());
 
                 int i=0;
                 int j=0;
