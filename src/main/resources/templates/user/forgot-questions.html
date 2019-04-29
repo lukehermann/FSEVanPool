@@ -1,75 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="utf-8" />-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1" />-->
-<!--    <title>Spring Boot Validation Login Form Example</title>-->
-<!--    <link rel="stylesheet"-->
-<!--          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
-<!--    <link rel="stylesheet"-->
-<!--          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
-<!--    <link rel="stylesheet" href="style.css" />-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="form">-->
-<!--    <form class="form-horizontal" role="form" method="POST" th:action="@{/forgot-questions}" th:object="${forgotDto}">-->
-<!--        <div class="col-md-6">-->
-<!--            <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">-->
-<!--            </div>-->
-<!--            <div class="alert alert-danger" role="alert" th:if="${param.error}">-->
-<!--                You have answered one of the questions incorrectly!-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-md-3"></div>-->
-<!--            <div class="col-md-6">-->
-<!--                <h2>Security Questions</h2>-->
-<!--                <hr>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <input type="hidden" class="form-control" th:field="*{email}">-->
-<!--        <input type="hidden" class="form-control" th:field="*{token}">-->
-
-<!--        <h2>Question 1:  <span th:utext="${questionOne}"></span></h2>-->
-<!--        <div class="form-group">-->
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-addon"><i class="fa fa-lock"></i></span> <input-->
-<!--                    type="password" class="form-control" th:field="*{questionOneAnswer}"-->
-<!--                    placeholder="Type Answer Here" />-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--        <h2>Question 2:  <span th:utext="${questionTwo}"></span></h2>-->
-<!--        <div class="form-group">-->
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-addon"><i class="fa fa-lock"></i></span> <input-->
-<!--                    type="password" class="form-control" th:field="*{questionTwoAnswer}"-->
-<!--                    placeholder="Type Answer Here" />-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--        <h2>Question 3:  <span th:utext="${questionThree}"></span></h2>-->
-
-<!--        <div class="form-group">-->
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-addon"><i class="fa fa-lock"></i></span> <input-->
-<!--                    type="password" class="form-control" th:field="*{questionThreeAnswer}"-->
-<!--                    placeholder="Type Answer Here" />-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <button type="submit" class="btn btn-primary login-btn btn-block">Submit</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -77,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Spring Boot Validation Login Form Example</title>
+    <title>Password Recovery</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet"
@@ -123,6 +51,7 @@
 
 
             <button type="submit" id="recover" class="btn btn-primary login-btn btn-block">Submit</button>
+            <p class="message">Remembered your password? <a th:href="@{/login}">Login</a></p>
             <p class="message">Not registered? <a th:href="@{/signup}">Create an account</a></p>
             <p class="message">Forgot Password? <a th:href="@{/forgot-password}">Change Password</a></p>
 

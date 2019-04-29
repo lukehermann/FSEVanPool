@@ -10,12 +10,6 @@ header a img{
 html {
     height: 100%;
 }
-body {
-    height: 100%;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 .login-page {
     width: 360px;
     padding: 8% 0 0;
@@ -113,5 +107,9 @@ body {
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
