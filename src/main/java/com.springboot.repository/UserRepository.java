@@ -33,4 +33,39 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("update User u set u.history = :history where u.id = :id")
     void updateHistory(@Param("history") String history, @Param("id") int id);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.sunday = :change where u.id = :id")
+    void updateSunday(@Param("id") int id, @Param("change") boolean change);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.monday = :change where u.id = :id")
+    void updateMonday(@Param("id") int id, @Param("change") boolean change);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.tuesday = :change where u.id = :id")
+    void updateTuesday(@Param("id") int id, @Param("change") boolean change);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.wednesday = :change where u.id = :id")
+    void updateWednesday(@Param("id") int id, @Param("change") boolean change);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.thursday = :change where u.id = :id")
+    void updateThursday(@Param("id") int id, @Param("change") boolean change);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.friday = :change where u.id = :id")
+    void updateFriday(@Param("id") int id, @Param("change") boolean change);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.saturday = :change where u.id = :id")
+    void updateSaturday(@Param("id") int id, @Param("change") boolean change);
 }

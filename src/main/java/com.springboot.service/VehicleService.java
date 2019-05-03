@@ -11,6 +11,4 @@ public interface VehicleService {
     void updateDays(List<String> listOfDays, int vehicleid, boolean change);
     Vehicle getVehicle(int vehicleid);
     void deleteVehicle(int vehicleid);
-
-
 }

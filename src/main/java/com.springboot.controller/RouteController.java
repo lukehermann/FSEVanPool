@@ -301,15 +301,21 @@ public class RouteController {
                 int userid = user.getId();
                 int routeid2 = Integer.parseInt(id);
 
-                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRoutesIDs)) {
+                System.out.println("ROUTE: " + tempRoute.isSunday());
+                System.out.println("USER: " + user.isSunday());
+
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) &&
+                        !findRoute(routeid2, userRoutesIDs) && canSignUp(tempRoute, user)) {
+                    System.out.println("HERE!!!!!!!!!!");
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
+                    userService.updateSunday(userid, true);
 
-                    //String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "</br>";
+
                     String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"
                             + findDays(tempRoute) + "\nfor\n$" + tempRoute.getRate() + "</br></br>";
-                    //String temp = " +" + routeid2;
+
                     userHistory += temp;
                     if(userHistory.contains("null")){
                         userHistory = userHistory.substring(4);
@@ -358,6 +364,17 @@ public class RouteController {
         return false;
     }
 
+    public boolean canSignUp(Route route, User user){
+        if(route.isSunday()){
+            if(user.isSunday()){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+
     public String findDays(Route route){
         String days = "";
         if(route.isMonday()){
@@ -404,6 +421,8 @@ public class RouteController {
                 tempRoute = routeService.findRouteByRouteid(routeid2);
                 tempRoute.subtractPassengers();
                 routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
+
+                userService.updateSunday(user.getId(), false);
 
 
                 String temp2 = "Removed\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"

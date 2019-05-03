@@ -187,8 +187,6 @@ public class UserController {
         String role=user.getRole();
         role=role.toLowerCase();
 
-
-
         //Driver
         if (role.equals("driver"))
         {

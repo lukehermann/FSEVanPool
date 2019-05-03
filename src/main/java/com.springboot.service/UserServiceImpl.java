@@ -74,4 +74,38 @@ public class UserServiceImpl implements UserService {
         userRepository.updateHistory(history, userId);
     }
 
+    @Override
+    public void updateSunday(int userId, boolean change){
+        userRepository.updateSunday(userId, change);
+    }
+
+    @Override
+    public void updateMonday(int userId, boolean change){
+        userRepository.updateMonday(userId, change);
+    }
+
+    @Override
+    public void updateTuesday(int userId, boolean change){
+        userRepository.updateTuesday(userId, change);
+    }
+
+    @Override
+    public void updateWednesday(int userId, boolean change){
+        userRepository.updateWednesday(userId, change);
+    }
+
+    @Override
+    public void updateThursday(int userId, boolean change){
+        userRepository.updateThursday(userId, change);
+    }
+
+    @Override
+    public void updateFriday(int userId, boolean change){
+        userRepository.updateFriday(userId, change);
+    }
+
+    @Override
+    public void updateSaturday(int userId, boolean change){
+        userRepository.updateSaturday(userId, change);
+    }
 }
