@@ -221,8 +221,30 @@ public class UserController {
         //Rider
         else if(role.equals("rider"))
         {
-            List<Route> routeList=routeService.listActive(); //all routes that are active
+            List<Route> activeRoutesList=routeService.listActive(); //all routes that are active
+            String userRoutesString = userService.getRoutes(user.getId());
+
+            List<Route> routeList = new ArrayList<>();
+
+            if(userRoutesString != null){
+                String[] userRoutesSplit = userRoutesString.split(" ");
+                List<Route> userRoutes= new ArrayList<>();
+                for(String s : userRoutesSplit){
+                    userRoutes.add(routeService.findRouteByRouteid(Integer.parseInt(s)));
+                }
+
+                for(Route r : activeRoutesList){
+                    if(!userRoutes.contains(r)){
+                        routeList.add(r);
+                    }
+                }
+            }
+            else{
+                routeList = activeRoutesList;
+            }
             List<Route> myRoutes = new ArrayList<>();
+
+
             model.addObject("routeList", routeList);
             Route tempRoute;
 

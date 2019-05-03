@@ -282,6 +282,7 @@ public class RouteController {
         //int userRouteIDs[] = new int[100];
         List <Integer> userRoutesIDs = new ArrayList<>();
 
+
         if(routesids != null) {
             for (String id : routesids) {
                 String riderRoutes = userService.getRoutes(user.getId());
@@ -292,8 +293,6 @@ public class RouteController {
 
                     for(int i = 0; i < riderRoutesSplit.length; i++){
                         userRoutesIDs.add(i, Integer.parseInt(riderRoutesSplit[i]));
-                        //userRouteIDs[i] =
-                        //System.out.print(userRouteIDs[i] + " ");
                     }
                 }
 
@@ -334,11 +333,15 @@ public class RouteController {
                 userService.updateRoutes(userRoutes, userid);
             }
         }
+
+
+
         List<Route> routeList = new ArrayList<Route>();
         for(int i = 0; i < userRoutesIDs.size(); i++){
             tempRoute = routeService.findRouteByRouteid(userRoutesIDs.get(i));
             routeList.add(tempRoute);
         }
+
 
         //List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
@@ -390,9 +393,7 @@ public class RouteController {
         User user = userService.findUserByEmail(auth.getName());
         String routes = userService.getRoutes(user.getId());
 
-        //int userRouteIDs[] = new int[100];
         List <Integer> userRoutesIDs = new ArrayList<>();
-
 
         if (routesids !=null) {
             for (String id : routesids) {
@@ -418,7 +419,6 @@ public class RouteController {
                 int j=0;
                 String temp;
 
-                System.out.println("ROUTES = " + routes);
                 while (j < routes.length()) {
 
                     if (routes.length() == 2 || routes.length() == 1) {
