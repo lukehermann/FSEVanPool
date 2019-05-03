@@ -18,4 +18,20 @@ public interface UserService {
 
     void updateHistory(String history, int userId);
 
+    void updateSunday(int userId, boolean change);
+
+    void updateMonday(int userId, boolean change);
+
+    void updateTuesday(int userId, boolean change);
+
+    void updateWednesday(int userId, boolean change);
+
+    void updateThursday(int userId, boolean change);
+
+    void updateFriday(int userId, boolean change);
+
+    void updateSaturday(int userId, boolean change);
+
+
+
 }

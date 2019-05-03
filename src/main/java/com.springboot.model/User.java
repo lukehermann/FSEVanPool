@@ -58,6 +58,24 @@ public class User {
     @Column (name = "history")
     private String history;
 
+    @Column(name = "Question_1")
+    private String questionOne;
+
+    @Column(name = "Question_2")
+    private String questionTwo;
+
+    @Column(name = "Question_3")
+    private String questionThree;
+
+    @Column(name = "Answer_1")
+    private String answerOne;
+
+    @Column(name = "Answer_2")
+    private String answerTwo;
+
+    @Column(name = "Answer_3")
+    private String answerThree;
+
     @Column(name = "sunday")
     private boolean sunday=false;
 
@@ -78,24 +96,6 @@ public class User {
 
     @Column(name = "saturday")
     private boolean saturday=false;
-
-    @Column(name = "Question_1")
-    private String questionOne;
-
-    @Column(name = "Question_2")
-    private String questionTwo;
-
-    @Column(name = "Question_3")
-    private String questionThree;
-
-    @Column(name = "Answer_1")
-    private String answerOne;
-
-    @Column(name = "Answer_2")
-    private String answerTwo;
-
-    @Column(name = "Answer_3")
-    private String answerThree;
 
 
     @ManyToMany(cascade=CascadeType.ALL)
