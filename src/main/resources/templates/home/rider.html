@@ -61,22 +61,24 @@
         <table class="table table-striped">
             <tr>
                 <th> </th>
+                <th>Rate</th>
+                <th>Cost Savings</th>
                 <th>Start Location</th>
                 <th>Drop off Location</th>
                 <th>Number of Passengers</th>
                 <th>Capacity of Vehicle</th>
-                <th>Rate</th>
                 <th colspan="7" style="text-align: center; vertical-align: middle;">Days</th>
 
             </tr>
             <form method="get" action="/removeRiderRoute">
                 <tr th:each="routes, stat : ${myRoutes}">
                     <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(routes.rate, 0, 'COMMA', 2, 'POINT')}">10.00></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(routes.savings, 0, 'COMMA', 2, 'POINT')}">10.00></td>
                     <td th:text="${routes.startlocation}"></td>
                     <td th:text="${routes.dropofflocation}"></td>
                     <td th:text="${routes.numberofpassengers}"></td>
                     <td th:text="${routes.passengercapacity}"></td>
-                    <td th:text="'$' + ${#numbers.formatDecimal(routes.rate, 0, 'COMMA', 2, 'POINT')}">10.00></td>
                     <td th:if="${routes.sunday}">Sunday</td>
                     <td th:if="${routes.monday}">Monday</td>
                     <td th:if="${routes.tuesday}">Tuesday</td>
