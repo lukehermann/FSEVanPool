@@ -173,11 +173,14 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String userRoutes;
+        Boolean canDrive =true;
         if(routesids != null) {
             for (String id : routesids) {
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
                 int userid = user.getId();
+
+                //if (user.getDays().contains())
                 if (tempRoute.getDriverid() == 0) {
                     routeService.addDriverToRoute(userid, routeid);
                     routeService.setRouteToActive(routeid);
@@ -224,9 +227,6 @@ public class RouteController {
                 int j=0;
                 String temp;
                 while (j < routes.length()) {
-                    System.out.println("routes length = "+routes.length());
-                    System.out.println("routes contents = "+ routes);
-                    System.out.println("j ="+j);
                     if (routes.length() == 1 || routes.length()== 2)
                     {
                         if (routes.equals(routeid))
@@ -238,7 +238,6 @@ public class RouteController {
                     }
                     else if (routes.substring(j, j+1).equals(" "))
                     {
-                        System.out.println("*" + routes.substring(i, j) + "*");
                         if (routes.substring(i, j).equals(routeid))
                         {
                             temp =routes.substring(j+1);
@@ -293,6 +292,8 @@ public class RouteController {
 
                     for(int i = 0; i < riderRoutesSplit.length; i++){
                         userRoutesIDs.add(i, Integer.parseInt(riderRoutesSplit[i]));
+
+
                     }
                 }
 
@@ -348,7 +349,6 @@ public class RouteController {
             routeList.add(tempRoute);
         }
 
-
         //List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
         model.setViewName("redirect:/home/home");
@@ -365,12 +365,35 @@ public class RouteController {
     }
 
     public boolean canSignUp(Route route, User user){
-        if(route.isSunday()){
-            if(user.isSunday()){
-                return false;
-            }
-        }
+        if(route.isSunday() && user.isSunday()){
 
+            return false;
+
+        }
+        else if (route.isSaturday() && user.isSaturday())
+        {
+            return false;
+        }
+        else if (route.isMonday() && user.isMonday())
+        {
+            return false;
+        }
+        else if (route.isTuesday() && user.isTuesday())
+        {
+            return false;
+        }
+        else if (route.isWednesday() && user.isWednesday())
+        {
+            return false;
+        }
+        else if (route.isThursday() && user.isThursday())
+        {
+            return false;
+        }
+        else if (route.isFriday() && user.isFriday())
+        {
+            return false;
+        }
         return true;
     }
 
