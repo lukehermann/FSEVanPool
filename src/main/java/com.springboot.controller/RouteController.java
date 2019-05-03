@@ -302,19 +302,14 @@ public class RouteController {
                 int userid = user.getId();
                 int routeid2 = Integer.parseInt(id);
 
-                System.out.println("ROUTE: " + tempRoute.isSunday());
-                System.out.println("USER: " + user.isSunday());
-
                 if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) &&
                         !findRoute(routeid2, userRoutesIDs) && canSignUp(tempRoute, user)) {
                     System.out.println("HERE!!!!!!!!!!");
-                    setUserDays(tempRoute, user);
+                    setUserDaysTrue(tempRoute, user);
 
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
-                    userService.updateSunday(userid, true);
-
 
                     String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"
                             + findDays(tempRoute) + "\nfor\n$" + tempRoute.getRate() + "</br></br>";
@@ -345,15 +340,12 @@ public class RouteController {
             }
         }
 
-
-
         List<Route> routeList = new ArrayList<Route>();
         for(int i = 0; i < userRoutesIDs.size(); i++){
             tempRoute = routeService.findRouteByRouteid(userRoutesIDs.get(i));
             routeList.add(tempRoute);
         }
 
-        //List<Route> routeList=routeService.listNoDriverID();
         model.addObject("routeList", routeList);
         model.setViewName("redirect:/home/home");
         return model;
@@ -370,8 +362,6 @@ public class RouteController {
 
     public boolean canSignUp(Route route, User user){
         if(route.isSunday() && user.isSunday()){
-            System.out.println("route "+route.isSunday());
-            System.out.println("user "+user.isSunday());
             return false;
 
         }
@@ -402,7 +392,7 @@ public class RouteController {
         return true;
     }
 
-    public void setUserDays(Route route, User user){
+    public void setUserDaysTrue(Route route, User user){
         if(route.isSunday()){
             user.setSunday(true);
         }
@@ -453,6 +443,30 @@ public class RouteController {
         return days;
     }
 
+    public void setUserDaysFalse(Route route, User user){
+        if(route.isSunday()){
+            user.setSunday(false);
+        }
+        if(route.isMonday()){
+            user.setMonday(false);
+        }
+        if(route.isTuesday()){
+            user.setTuesday(false);
+        }
+        if(route.isWednesday()){
+            user.setWednesday(false);
+        }
+        if(route.isThursday()){
+            user.setThursday(false);
+        }
+        if(route.isFriday()){
+            user.setFriday(false);
+        }
+        if(route.isSaturday()){
+            user.setSaturday(false);
+        }
+    }
+
 
     @RequestMapping(value = {"/removeRiderRoute"}, method = RequestMethod.GET)
     public ModelAndView removeRiderRoute(@RequestParam("routes") List<String> routesids) {
@@ -473,8 +487,9 @@ public class RouteController {
                 tempRoute = routeService.findRouteByRouteid(routeid2);
                 tempRoute.subtractPassengers();
                 routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
+                setUserDaysFalse(tempRoute, user);
 
-                userService.updateSunday(user.getId(), false);
+
 
 
                 String temp2 = "Removed\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"

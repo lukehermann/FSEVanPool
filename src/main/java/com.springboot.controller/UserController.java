@@ -244,7 +244,6 @@ public class UserController {
 
             String userHistory = userService.getHistory(user.getId());
             model.addObject("userHistory", formatUserHistory(user, userHistory));
-            //model.addObject("userHistory", "test</br>test2</br>");
 
             String routes=userService.getRoutes(user.getId()); //user routes user has signed up for
 
@@ -298,31 +297,6 @@ public class UserController {
         return message;
     }
 
-
-//    @RequestMapping(value={"/deleteRoute"}, method=RequestMethod.GET)
-//    public ModelAndView deleteRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids) {
-//        ModelAndView model = new ModelAndView();
-//
-//        if(routeids != null){
-//            for(String id : routeids){
-//                if(!id.contains("emptyRouteList")) {
-//                    // Convert string to integer
-//                    int routeid = Integer.parseInt(id);
-//                    // Gets the vehicle ID from the route
-//                    int vehicleid = routeService.getVehicleID(routeid);
-//                    List<String> dayList = routeService.getDays(routeid);
-//                    vehicleService.updateDays(dayList, vehicleid, false);
-//                    routeService.deleteRoute(routeid);
-//                }
-//            }
-//        }
-//
-//        model.addObject("routeList", routeService.listAll());
-//
-//        model.setViewName("redirect:/home/home");
-//
-//        return model;
-//    }
 
     @RequestMapping(value={"/access_denied"}, method=RequestMethod.GET)
     public ModelAndView accessDenied() {
