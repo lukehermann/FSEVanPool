@@ -58,6 +58,9 @@ public class User {
     @Column (name = "history")
     private String history;
 
+    @Column (name = "days")
+    private String days;
+
     @Column(name = "Question_1")
     private String questionOne;
 
@@ -200,5 +203,13 @@ public class User {
 
     public void setHistory(String history) {
         this.history = history;
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
     }
 }

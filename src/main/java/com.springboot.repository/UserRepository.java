@@ -33,4 +33,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("update User u set u.history = :history where u.id = :id")
     void updateHistory(@Param("history") String history, @Param("id") int id);
+
+    @Query(value = "select u.days from User u where u.id = :id")
+    String getDays(@Param("id") int id);
+
+    @Transactional
+    @Modifying
+    @Query("update User u set u.days = :days where u.id = :id")
+    String updateDays(@Param("id") int id, @Param("days") String days);
 }
