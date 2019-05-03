@@ -217,10 +217,34 @@ public class UserController {
         //Rider
         else if(role.equals("rider"))
         {
-            List<Route> routeList=routeService.listActive(); //all routes that are active
+            List<Route> activeRoutesList=routeService.listActive(); //all routes that are active
+            String userRoutesString = userService.getRoutes(user.getId());
+
+            List<Route> routeList = new ArrayList<>();
+
+            if(userRoutesString != null){
+                String[] userRoutesSplit = userRoutesString.split(" ");
+                List<Route> userRoutes= new ArrayList<>();
+                for(String s : userRoutesSplit){
+                    userRoutes.add(routeService.findRouteByRouteid(Integer.parseInt(s)));
+                }
+
+                for(Route r : activeRoutesList){
+                    if(!userRoutes.contains(r)){
+                        routeList.add(r);
+                    }
+                }
+            }
+            else{
+                routeList = activeRoutesList;
+            }
             List<Route> myRoutes = new ArrayList<>();
             model.addObject("routeList", routeList);
             Route tempRoute;
+
+            String userHistory = userService.getHistory(user.getId());
+            model.addObject("userHistory", formatUserHistory(user, userHistory));
+            //model.addObject("userHistory", "test</br>test2</br>");
 
             String routes=userService.getRoutes(user.getId()); //user routes user has signed up for
 
@@ -261,6 +285,19 @@ public class UserController {
         model.setViewName("home/"+role);
         return model;
     }
+
+    public String formatUserHistory(User user, String inputString){
+        String message = "";
+        if(inputString != null) {
+            String[] userHistorySplit = user.getHistory().split(" ");
+            for (String s : userHistorySplit) {
+               message += s;
+            }
+        }
+        System.out.println(message);
+        return message;
+    }
+
 
 //    @RequestMapping(value={"/deleteRoute"}, method=RequestMethod.GET)
 //    public ModelAndView deleteRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids) {

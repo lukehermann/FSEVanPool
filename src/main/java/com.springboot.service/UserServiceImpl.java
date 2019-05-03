@@ -74,15 +74,5 @@ public class UserServiceImpl implements UserService {
         userRepository.updateHistory(history, userId);
     }
 
-    @Override
-    public String getDays(int userid) {
-        return userRepository.getDays(userid);
-    }
-
-    @Override
-    public void updateDays(int userid, String days)
-    {
-        userRepository.updateDays(userid, days);
-    }
 
 }

@@ -18,9 +18,4 @@ public interface UserService {
 
     void updateHistory(String history, int userId);
 
-
-    String getDays(int userid);
-
-    void updateDays(int userid, String days);
-
 }

@@ -173,11 +173,14 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String userRoutes;
+        Boolean canDrive =true;
         if(routesids != null) {
             for (String id : routesids) {
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
                 int userid = user.getId();
+
+                //if (user.getDays().contains())
                 if (tempRoute.getDriverid() == 0) {
                     routeService.addDriverToRoute(userid, routeid);
                     routeService.setRouteToActive(routeid);
@@ -274,7 +277,10 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String userRoutes;
-        int userRouteIDs[] = new int[100];
+
+        //int userRouteIDs[] = new int[100];
+        List <Integer> userRoutesIDs = new ArrayList<>();
+
 
         if(routesids != null) {
             for (String id : routesids) {
@@ -285,7 +291,8 @@ public class RouteController {
                     String[] riderRoutesSplit = riderRoutes .split(" ");
 
                     for(int i = 0; i < riderRoutesSplit.length; i++){
-                        userRouteIDs[i] = Integer.parseInt(riderRoutesSplit[i]);
+                        userRoutesIDs.add(i, Integer.parseInt(riderRoutesSplit[i]));
+
 
                     }
                 }
@@ -295,12 +302,15 @@ public class RouteController {
                 int userid = user.getId();
                 int routeid2 = Integer.parseInt(id);
 
-                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRouteIDs)) {
+                if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) && !findRoute(routeid2, userRoutesIDs)) {
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
 
-                    String temp = " +" + routeid2;
+                    //String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "</br>";
+                    String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"
+                            + findDays(tempRoute) + "\nfor\n$" + tempRoute.getRate() + "</br></br>";
+                    //String temp = " +" + routeid2;
                     userHistory += temp;
                     if(userHistory.contains("null")){
                         userHistory = userHistory.substring(4);
@@ -310,7 +320,7 @@ public class RouteController {
                     model.addObject("msg", "Successfully signed up for route!");
                 }
                 userRoutes=userService.getRoutes(userid);
-                if(!findRoute(routeid2, userRouteIDs)){
+                if(!findRoute(routeid2, userRoutesIDs)){
 
                     if (userRoutes != null) {
                         userRoutes=userRoutes.concat(" ");
@@ -324,9 +334,12 @@ public class RouteController {
                 userService.updateRoutes(userRoutes, userid);
             }
         }
+
+
+
         List<Route> routeList = new ArrayList<Route>();
-        for(int i = 0; i < userRouteIDs.length; i++){
-            tempRoute = routeService.findRouteByRouteid(userRouteIDs[i]);
+        for(int i = 0; i < userRoutesIDs.size(); i++){
+            tempRoute = routeService.findRouteByRouteid(userRoutesIDs.get(i));
             routeList.add(tempRoute);
         }
 
@@ -336,7 +349,7 @@ public class RouteController {
         return model;
     }
 
-    public boolean findRoute(int route, int[] array){
+    public boolean findRoute(int route, List<Integer> array){
         for (int i1 : array) {
             if (i1 == route) {
                 return true;
@@ -344,6 +357,33 @@ public class RouteController {
         }
         return false;
     }
+
+    public String findDays(Route route){
+        String days = "";
+        if(route.isMonday()){
+            days += "Monday\n";
+        }
+        else if(route.isTuesday()){
+            days += "Tuesday\n";
+        }
+        else if(route.isWednesday()){
+            days += "Wednesday\n";
+        }
+        else if(route.isThursday()){
+            days += "Thursday\n";
+        }
+        else if(route.isFriday()){
+            days += "Friday\n";
+        }
+        else if(route.isSaturday()){
+            days += "Saturday\n";
+        }
+        else if(route.isSunday()){
+            days += "Sunday\n";
+        }
+        return days;
+    }
+
 
     @RequestMapping(value = {"/removeRiderRoute"}, method = RequestMethod.GET)
     public ModelAndView removeRiderRoute(@RequestParam("routes") List<String> routesids) {
@@ -353,6 +393,7 @@ public class RouteController {
         User user = userService.findUserByEmail(auth.getName());
         String routes = userService.getRoutes(user.getId());
 
+        List <Integer> userRoutesIDs = new ArrayList<>();
 
         if (routesids !=null) {
             for (String id : routesids) {
@@ -364,7 +405,10 @@ public class RouteController {
                 tempRoute.subtractPassengers();
                 routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
 
-                String temp2 = " -" + routeid2;
+
+                String temp2 = "Removed\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"
+                        + findDays(tempRoute) + "\nfor\n$" + tempRoute.getRate() + "</br></br>";
+                //String temp2 = " -" + routeid2;
                 userHistory += temp2;
                 if(userHistory.contains("null")){
                     userHistory = userHistory.substring(4);
