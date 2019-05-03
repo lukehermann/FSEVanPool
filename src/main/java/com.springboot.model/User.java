@@ -58,8 +58,26 @@ public class User {
     @Column (name = "history")
     private String history;
 
-    @Column (name = "days")
-    private String days;
+    @Column(name = "sunday")
+    private boolean sunday=false;
+
+    @Column(name = "monday")
+    private boolean monday=false;
+
+    @Column(name = "tuesday")
+    private boolean tuesday=false;
+
+    @Column(name = "wednesday")
+    private boolean wednesday=false;
+
+    @Column(name = "thursday")
+    private boolean thursday=false;
+
+    @Column(name = "friday")
+    private boolean friday=false;
+
+    @Column(name = "saturday")
+    private boolean saturday=false;
 
     @Column(name = "Question_1")
     private String questionOne;
@@ -205,11 +223,59 @@ public class User {
         this.history = history;
     }
 
-    public String getDays() {
-        return days;
+    public boolean isSunday() {
+        return sunday;
     }
 
-    public void setDays(String days) {
-        this.days = days;
+    public void setSunday(boolean sunday) {
+        this.sunday = sunday;
+    }
+
+    public boolean isMonday() {
+        return monday;
+    }
+
+    public void setMonday(boolean monday) {
+        this.monday = monday;
+    }
+
+    public boolean isTuesday() {
+        return tuesday;
+    }
+
+    public void setTuesday(boolean tuesday) {
+        this.tuesday = tuesday;
+    }
+
+    public boolean isWednesday() {
+        return wednesday;
+    }
+
+    public void setWednesday(boolean wednesday) {
+        this.wednesday = wednesday;
+    }
+
+    public boolean isThursday() {
+        return thursday;
+    }
+
+    public void setThursday(boolean thursday) {
+        this.thursday = thursday;
+    }
+
+    public boolean isFriday() {
+        return friday;
+    }
+
+    public void setFriday(boolean friday) {
+        this.friday = friday;
+    }
+
+    public boolean isSaturday() {
+        return saturday;
+    }
+
+    public void setSaturday(boolean saturday) {
+        this.saturday = saturday;
     }
 }
