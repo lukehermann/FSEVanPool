@@ -99,13 +99,9 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-md-offset-3"></div>
-        <div class="col-md-6">
-            <form method="get" action="/basicBilling">
-            <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Get Bill</button>
-        </div>
-    </div>
+
+    <h2>Route History</h2>
+    <td th:utext="${userHistory}"></td>
 
     <a th:href="@{/logout}">Sign out</a>
 

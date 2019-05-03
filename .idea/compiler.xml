@@ -12,6 +12,7 @@
         <module name="FSEVanpoolMain" />
         <module name="FSEVanPoolMain" />
         <module name="fundOfSoftProj" />
+        <module name="fundOfSoftProject" />
         <module name="project" />
         <module name="SpringBoot" />
       </profile>
@@ -26,6 +27,7 @@
       <module name="FSEVanpoolMain" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
       <module name="fundOfSoftProj" options="-parameters" />
+      <module name="fundOfSoftProject" options="-parameters" />
       <module name="project" options="-parameters" />
     </option>
   </component>

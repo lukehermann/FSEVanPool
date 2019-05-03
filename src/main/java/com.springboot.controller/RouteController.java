@@ -307,7 +307,10 @@ public class RouteController {
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
 
-                    String temp = " +" + routeid2;
+                    //String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "</br>";
+                    String temp = "Added\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"
+                            + findDays(tempRoute) + "\nfor\n$" + tempRoute.getRate() + "</br></br>";
+                    //String temp = " +" + routeid2;
                     userHistory += temp;
                     if(userHistory.contains("null")){
                         userHistory = userHistory.substring(4);
@@ -352,6 +355,33 @@ public class RouteController {
         return false;
     }
 
+    public String findDays(Route route){
+        String days = "";
+        if(route.isMonday()){
+            days += "Monday\n";
+        }
+        else if(route.isTuesday()){
+            days += "Tuesday\n";
+        }
+        else if(route.isWednesday()){
+            days += "Wednesday\n";
+        }
+        else if(route.isThursday()){
+            days += "Thursday\n";
+        }
+        else if(route.isFriday()){
+            days += "Friday\n";
+        }
+        else if(route.isSaturday()){
+            days += "Saturday\n";
+        }
+        else if(route.isSunday()){
+            days += "Sunday\n";
+        }
+        return days;
+    }
+
+
     @RequestMapping(value = {"/removeRiderRoute"}, method = RequestMethod.GET)
     public ModelAndView removeRiderRoute(@RequestParam("routes") List<String> routesids) {
         ModelAndView model =new ModelAndView();
@@ -374,7 +404,10 @@ public class RouteController {
                 tempRoute.subtractPassengers();
                 routeService.signUpRiderRoute(tempRoute.getNumberofpassengers(), (long) routeid2);
 
-                String temp2 = " -" + routeid2;
+
+                String temp2 = "Removed\nroute\nfrom\n" + tempRoute.getStartlocation() + "\nto\n" + tempRoute.getDropofflocation() + "\non\n"
+                        + findDays(tempRoute) + "\nfor\n$" + tempRoute.getRate() + "</br></br>";
+                //String temp2 = " -" + routeid2;
                 userHistory += temp2;
                 if(userHistory.contains("null")){
                     userHistory = userHistory.substring(4);
@@ -417,7 +450,6 @@ public class RouteController {
                         }
                     }
                 }
-                System.out.println("ROUTES = " + routes);
             }
 
             userService.updateRoutes(routes, user.getId());

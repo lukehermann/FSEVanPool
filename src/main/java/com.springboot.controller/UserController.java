@@ -187,6 +187,8 @@ public class UserController {
         String role=user.getRole();
         role=role.toLowerCase();
 
+
+
         //Driver
         if (role.equals("driver"))
         {
@@ -224,6 +226,10 @@ public class UserController {
             model.addObject("routeList", routeList);
             Route tempRoute;
 
+            String userHistory = userService.getHistory(user.getId());
+            model.addObject("userHistory", formatUserHistory(user, userHistory));
+            //model.addObject("userHistory", "test</br>test2</br>");
+
             String routes=userService.getRoutes(user.getId()); //user routes user has signed up for
 
             int i=0;
@@ -240,7 +246,7 @@ public class UserController {
                         j++;
                     }
                 }
-                System.out.println("*" + routes.substring(i) + "HIIIIIII*");
+
                 tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
                 myRoutes.add(tempRoute);
             }
@@ -264,6 +270,19 @@ public class UserController {
         model.setViewName("home/"+role);
         return model;
     }
+
+    public String formatUserHistory(User user, String inputString){
+        String message = "";
+        if(inputString != null) {
+            String[] userHistorySplit = user.getHistory().split(" ");
+            for (String s : userHistorySplit) {
+               message += s;
+            }
+        }
+        System.out.println(message);
+        return message;
+    }
+
 
 //    @RequestMapping(value={"/deleteRoute"}, method=RequestMethod.GET)
 //    public ModelAndView deleteRoute(@RequestParam(value ="routes", defaultValue = "emptyRouteList") List<String> routeids) {
