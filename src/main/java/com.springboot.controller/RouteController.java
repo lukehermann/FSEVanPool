@@ -307,6 +307,8 @@ public class RouteController {
                 if ((tempRoute.getActive() == 1) && (tempRoute.getNumberofpassengers() != tempRoute.getPassengercapacity()) &&
                         !findRoute(routeid2, userRoutesIDs) && canSignUp(tempRoute, user)) {
                     System.out.println("HERE!!!!!!!!!!");
+                    setUserDays(tempRoute, user);
+
                     int numberofpassengers = tempRoute.getNumberofpassengers();
                     numberofpassengers ++;
                     routeService.signUpRiderRoute(numberofpassengers , (long) routeid2);
@@ -323,20 +325,22 @@ public class RouteController {
                     userService.updateHistory(userHistory, userid);
 
                     model.addObject("msg", "Successfully signed up for route!");
-                }
-                userRoutes=userService.getRoutes(userid);
-                if(!findRoute(routeid2, userRoutesIDs)){
 
-                    if (userRoutes != null) {
-                        userRoutes=userRoutes.concat(" ");
-                        userRoutes=userRoutes.concat(Integer.toString(routeid));
+                    userRoutes=userService.getRoutes(userid);
+                    if(!findRoute(routeid2, userRoutesIDs)){
+
+                        if (userRoutes != null) {
+                            userRoutes=userRoutes.concat(" ");
+                            userRoutes=userRoutes.concat(Integer.toString(routeid));
+                        }
+                        else {
+                            userRoutes=Integer.toString(routeid);
+                        }
                     }
-                    else {
-                        userRoutes=Integer.toString(routeid);
-                    }
+
+                    userService.updateRoutes(userRoutes, userid);
                 }
 
-                userService.updateRoutes(userRoutes, userid);
             }
         }
 
@@ -365,7 +369,8 @@ public class RouteController {
 
     public boolean canSignUp(Route route, User user){
         if(route.isSunday() && user.isSunday()){
-
+            System.out.println("route "+route.isSunday());
+            System.out.println("user "+user.isSunday());
             return false;
 
         }
@@ -394,6 +399,30 @@ public class RouteController {
             return false;
         }
         return true;
+    }
+
+    public void setUserDays(Route route, User user){
+        if(route.isSunday()){
+            user.setSunday(true);
+        }
+        if(route.isMonday()){
+            user.setMonday(true);
+        }
+        if(route.isTuesday()){
+            user.setTuesday(true);
+        }
+        if(route.isWednesday()){
+            user.setWednesday(true);
+        }
+        if(route.isThursday()){
+            user.setThursday(true);
+        }
+        if(route.isFriday()){
+            user.setFriday(true);
+        }
+        if(route.isSaturday()){
+            user.setSaturday(true);
+        }
     }
 
 
