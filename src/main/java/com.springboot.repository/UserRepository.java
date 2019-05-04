@@ -68,4 +68,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("update User u set u.saturday = :change where u.id = :id")
     void updateSaturday(@Param("id") int id, @Param("change") boolean change);
+
 }

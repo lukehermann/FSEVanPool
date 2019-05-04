@@ -143,4 +143,16 @@ public class RouteServiceImpl implements RouteService {
     }
 
 
+    @Override
+    public void setRouteInactive(long routeid)
+    {
+        routeRepository.setRouteInactive(routeid);
+    }
+
+    @Override
+    public List<Route> getAllWithMyDriverID(int driverid) {
+        return routeRepository.findAllWithMyDriverID(driverid);
+    }
+
+
 }

@@ -171,20 +171,22 @@ public class RouteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         String userRoutes;
+        int userid = user.getId();
+        userRoutes=userService.getRoutes(userid);
         if(routesids != null) {
             for (String id : routesids) {
                 int routeid = Integer.parseInt(id);
                 tempRoute = routeService.findRouteByRouteid(routeid);
-                int userid = user.getId();
+
 
                 if (canSignUp(tempRoute, user))
                 {
                     if (tempRoute.getDriverid() == 0) {
                         routeService.addDriverToRoute(userid, routeid);
                         routeService.setRouteToActive(routeid);
+                        setUserDaysTrue(tempRoute, user);
                         model.addObject("msg", "Successfully signed up for route!");
                     }
-                    userRoutes=userService.getRoutes(userid);
                     if (userRoutes != null)
                     {
                         userRoutes=userRoutes.concat(" ");
@@ -194,9 +196,10 @@ public class RouteController {
                     {
                         userRoutes=Integer.toString(routeid);
                     }
-                    userService.updateRoutes(userRoutes, userid);
+
                 }
             }
+            userService.updateRoutes(userRoutes, userid);
             List<Route> myRoutes=new ArrayList<>();
         }
         List<Route> routeList=routeService.listNoDriverID();
@@ -218,49 +221,60 @@ public class RouteController {
         {
             for (String id : routesids) {
                 String routeid = Integer.toString(Integer.parseInt(id));
-                if (routeid!=null)
-                {
-                    routeService.endDriverShift(Integer.parseInt(id));
-                }
+                System.out.println("route ID: "+routeid);
+                routeService.endDriverShift(Integer.parseInt(id));
+                routeService.setRouteInactive(Integer.parseInt(id));
+                Route tempRoute = routeService.findRouteByRouteid(Integer.parseInt(id));
+                setUserDaysFalse(tempRoute, user);
                 int i=0;
                 int j=0;
                 String temp;
+                if (routes.length() == 1 || routes.length()== 2)
+                {
+                    if (routes.equals(routeid))
+                    {
+                        routes=null;
+                    }
+                }
+                else if (routes.contains(routeid+' '))
+                {
+                    routes = routes.replace(routeid+' ', "");
+                }
+                else if (routes.contains(routeid))
+                {
+
+                    routes = routes.substring(0, routes.indexOf(routeid));
+                    //routes = routes.replace(routeid, "");
+                }
                 while (j < routes.length()) {
-                    if (routes.length() == 1 || routes.length()== 2)
-                    {
-                        if (routes.equals(routeid))
-                        {
-                            routes=null;
 
-                        }
-                        break;
-                    }
-                    else if (routes.substring(j, j+1).equals(" "))
-                    {
-                        if (routes.substring(i, j).equals(routeid))
-                        {
-                            temp =routes.substring(j+1);
-                            routes=routes.substring(0, i);
-                            routes= routes.concat(temp);
-                        j=0;
-                        i = j;
-
-                        }
-                        else
-                        {
-                            j++;
-                            i=j;
-                        }
-                    }
-                    else {
-                        j++;
-                    }
-                     if (i==routes.length()-1) {
-                            if (routeid.equals(routes.substring(i))) {
-                                routes = routes.substring(0, i - 1);
-                            }
-                        }
-
+                    j++;
+//                    else if (routes.substring(j, j+1).equals(" "))
+//                    {
+//                        System.out.println(routes.substring(i, j));
+//                        if (routes.substring(i, j).equals(routeid))
+//                        {
+//                            temp =routes.substring(j+1);
+//                            routes=routes.substring(0, i);
+//                            routes= routes.concat(temp);
+//                        j=0;
+//                        i = j;
+//                        }
+//                        else
+//                        {
+//                            j++;
+//                            i=j;
+//                        }
+//                    }
+//                    else {
+//                        j++;
+//                    }
+//                     if (i==routes.length()-1)
+//                     {
+//                            if (routeid.equals(routes.substring(i))) {
+//                                routes = routes.substring(0, i - 1);
+//                            }
+//                        }
                 }
             }
             userService.updateRoutes(routes, user.getId());
@@ -361,31 +375,38 @@ public class RouteController {
 
     public boolean canSignUp(Route route, User user){
         if(route.isSunday() && user.isSunday()){
+            System.out.println("Here Sunday");
             return false;
 
         }
         else if (route.isSaturday() && user.isSaturday())
         {
+            System.out.println("Here Saturday");
             return false;
         }
         else if (route.isMonday() && user.isMonday())
         {
+            System.out.println("Here Monday");
             return false;
         }
         else if (route.isTuesday() && user.isTuesday())
         {
+            System.out.println("Here Tuesday");
             return false;
         }
         else if (route.isWednesday() && user.isWednesday())
         {
+            System.out.println("Here Wednesday");
             return false;
         }
         else if (route.isThursday() && user.isThursday())
         {
+            System.out.println("Here Thursday");
             return false;
         }
         else if (route.isFriday() && user.isFriday())
         {
+            System.out.println("Here Friday");
             return false;
         }
         return true;
@@ -394,24 +415,31 @@ public class RouteController {
     public void setUserDaysTrue(Route route, User user){
         if(route.isSunday()){
             user.setSunday(true);
+            userService.updateSunday(user.getId(), true);
         }
         if(route.isMonday()){
             user.setMonday(true);
+            userService.updateMonday(user.getId(), true);
         }
         if(route.isTuesday()){
             user.setTuesday(true);
+            userService.updateTuesday(user.getId(), true);
         }
         if(route.isWednesday()){
             user.setWednesday(true);
+            userService.updateWednesday(user.getId(), true);
         }
         if(route.isThursday()){
             user.setThursday(true);
+            userService.updateThursday(user.getId(), true);
         }
         if(route.isFriday()){
             user.setFriday(true);
+            userService.updateFriday(user.getId(), true);
         }
         if(route.isSaturday()){
             user.setSaturday(true);
+            userService.updateSaturday(user.getId(), true);
         }
     }
 
@@ -445,24 +473,31 @@ public class RouteController {
     public void setUserDaysFalse(Route route, User user){
         if(route.isSunday()){
             user.setSunday(false);
+            userService.updateSunday(user.getId(), false);
         }
         if(route.isMonday()){
             user.setMonday(false);
+            userService.updateMonday(user.getId(), false);
         }
         if(route.isTuesday()){
             user.setTuesday(false);
+            userService.updateTuesday(user.getId(), false);
         }
         if(route.isWednesday()){
             user.setWednesday(false);
+            userService.updateWednesday(user.getId(), false);
         }
         if(route.isThursday()){
             user.setThursday(false);
+            userService.updateThursday(user.getId(), false);
         }
         if(route.isFriday()){
             user.setFriday(false);
+            userService.updateFriday(user.getId(), false);
         }
         if(route.isSaturday()){
             user.setSaturday(false);
+            userService.updateSaturday(user.getId(), false);
         }
     }
 

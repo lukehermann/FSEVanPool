@@ -190,29 +190,35 @@ public class UserController {
         //Driver
         if (role.equals("driver"))
         {
-            Route tempRoute;
+            Route tempRoute=null;
             List<Route> routeList=routeService.listNoDriverID();
             List<Route> myRoutes = new ArrayList<>();
             model.addObject("routeList", routeList);
-            String routes=userService.getRoutes(user.getId());
-            int i=0;
-            int j=0;
-            if (routes!=null) {
-                while (j != routes.length()) {
-                    if (routes.charAt(j) == ' ') {
-                        tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i, j)));
-                        myRoutes.add(tempRoute);
-                        j++;
-                        i = j;
-
-                    } else {
-                        j++;
-                    }
-                }
-                tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
-                myRoutes.add(tempRoute);
-            }
+            myRoutes = routeService.getAllWithMyDriverID(user.getId());
             model.addObject("myRoutes", myRoutes);
+//            String routes=userService.getRoutes(user.getId());
+//            int i=0;
+//            int j=0;
+//            if (routes!=null)
+//            {
+//                while (j != routes.length())
+//                {
+//                    if (routes.charAt(j) == ' ')
+//                    {
+//                        tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i, j)));
+//                        myRoutes.add(tempRoute);
+//                        j++;
+//                        i = j;
+//
+//                    }
+//                    else {
+//                        j++;
+//                    }
+//                }
+//                tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
+//                myRoutes.add(tempRoute);
+//            }
+//
         }
         //Rider
         else if(role.equals("rider"))

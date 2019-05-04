@@ -33,5 +33,7 @@ public interface RouteService {
 
     void endDriverShift(long routeid);
 
+    void setRouteInactive(long routeid);
 
+    List<Route> getAllWithMyDriverID(int driverid);
 }

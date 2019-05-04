@@ -108,4 +108,6 @@ public class UserServiceImpl implements UserService {
     public void updateSaturday(int userId, boolean change){
         userRepository.updateSaturday(userId, change);
     }
+
+
 }
