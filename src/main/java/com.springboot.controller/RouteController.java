@@ -246,36 +246,7 @@ public class RouteController {
                     routes = routes.substring(0, routes.indexOf(routeid));
                     //routes = routes.replace(routeid, "");
                 }
-                while (j < routes.length()) {
 
-                    j++;
-//                    else if (routes.substring(j, j+1).equals(" "))
-//                    {
-//                        System.out.println(routes.substring(i, j));
-//                        if (routes.substring(i, j).equals(routeid))
-//                        {
-//                            temp =routes.substring(j+1);
-//                            routes=routes.substring(0, i);
-//                            routes= routes.concat(temp);
-//                        j=0;
-//                        i = j;
-//                        }
-//                        else
-//                        {
-//                            j++;
-//                            i=j;
-//                        }
-//                    }
-//                    else {
-//                        j++;
-//                    }
-//                     if (i==routes.length()-1)
-//                     {
-//                            if (routeid.equals(routes.substring(i))) {
-//                                routes = routes.substring(0, i - 1);
-//                            }
-//                        }
-                }
             }
             userService.updateRoutes(routes, user.getId());
             model.setViewName("redirect:/home/home");

@@ -196,29 +196,7 @@ public class UserController {
             model.addObject("routeList", routeList);
             myRoutes = routeService.getAllWithMyDriverID(user.getId());
             model.addObject("myRoutes", myRoutes);
-//            String routes=userService.getRoutes(user.getId());
-//            int i=0;
-//            int j=0;
-//            if (routes!=null)
-//            {
-//                while (j != routes.length())
-//                {
-//                    if (routes.charAt(j) == ' ')
-//                    {
-//                        tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i, j)));
-//                        myRoutes.add(tempRoute);
-//                        j++;
-//                        i = j;
-//
-//                    }
-//                    else {
-//                        j++;
-//                    }
-//                }
-//                tempRoute=routeService.findRouteByRouteid(Integer.parseInt(routes.substring(i)));
-//                myRoutes.add(tempRoute);
-//            }
-//
+
         }
         //Rider
         else if(role.equals("rider"))
