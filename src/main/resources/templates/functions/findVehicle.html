@@ -46,16 +46,27 @@
                 </tr>
             </table>
         </div>
-<!--        <div>-->
-<!--            <ul class="text-danger" th:each="error: ${#fields.errors('vehicle.vehicleId')}">-->
-<!--                <li th:each="message : ${error.split(',')}">-->
-<!--                    <p class="error-message" th:text="${message}"></p>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-        <input type="hidden" class="form-control" id="routeid" th:field="*{route.routeid}">
-        <button type="submit" name="update" class="btn btn-success"><i class="fa fa-plus"></i> Update Vehicles</button>
+        <input type="hidden" class="form-control" id="routeid" th:field="${route.routeid}">
+        <button type="submit" id="checkBtn" name="update" class="btn btn-success"><i class="fa fa-plus"></i> Update Vehicles</button>
+        <p> </p>
+        <p class="message">Can't find a vehicle? <a th:href="@{/home/home}"> Go back to home page</a></p>
+
     </form>
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            checked = $("input[type=radio]:checked").length;
+
+            if(!checked) {
+                alert("You must check at least one checkbox.");
+                return false;
+            }
+
+        });
+    });
+
+</script>

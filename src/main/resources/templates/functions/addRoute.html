@@ -99,11 +99,28 @@
                     </div>
 
                 </div>
-                <button type="submit" name="add" class="btn btn-success"><i class="fa fa-search-plus"></i>Find Vehicles</button>
+                <button type="submit" id="checkBtn" name="add" class="btn btn-success"><i class="fa fa-search-plus"></i>Find Vehicles</button>
             </div>
             </form>
         </div>
     </form>
+    <p> </p>
+    <p class="message">Don't want to add a route?<a th:href="@{/home/home}">Go back to home page</a></p>
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            checked = $("input[type=checkbox]:checked").length;
+
+            if(!checked) {
+                alert("You must check at least one checkbox.");
+                return false;
+            }
+
+        });
+    });
+
+</script>

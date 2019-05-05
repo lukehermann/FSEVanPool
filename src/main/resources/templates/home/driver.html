@@ -69,7 +69,7 @@
             </tr>
             <form method="get" action="/endRoute">
                 <tr th:each="routes, stat : ${myRoutes}">
-                    <td><input type="checkbox" th:name="routes" th:value="${routes.routeid}"/></td>
+                    <td><input type="checkbox" th:id="myRoutes" th:name="routes" th:value="${routes.routeid}"/></td>
                     <td th:text="${routes.driverid}"></td>
                     <td th:text="${routes.startlocation}"></td>
                     <td th:text="${routes.dropofflocation}"></td>
@@ -89,7 +89,7 @@
             <div class="col-md-6">
 
                 <form method="get" action="/endRoute">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-add"></i> Leave Route</button>
+                    <button type="submit" id="leaveBtn" class="btn btn-success"><i class="fa fa-add"></i> Leave Route</button>
                 </form>
             </div>
         </div>

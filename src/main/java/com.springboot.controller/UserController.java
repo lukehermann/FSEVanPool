@@ -299,7 +299,7 @@ public class UserController {
     public ModelAndView deleteRoute(@RequestParam("vehicleType") String vehicleType, @RequestParam("action") String action, @RequestParam(value = "vehicles", defaultValue = "emptyList") List<String> vehicleids) {
         ModelAndView model = new ModelAndView();
 
-        if(action.equals("delete")){
+        if(action.equals("deleteveh")){
             if(vehicleids != null){
                 for(String id : vehicleids){
                     if(!id.equals("emptyList")) {
