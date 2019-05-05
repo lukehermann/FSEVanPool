@@ -49,15 +49,6 @@ public class UserController {
         ModelAndView model = new ModelAndView();
         User user = new User();
         model.addObject("user", user);
-        List<String> answers = new ArrayList<>();
-        answers.add("What city you were born in?");
-        answers.add("What was your first pet?");
-        answers.add("What was your first pets name?");
-        answers.add("What is your favorite book?");
-        answers.add("What is your favorite food?");
-        answers.add("What is your favorite movie?");
-        answers.add("What is your Mothers maiden name?");
-        model.addObject("answers", answers);
         model.setViewName("user/signup");
 
         return model;

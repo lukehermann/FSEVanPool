@@ -31,10 +31,10 @@
                    placeholder="First Name" required autofocus>
 
             <input type="text" name="lastname" th:field="*{lastname}" class="form-control" id="lastname"
-                   placeholder="Last name" required autofocus>
+                   placeholder="Last name" required>
 
             <input type="text" name="email" th:field="*{email}" class="form-control" id="email"
-                   placeholder="username@gmail.com" required autofocus>
+                   placeholder="username@gmail.com" required>
 
             <div class="form-control-feedback">
                  <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
@@ -67,41 +67,45 @@
                 </ul>
             </div>
 
-            <div class="form-group row">
-                <select class="form-control" id="questionOne" name="questionOne">
-                    <option th:each="questionOne : ${answers}"
-                            th:value="${questionOne}"
-                            th:text="${questionOne}"
-                    ></option>
-                </select>
-            </div>
+            <select class="form-control" id="questionOne" name="questionOne">
+                <option selected="selected">What city you were born in?</option>
+                <option>What was your first pet?</option>
+                <option>What was your first pets name?</option>
+                <option>What is your favorite book?</option>
+                <option>What is your favorite food?</option>
+                <option>What is your favorite movie?</option>
+                <option>What is your Mothers maiden name?</option>
+            </select>
+
 
             <input type="text" name="answerOne" th:field="*{answerOne}" class="form-control" id="answer"
-                   placeholder="Type your answer here" required autofocus>
+                   placeholder="Type your answer here" required>
 
-            <div class="form-group row">
-                <select class="form-control" id="questionTwo" name="questionTwo">
-                    <option th:each="questionTwo : ${answers}"
-                            th:value="${questionTwo}"
-                            th:text="${questionTwo}"
-                    ></option>
-                </select>
-            </div>
+            <select class="form-control" id="questionTwo" name="questionTwo">
+                <option>What city you were born in?</option>
+                <option>What was your first pet?</option>
+                <option>What was your first pets name?</option>
+                <option>What is your favorite book?</option>
+                <option selected="selected">What is your favorite food?</option>
+                <option>What is your favorite movie?</option>
+                <option>What is your Mothers maiden name?</option>
+            </select>
 
             <input type="text" name="answerTwo" th:field="*{answerTwo}" class="form-control" id="answerTwo"
-                   placeholder="Type your answer here" required autofocus>
+                   placeholder="Type your answer here" required>
 
-            <div class="form-group row">
-                <select class="form-control" id="QuestionThree" name="QuestionThree">
-                    <option th:each="questionThree : ${answers}"
-                            th:value="${questionThree}"
-                            th:text="${questionThree}"
-                    ></option>
-                </select>
-            </div>
+            <select class="form-control" id="QuestionThree" name="QuestionThree">
+                <option>What city you were born in?</option>
+                <option>What was your first pet?</option>
+                <option selected="selected">What was your first pets name?</option>
+                <option>What is your favorite book?</option>
+                <option>What is your favorite food?</option>
+                <option>What is your favorite movie?</option>
+                <option>What is your Mothers maiden name?</option>
+            </select>
 
             <input type="text" name="answerThree" th:field="*{answerThree}" class="form-control" id="answerThree"
-                   placeholder="Type your answer here" required autofocus>
+                   placeholder="Type your answer here" required>
 
 
             <button type="submit" name="Register" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
