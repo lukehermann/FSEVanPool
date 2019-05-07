@@ -93,6 +93,10 @@ public class TestSelenium {
         driver.findElement(By.xpath("//button[@value='addveh']")).click();
 
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         // Adds a route
         driver.findElement(By.xpath("//button[@value='add']")).click();
@@ -110,6 +114,10 @@ public class TestSelenium {
         }
         driver.findElement(By.xpath("//button[@name='add']")).click();
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         // Selects a vehicle
         List<WebElement> radios = driver.findElements(By.xpath("//input[@id='vehicleType']"));
@@ -117,6 +125,10 @@ public class TestSelenium {
         radios.get(rnd.nextInt(radios.size())).click();
         driver.findElement(By.xpath("//button[@name='update']")).click();
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         // Logout of admin
         linkByPartialText = driver.findElement(By.partialLinkText("Sign"));
@@ -149,6 +161,11 @@ public class TestSelenium {
         element.sendKeys("Password1!");
         element=driver.findElement(By.xpath("//input[@name='confirmPassword']"));
         element.sendKeys("Password1!");
+
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         // Clicks the Rider radio button
         element=driver.findElement(By.xpath("//input[@id='Driver']"));
@@ -191,6 +208,11 @@ public class TestSelenium {
         element.sendKeys("Password1!");
         driver.findElement(By.xpath("//button[@name='btnLogin']")).click();
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+
         // Select a random route
         List<WebElement> driverRoutes = driver.findElements(By.xpath("//input[@id='routes']"));
         driverRoutes.get(rnd.nextInt(driverRoutes.size())).click();
@@ -198,6 +220,10 @@ public class TestSelenium {
 
         driver.findElement(By.xpath("//button[@id='signup']")).click();
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         List<WebElement> driverMyRoutes = driver.findElements(By.xpath("//input[@id='myRoutes']"));
         driverMyRoutes.get(rnd.nextInt(driverMyRoutes.size())).click();
@@ -277,6 +303,12 @@ public class TestSelenium {
         driver.findElement(By.xpath("//button[@name='btnLogin']")).click();
 
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+
+
         // Select a random route
         List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@id='routes']"));
         checkboxes.get(rnd.nextInt(checkboxes.size())).click();
@@ -294,6 +326,11 @@ public class TestSelenium {
         linkByPartialText = driver.findElement(By.partialLinkText("Sign"));
         linkByPartialText.click();
 
+
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         //Sign in using rider account
         element=driver.findElement(By.xpath("//input[@name='email']"));
@@ -351,6 +388,11 @@ public class TestSelenium {
         element=driver.findElement(By.xpath("//input[@id='answerThree']"));
         element.sendKeys("dog");
 
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+
 
         // Click recover button
         driver.findElement(By.xpath("//button[@id='recover']")).click();
@@ -361,6 +403,11 @@ public class TestSelenium {
         element=driver.findElement(By.xpath("//input[@id='confirmPassword']"));
         element.sendKeys("Password2!");
         driver.findElement(By.xpath("//button[@id='reset']")).click();
+
+        // 500ms delay
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
 
         // Login with new password information for the rider account
         element=driver.findElement(By.xpath("//input[@name='email']"));
